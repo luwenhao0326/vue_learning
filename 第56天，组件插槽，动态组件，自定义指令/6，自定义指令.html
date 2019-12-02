@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            display: inline-block;
+            background-color: red;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 自定义的指令在使用时需要添加v-前缀 -->
+        <div v-drag="123" id="box">helloworld</div>
+        <!-- <p v-drag="456">段落</p> -->
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        // Vue.directive,用于全局注册一个指令，第一个参数是指令名字，第二个参数是指令的配置对象
+        Vue.directive("drag",{
+            //指令配置对象中inserted方法，当指令被插入到元素中时指令，一般用于设置指令的具体功能 
+            // inserted函数中，第一个参数是指令指令所在的元素对象，第二个参数是指令信息。
+            inserted(el,dir){
+                // console.log("指令被识别了");
+                
+                el.style.position = "relative";
+                el.style.left = "0";
+                el.style.top = "0"
+
+                function mv(e) {
+                    let offX = e.pageX - prevX;
+                    let offY = e.pageY - prevY;
+                    el.style.left = parseInt(el.style.left)+offX  + "px";
+                    el.style.top = parseInt(el.style.top)+offY+"px";
+
+                    prevX = e.pageX;
+                    prevY = e.pageY;
+                }
+                
+                let prevX = 0;
+                let prevY = 0;
+                el.addEventListener("mousedown",function(e){
+                    prevX = e.pageX;
+                    prevY = e.pageY;
+                    document.addEventListener("mousemove",mv)
+                })
+
+               
+                document.addEventListener("mouseup",function(){
+                    document.removeEventListener("mousemove",mv) 
+                })
+            }
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+
+            }
+        })
+    </script>
+</body>
+</html>

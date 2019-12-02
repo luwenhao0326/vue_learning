@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 组件中的数据(data,props,computed)只能在组件自己的模板中使用 -->
+        <!-- <com>{{child}}</com> -->
+
+        <input type="text" v-model="str">
+        <com>{{str}}</com>
+    </div>
+
+    <script src="vue.js"></script>
+    <script type="text/html" id="com">
+        <div>
+            <h1>
+                <slot></slot>
+            </h1>
+        </div>
+    </script>
+    <script>
+
+        Vue.component("com",{
+            template:"#com",
+            data(){
+                return{
+                    child:"这是子组件中的数据"
+                }
+            }
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+                str:"设置根组件的数据"
+            }
+        })
+    </script>
+</body>
+</html>

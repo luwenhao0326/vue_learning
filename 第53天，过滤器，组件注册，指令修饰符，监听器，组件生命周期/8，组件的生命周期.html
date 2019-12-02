@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="showCom1">
+        <com1 v-if="showCom1"></com1>
+    </div>
+    <script src="vue.js"></script>
+
+    <script>
+
+        Vue.component("com1",{
+            template:"<h1>这是com1组件</h1>",
+
+            // 组件的配置对象中可以添加几种生命周期钩子函数。
+            // 生命周期钩子函数中的this表示组件对象。
+
+            // created，当组件被创建时(渲染前)调用。
+            created(){
+                console.log("com1被创建了");
+                // console.log(this);
+            },
+            
+            // mounted，组件被渲染完毕之后调用。这个是最常用的生命周期函数。
+            mounted(){
+                console.log("com1渲染完毕了");
+            },
+            
+            // destroyed,当组件被销毁时调用。
+            destroyed(){
+                console.log("com1被销毁了");
+            },
+        })
+
+        new Vue({
+            el:"#app",  
+            data:{
+                showCom1:true
+            },
+            // 当组件被更新(被重新渲染)时调用
+            updated(){
+                console.log("根组件更新了");
+                
+            }
+            
+        });
+    </script>
+</body>
+</html>

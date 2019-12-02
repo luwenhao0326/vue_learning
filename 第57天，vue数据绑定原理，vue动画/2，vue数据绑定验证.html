@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{str}}</p>
+        <p>{{num}}</p>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+
+        // vue组件对象创建时，会把组件配置对象的data中的数据作为set,get属性添加到组件对象上,在组件中使用的数据都是组件对象的属性。
+
+        // 这个过程只能在组件创建时进行，组件创建后不能再添加新的属性，否则添加的属性仅仅是普通的属性，而不是set,get属性，就不能进行数据绑定
+
+        let root = new Vue({
+            el:"#app",
+            data:{
+                str:"hello"
+            },
+            mounted() {
+                this.num = 10;
+            },
+        });
+
+        console.log(root);
+        
+    </script>
+</body>
+</html>

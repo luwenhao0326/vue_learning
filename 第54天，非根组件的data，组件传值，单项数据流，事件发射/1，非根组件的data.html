@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <com1></com1>
+        <com1></com1>
+    </div>
+
+    <script type="text/html" id="com1">
+        <div>
+            <h1>这是com1组件</h1>
+            <input type="text" v-model="num">
+            <p>{{num}}</p>
+
+            <!-- 组件的模板中只能绑定自己的data或conputed，不能直接使用父组件中的数据 -->
+            <!-- <h3>{{title}}</h3> -->
+        </div>
+    </script>
+
+    <script src="vue.js"></script>
+    <script>
+
+        Vue.component("com1",{
+            template:"#com1",
+            // 非根组件的data必须是函数，函数中返回组件的数据对象。
+            // data:{
+            //     num:""
+            // }
+            data(){
+                return {
+                    num:"abc"
+                }
+            }
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+                title:"hello"
+            }
+        })
+    </script>
+</body>
+</html>

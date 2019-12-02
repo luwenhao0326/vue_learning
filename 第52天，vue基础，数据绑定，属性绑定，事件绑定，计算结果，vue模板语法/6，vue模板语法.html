@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <th>序号：</th>
+                    <th>书名：</th>
+                    <th>作者：</th>
+                    <th>价格：</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- vue中，使用v-for 进行列表渲染 -->
+                <tr v-for="b,i in books">
+                    <td>{{i+1}}</td>
+                    <td>{{b.name}}</td>
+                    <td>{{b.author}}</td>
+                    <td>{{b.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <input type="text" placeholder="书名" v-model="name">
+        <input type="text" placeholder="作者" v-model="author">
+        <input type="text" placeholder="价格" v-model="price">
+        <button @click="add">添加</button>
+       
+        <hr>
+
+        <!-- 对于多个标签同时循环的情况，可以使用template标签作为父标签，页面渲染出来时template会被移除 -->
+        <template v-for="b in books">
+            <h1>《{{b.name}}》</h1>
+            <p>{{b.author}}</p>
+        </template>
+
+
+        <hr>
+
+        <input type="checkbox" v-model="showBox">
+
+        <!-- v-if 指令用于条件渲染，当v-if中的值为真时，元素渲染，否则不渲染 -->
+        <!-- v-show也可以用于条件渲染 -->
+
+        <!-- 区别是：隐藏方式不同，v-if是直接将元素从DOM中删除，而v-show是将元素设置为display:none隐藏了 -->
+
+        <!-- 对于状态确定之后不再变化的情况，使用v-if，对于渲染条件需要频繁切换的情况，使用v-show -->
+        <div v-if="showBox">这是可以隐藏的元素</div>
+        <div v-show="showBox">这也是可以隐藏的元素</div>
+
+        
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                books:[
+                    {name:"关键对话",author:"薛耀东",price:49},
+                    {name:"活着",author:"余华",price:59},
+                    {name:"许三观卖血记",author:"余华",price:39}
+                ],
+                name:null,
+                author:null,
+                price:null,
+                showBox:true
+            },
+            methods:{
+                add(){
+                    let obj = {};
+                    obj.name = this.name;
+                    obj.author = this.author;
+                    obj.price = this.price*1;
+                    this.name = "";
+                    this.author = "";
+                    this.price = null;
+
+                    this.books.push(obj);
+                    
+                    // vue不能监听使用索引对数组的修改，所以不能自动重新渲染页面。
+                    // 所以在vue中尽量不要使用索引修改数组，而是用push，pop等方法
+                    // this.books[this.books.length] = obj;
+
+                
+                    
+                }
+            }
+        });
+    </script>
+</body>
+</html>

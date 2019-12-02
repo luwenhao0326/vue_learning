@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="animate.css">
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+        #b2{
+            width: 500px;
+            height: 100px;
+            background-color: rgb(80, 248, 94);
+        }
+        
+        @keyframes come-in{
+            0%{
+                transform: rotate(45deg);
+                opacity: 0;
+            }
+            50%{
+                transform: rotate(45deg);
+                opacity: 1;
+            }
+            100%{
+                transform: rotate(0);
+                opacity: 1;
+            }
+        }
+
+         @keyframes come-out{
+            0%{
+                transform: rotate(0);
+                opacity: 1;
+            }
+            50%{
+                transform: rotate(45deg);
+                opacity: 1;
+            }
+            100%{
+                transform: rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* 在trantision标签中使用关键帧动画，只需要设置enter-active和leave-avtive两个class即可，在class中设置要执行的动画 */
+
+        .ani-enter-active{
+            animation: come-in 0.7s;
+        }
+        .ani-leave-active{
+            animation: come-out 0.7s;
+        }
+
+        .come{
+            animation: come-in 0.7s;
+        }
+        .go{
+            animation: come-out 0.7s;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="show">
+        <transition name="ani">
+            <div id="box" v-show="show"></div>
+        </transition>
+        
+        <!-- 使用关键帧动画也可以直接在teansition标签中指定动画所在的class -->
+        <!-- 这样可以方便的使用第三方动画库(例如animate.css)中的关键帧动画 -->
+        <transition 
+            enter-active-class="zoomIn animated"
+            leave-active-class="zoomOut animated"
+        >
+            <div id="b2" v-show="show"></div>
+        </transition>
+        
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                show:false
+            }
+        })
+    </script>
+</body>
+</html>

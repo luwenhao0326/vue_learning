@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .com1-root{
+            width: 200px;
+            height: 100px;
+            background-color: aqua;
+        }
+        .com2-root{
+            width: 200px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .ani-enter,.ani-leave-to{
+            transform: translate(-100%,0)
+        }
+        .ani-enter-active,.ani-leave-active{
+            transition: all 0.7s;
+        }
+        .ani-enter-to,.ani-leave{
+            transform: translate(0,0)
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <select v-model="comType">
+            <option value="com1">组件1</option>
+            <option value="com2">组件2</option>
+        </select>
+
+        <!-- 当使用动画实现组件切换时，入场动画和离场动画同时执行，可以使用mode属性设置先执行离场动画还是先执行入场动画 -->
+        <transition name="ani" mode="out-in" >
+            <keep-alive>
+                <component :is="comType"></component>
+            </keep-alive>
+        </transition>
+        
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        let com1 = {
+            template:`<div class="com1-root"></div>`,
+            destroyed() {
+                console.log("com1销毁了");
+                
+            },
+        }
+        let com2 = {
+            template:`<div class="com2-root"></div>`
+        }
+
+        new Vue({
+            el:"#app",
+            data:{
+                comType:"com1"
+            },
+            components:{
+                com1,
+                com2
+            }
+        })
+    </script>
+</body>
+</html>

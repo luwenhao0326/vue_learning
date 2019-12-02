@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        body{
+            margin: 0;
+            overflow: hidden;
+        }
+        nav{
+            border: solid 1px red;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            border: solid 1px black;
+            box-sizing: border-box;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style: none;
+
+        }
+        ul li{
+            width: 25%;
+            height: 49px;
+            border-right: solid 1px black;
+            box-sizing: border-box;
+        }
+        ul li:nth-of-type(4){
+            border-right:none;
+        }
+        ul li a{
+            display: inline-block;
+            margin: 0;
+            height: 49px;
+            width: 100%;
+            line-height: 49px;
+            text-align: center;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        ul li a img{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            position: absolute;
+            left: 30%;
+            top: 5px;
+        }
+        ul li a span{
+            /* display: inline-block; */
+            position: absolute;
+            left: 36%;
+            top: 15px;
+            font-size: 10px;
+        }
+
+        .router-view{
+            border: solid 1px red;
+            box-sizing: border-box;
+            height: calc(100vh - 49px);
+            overflow: scroll;
+        }
+
+        .gaoliang{
+            background-color: aqua;
+        }
+    </style>
+
+   
+</head>
+<body>
+    <div id="app">
+        <!-- router-view是vue-router中自带的组件，作为路由视图使用，被路由匹配到的组件会显示到这个标签中 -->
+            <keep-alive>
+                <router-view class="router-view" ></router-view>
+            </keep-alive>
+            
+        <nav>
+            <ul>
+                <li>
+                    <!-- routerlink标签相当于a标签，不用添加# -->
+                    <!-- <router-link to="/home">首页</router-link> -->
+                    <a href="#/home" @click="dianji" :class="'#/home'==num1?'gaoliang':''">
+                        <img src="a.png" alt="">
+                        <span>首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#/friend" @click="dianji" :class="'#/friend'==num1?'gaoliang':''">
+                        <img src="b.png" alt="">
+                        <span>好友</span>
+                        
+                    </a>
+                </li>
+                <li>
+                    <a href="#/news"  @click="dianji" :class="'#/news'==num1?'gaoliang':''">
+                        <img src="c.png" alt="">
+                        <span>新闻</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#/shezhi" @click="dianji" :class="'#/shezhi'==num1?'gaoliang':''">
+                        <img src="d.png" alt="">
+                        <span>设置</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <script>
+
+        
+
+        let home = {
+            template:`
+            <div @scroll="gundong">
+            <h1>主页</h1>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            
+            </div>`,
+            data(){
+                return{
+                    num:0
+                }
+            },
+            
+            methods:{
+                gundong(){
+                    this.num = this.$el.scrollTop;
+                }
+            },
+            // 组件切换时调用
+            activated() {
+                this.$el.scrollTop = this.num
+            },
+        }
+        
+        let friend = {
+            template:`<div><h1>好友列表</h1></div>`
+        }
+        let news = {
+            template:`<div><h1>新闻</h1></div>`
+        }
+        let shezhi = {
+            template:`<div><h1>设置</h1></div>`
+        }
+
+        // 使用vue路由，需要添加一个路由对象，用于添加路由规则
+
+        let router = new VueRouter({
+            // 路由配置对象中通过routes添加路由规则
+            routes:[
+                // 路有对象是一个数组，数组中存放路由规则。
+                // 路由规则中记录哪个哈希路径对应哪个组件
+                // 当页面的哈希值为#/home时，router-view中显示home组件
+                {path:"/home",component:home},
+                {path:"/friend",component:friend},
+                {path:"/news",component:news},
+                {path:"/shezhi",component:shezhi},
+                // 路由规则中可以使用重定向
+                {path:"/",redirect:"/home"}
+            ]
+        });
+
+        // Vue路由中实现的是根据页面hash不同，在router-view中显示不同的组件，从而实现页内跳转，这种直接当做页面使用，写入路由规则的组件，叫做 *页面级组件*
+
+       
+
+        new Vue({
+            el:"#app",
+            data:{
+                num1:"#/home"
+
+            },
+            methods:{
+                dianji(){
+                    setTimeout(() => {
+                        this.num1 = location.hash;
+                    }, 100);
+                    
+                }
+            },
+            mounted() {
+                setTimeout(() => {
+                        this.num1 = location.hash;
+                }, 1);
+            },
+            // components:{
+            //     home,
+            //     friend,
+            //     news,
+            //     shezhi
+            // },
+            // 路由配置对象创建之后必须注入根组件才能生效。
+            router
+            
+            
+        })
+    </script>
+</body>
+</html>

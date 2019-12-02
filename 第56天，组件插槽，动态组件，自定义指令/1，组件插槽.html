@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 组件标签中的内容不能直接在组件模板中显示，会被丢弃掉 -->
+        <!-- 组件标签中的内容可以通过插槽(slot)传给组件的模板 -->
+        <com>
+            <b>组件标签中的内容能否在组件模板中显示?</b>
+        </com>
+    </div>
+    <script src="vue.js"></script>
+
+    <script type="text/html" id="com">
+        <div>
+            <h1>这里是标题</h1>
+            <p>
+                <!-- 在组件的模板中可以使用slot标签，在组件渲染时slot标签会被替换为组件使用时标签中的内容。 -->
+                <slot></slot>
+            </p>
+        </div>
+    </script>
+    <script>
+
+        Vue.component("com",{
+            template:"#com",
+            mounted(){
+                // 通过插槽传入组件中的数据一般都是直接显示在组件的模板中，不需要在代码中使用，但是代码中也可以通过this.$slots获得插槽内容
+                console.log(this.$slots);
+                
+            }
+        })
+
+
+        new Vue({
+            el:"#app",
+            data:{
+
+            }
+        })
+    </script>
+</body>
+</html>

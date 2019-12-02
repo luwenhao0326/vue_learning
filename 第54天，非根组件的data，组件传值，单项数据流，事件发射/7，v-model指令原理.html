@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.number="num">
+        <p>{{num}}</p>
+
+        <com :value="num" @input="increaseNum"></com>
+
+        <!-- v-model指令相当于一个v-bind+一个v-on，使用v-model绑定一个xxx变量就相当于v-bind:value="xxx" 外加一个 v-on:input="xxx=arguments[0]" -->
+
+        <!-- 所以一个组件如果要用v-model指令实现数据的双向绑定，则必须在props中接收value传值，并且在界面数据发生变化时提交input事件，把新的值作为事件的第一个参数传递 -->
+        <com v-model="num"></com>
+    </div>
+
+    <script type="text/html" id="com">
+        <div>
+            <span>{{value}}</span>
+            <button @click="increase">+</button>
+        </div>
+    </script>
+
+    <script src="vue.js"></script>
+    <script>
+
+        Vue.component("com",{
+            template:"#com",
+            props:["value"],
+            methods:{
+                increase(){
+                    this.$emit("input",this.value+1);
+                }
+            }
+        });
+
+        new Vue({
+            el:"#app",
+            data:{
+                num:0
+            },
+            methods:{
+                increaseNum(v){
+                    this.num = v;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 在vue页面中，标签的v-开头的属性叫做指令，用于实现一些特殊的功能 -->
+    <!-- v-model，双向绑定指令 -->
+
+    <div id="app">
+        <!-- 对于普通的input，v-model可以直接绑定一个数据，vue会将input中数据的内容绑定到这个变量上 -->
+        <input type="text" v-model="txt">
+        <p>{{txt}}</p>
+
+        <hr>
+        <!-- 对于单个checkbox,可以绑定一个bool值 -->
+        <input type="checkbox" v-model="agree">
+        <label for="">同意《用户协议》</label>
+        <p>{{agree}}</p>
+        <hr>
+
+
+        <label for="">html</label>
+        <!-- 同一组的多个checkbox，可以使用v-model绑定到同一个数组上，被选中的input的value值会同步到数组内容中。 -->
+        <input type="checkbox" value="html" v-model="tec">
+        <label for="">css</label>
+        <input type="checkbox" value="css" v-model="tec">
+        <label for="">javascript</label>
+        <input type="checkbox" value="javascript" v-model="tec">
+        <p>{{tec}}</p>
+        <hr>
+
+        <!-- 对于同一组的多个单选框，可以绑定到同一个数据上，绑定的是被选中的单选框的value值 -->
+        <label for="">男</label>
+        <input type="radio" value="male" name="gender" v-model="gender">
+        <label for="">女</label>
+        <input type="radio" value="famale" name="gender" v-model="gender">
+        <p>{{gender}}</p>
+        <hr>
+
+        <!-- 对于下拉列表，v-model可以绑定一个字符串，绑定的值是当前被选中的option的value值 -->
+        <select v-model="major">
+            <option>web前端</option>
+            <option>java</option>
+            <option>VR</option>
+        </select>
+        <p>{{major}}</p>
+    </div>
+
+
+    <script src="vue.js"></script>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                txt:"",
+                agree:true,
+                tec:[],
+                gender:null,
+                major:""
+            }
+        });
+    </script>
+</body>
+</html>

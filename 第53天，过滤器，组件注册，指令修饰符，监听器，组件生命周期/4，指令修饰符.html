@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+        #box2{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        
+        <!-- vue的某些指令可以使用指令修饰符，从而实现不同的指令效果 -->
+        <!-- 格式：指令.修饰符1.修饰符2 -->
+
+        <!-- v-model指令的.number修饰符用于设置指定的数据为number类型 -->
+        <input type="text" v-model.number="num">
+        <p>{{num+1}}</p>
+
+        <hr>
+
+        <!-- v-model的.lazy修饰符，用于设置绑定在blur事件中而不是默认的input事件 -->
+        <input type="text" v-model.lazy="d1">
+        <p>{{d1}}</p>
+
+        <hr>
+
+        <!-- v-model的.trim修饰符，用于将输入框的内容trim(去除两端的空格)之后在绑定到数据上 -->
+        <input type="text" v-model.trim="d2">
+        <pre>
+        <span style="background-color:aqua">{{d2}}</span>
+        </pre>
+        
+        <hr>
+
+        <!-- v-on监听的键盘事件，可以使用键名或键的keCode作为修饰符，那么仅当这个键被按下时才会触发事件 -->
+        <input type="text" v-model="d3" @keypress.13="keypress">
+
+        <hr>
+
+        <!-- v-on的.prevent修饰符，用于阻止事件的默认行为 -->
+        <!-- .stop修饰符，阻止事件的继续传播 -->
+        <a href="" @click.prevent="">这是一个按钮</a>
+
+        <hr>
+
+        <!-- 不向下层传播 -->
+        <div id="box1" @click.self="blueClick">
+            <div id="box2" @click="redClick"></div>
+        </div>
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                num:0,
+                d1:100,
+                d2:"",
+                d3:""
+            },
+            methods:{
+                keypress(e){
+                    alert(this.d3)
+                },
+                blueClick(){
+                    console.log("蓝色点击了");
+                },
+                redClick(){
+                    console.log("红色点击了");
+                }
+            }
+            
+        })
+    </script>
+</body>
+</html>

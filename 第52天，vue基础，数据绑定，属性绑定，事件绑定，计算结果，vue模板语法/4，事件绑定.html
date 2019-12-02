@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="txt">
+        <br>
+
+        <!-- 在vue中使用 v-on 指令进行事件绑定 -->
+        <!-- 格式为v-on:事件类型="绑定方法" -->
+        <!-- 绑定的方法必须是本组件的methods中的方法。方法名后可以加括号也可以不加。区别是：如果不加括号，vue在调用方法时会自动传递event对象，如果加了()则可以自定义传参。传参时需要事件对象则可以传递$event -->
+        <!-- <button v-on:click="btnClick($event)">按钮</button> -->
+
+        <!-- v-on:可以缩写为@ -->
+        <button @click="btnClick">按钮</button>
+
+        <br>
+
+        <button @click="num--">-</button>
+        <span>{{num}}</span>
+        <button @click="num++">+</button>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                txt:null,
+                num:0
+            },
+            //组件的参数配置对象中，methods表示组件的方法，类型是一个对象，对象中以键值对的形式添加方法(函数)。组件中的方法可以被v-on指令监听
+            methods:{
+                btnClick:function(){
+                    // 查看点击时传了几个参数
+                    // console.log(arguments);
+
+                    // 组件创建之后，组件中data中的数据会作为属性添加到组件对象上，而methods中的函数会作为方法添加到组件对象上。(所以data中的名字和methods中的名字不能重复)
+                    // 在组件方法中，this表示这个组件对象本身。所以在组件方法中可以通过this访问本组件的data，也可以通过this调用本组件的其他方法
+                    alert(this.txt);
+                },
+
+                // 组件的方法中不能使用箭头函数，否则会导致函数中的this不指向组件对象，从而不能使用组件中的其他数据或方法。
+                // secondClick:e=>{
+                //     alert(this);
+                // }
+               
+            }
+        })
+    </script>
+</body>
+</html>

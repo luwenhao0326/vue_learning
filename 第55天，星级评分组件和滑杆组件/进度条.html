@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 50px;
+            border: solid 1px black;
+            position: relative;
+        }
+        .diceng{
+            width: 200px;
+            height: 50px;
+        }
+        .shangceng{
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: green;
+            height: 50px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="num">
+        <com v-model="num"></com>
+    </div>
+    <script src="vue.js"></script>
+    <script type="text/html" id="com">
+        <div class="box" @click="jindu">
+            <div class="diceng"></div>
+            <div class="shangceng" :style="shangcengwidth"></div>
+        </div>
+    </script>
+    <script>
+        Vue.component("com",{
+            template:"#com",
+            props:{
+                value:String
+            },
+            computed:{
+                shangcengwidth(){
+                    return{
+                        width:this.value+"px"
+                    }
+                }
+            },
+            methods:{
+                jindu(e){
+                    let x = e.pageX-this.$el.offsetLeft;
+                    this.$emit("input",x+"")
+                }
+            }
+
+        })
+        new Vue({
+            el:"#app",
+            data:{
+                num:"0"
+            }
+        })
+    </script>
+</body>
+</html>

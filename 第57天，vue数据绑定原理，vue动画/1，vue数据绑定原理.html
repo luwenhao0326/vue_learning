@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{title}}</h1>
+    <p>{{title}}</p>
+    <p>{{num}}</p>
+
+    <script>
+        // var title = "hello"; 
+        // var num = 10;
+
+        // vue中数据绑定，是通过set,get属性绑定的。(所以不支持es5的浏览器就不能用vue)
+
+        // 在组件配置对象中的data中的数据，在组件创建时，都会被作为set,ge属性添加到组件配置对象上，在set方法中进行了组件的重新渲染，所以每当data中的数据发生变化，页面就会立刻重新渲染
+
+        function initAttr(){
+
+            let title ;
+            let num ;
+            Object.defineProperty(window,"title",{
+                set(v){
+                    title = v;
+                    render();
+                },
+                get(){
+                    return title;
+                }
+            });
+            Object.defineProperty(window,"num",{
+                set(v){
+                    num = v;
+                    render();
+                },
+                get(){
+                    return num;
+                }
+            })
+        }
+
+        initAttr();
+
+        var sourceBody = document.body.innerHTML;
+
+        
+        function render(){
+            let reg =  /\{\{(\w+)\}\}/g;
+            let content = sourceBody;
+            let arr ;
+            while (arr=reg.exec(content)) {
+                content = content.replace(arr[0],window[arr[1]]);
+            }
+            document.body.innerHTML = content;
+        }
+
+        title = "hello";
+        num = 10;
+
+
+        setTimeout(() => {
+            num = 100;
+        }, 2000);
+        
+
+    </script>
+</body>
+</html>

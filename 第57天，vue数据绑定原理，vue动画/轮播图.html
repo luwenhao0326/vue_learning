@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            
+            border: solid 1px black;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .img-box{
+            z-index: 1;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            
+        }
+        .donghua{
+            transition:  all 0.7s;
+        }
+        .img-box img{
+            flex-shrink: 0;
+            width: 100%;
+            height:100%;
+        }
+        .yangshi{
+            z-index: 2;
+            position: absolute;
+            width: 40px;
+            height: 100px;
+            font-size: 40px;
+            color: white;
+            background-color: grey;
+            line-height: 100px;
+            text-align: center;
+            font-weight: bold;
+            top: 40%;
+            cursor: pointer;
+        }
+        .zuo{
+            left: 10%;
+        }
+        .you{
+            right: 10%;
+        }
+        .baidian-box{
+            z-index: 2;
+            position: absolute;
+            bottom: 20%;
+            left: 40%;
+            
+
+        }
+        .baidian{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: solid 1px black;
+            background-color: white;
+            margin-right: 5px;
+            user-select: none;
+            -moz-user-select: none;
+        }
+        .focus{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 必传 图片(数组) 可传 宽度 高度 移动时间 左右点击按钮 是否移动 -->
+        <swiper :image="images" :width="700" :height="500"  ></swiper>
+    </div>
+    <script src="vue.js"></script>
+
+    <script type="text/html" id="swiper">
+        <div  class="box" :style="wh"  @mouseenter="zanting" @mouseleave="kaishi">
+            <div 
+                class="img-box"
+                :style="left1"
+                :class="time?'donghua':''"
+                @transitionend="jieshu"
+            >
+                <img :src="image[image.length-1]" alt="">
+                <img v-for="b,i in image" :src="b" :key="i+10000" alt="">
+                <img  :src="image[0]" alt="">
+            </div>
+            <span  v-if="anniu" class="zuo yangshi" @click="xiangzuo" >&lt;</span>
+            <span v-if="anniu" class="you yangshi" @click="xiangyou" >&gt;</span>
+            <div class="baidian-box" >
+                <span @click="huantu" :key="i" v-for="b,i in image" :index="i"  class="baidian" :class="i==num?'focus':''"></span>
+            </div>
+        </div>
+    </script>
+
+    <script>
+
+        Vue.component("swiper",{
+            template:"#swiper",
+            props:{
+                image:Array,
+                width:{
+                    default:600
+                },
+                height:{
+                    default:400
+                },
+                time2:{
+                    default:1000
+                },
+                anniu:{
+                    default:true
+                },
+                yidong:{
+                    default:true
+                }
+                
+            },
+            data(){
+                return{
+                    // 定位距离
+                    left:-this.width,
+                    // 定时器
+                    xxx:null,
+                    // 最后一张切换第一张时判断停止
+                    time:true,
+                    // 点击频率过快时会拦截
+                    sudu:false,
+                    // 点击的哪个 使哪个变红
+                    num:0
+                }
+            },
+            methods:{
+                // 定时
+                dingshi(){
+                    this.time = true;
+                    this.left = this.left-this.width;
+                    this.num++;
+                    if(this.num>this.image.length-1){
+                        this.num = 0;
+                    }
+                },
+                // 动画结束时
+                jieshu(){
+                    if(this.left==-this.width*(this.image.length+1)){
+                        this.time = false;
+                        this.left = -this.width;
+                        setTimeout(() => {
+                            this.time = true;
+                        }, 17);
+                    }
+                },
+                // 开始动画
+                kaishi(){
+                    if(this.yidong){
+                        this.xxx = setInterval(() => {
+                            this.dingshi()
+                        }, this.time2);
+                        
+                    }
+                    
+                },
+                // 暂停动画
+                zanting(){
+                    clearInterval(this.xxx)
+                },
+                // 向右切换
+                xiangyou(){
+                    if(this.sudu){
+                        return;
+                    }
+                    this.sudu = true;
+                    setTimeout(() => {
+                        this.sudu = false
+                        this.dingshi()
+                    }, 300);
+                    
+                },
+                // 向左切换
+                xiangzuo(){
+                    if(this.sudu){
+                        return;
+                    }
+                    this.sudu = true;
+                    
+                    setTimeout(() => {
+                        this.num--;
+                        this.sudu = false
+                        if(this.left==0){
+                            this.time = false;
+                            this.left = -this.width*(this.image.length+1);
+                            this.num = this.image.length-1;
+                            setTimeout(() => {
+                                this.time = true;
+                            }, 17);
+                        }
+                        this.left = this.left+this.width;
+                            if(this.num==-1){
+                                this.num = this.image.length-1;
+                            }
+                    }, 300);
+                    
+                },
+                huantu(e){
+                    console.log(e.target.attributes.index.nodeValue);
+                    for(let i = 0;i<this.image.length;i++){
+                        if(i==e.target.attributes.index.nodeValue){
+                            this.left = -(i+1)*this.width;
+                            this.num= i;
+                        }
+                    }
+                }
+                
+            },
+            computed:{
+                left1(){
+                    return {
+                        left:this.left+"px"
+                    }
+                },
+                wh(){
+                    return{
+                        width:this.width+"px",
+                        height:this.height+"px"
+
+                    }
+                },
+                
+            },
+            mounted() {
+                this.kaishi();
+            },
+        })
+        new Vue({
+            el:"#app",
+            data:{
+                images:["a.jpg","b.jpg","c.jpg","d.jpg"]
+            }
+        })
+    </script>
+</body>
+</html>

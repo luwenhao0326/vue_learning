@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <friend>
+            <!-- 如果组件标签中有多个内容，不同的内容需要显示在组件模板中的不同地方，那么就需要使用具名插槽 -->
+            <!-- 组件标签中的html内容可以设置为slot属性，将slot属性设置为xxx，那么这个html元素就会出现在组件模板中name值为xxx的slot插槽中 -->
+            <span slot="mingzi" >张三</span>
+            <span slot="qianming">十一就要放假了</span>
+            <!-- 没有设置slot属性的内容都会被显示在匿名slot(没有设置name属性的slot)中 -->
+            <span>这是没有slot属性的内容</span>
+        </friend>
+    </div>
+    <script src="vue.js"></script>
+    <script type="text/html" id="friend">
+        <div>
+            <h1>
+                <slot name="mingzi"></slot>
+            </h1>
+            <p>
+                <slot name="qianming"></slot>
+            </p>
+            <p>
+                <slot></slot>
+            </p>
+        </div>
+    </script>
+    <script>
+
+        Vue.component("friend",{
+            template:"#friend"
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box2{
+            position: relative;
+            width: 100%;
+            min-height: 400px;
+            overflow-x: hidden;
+        }
+        .friends{
+            min-height: 52px;
+        }
+        .friends-f{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            background-color: lightblue;
+            border-radius: 5px;
+            border-bottom: solid 1px black;
+        }
+        .friends-f-f{
+            padding-left: 15px;
+        }
+        .friends-f-left-show{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            transform: rotate(90deg);
+        }
+        .friends-f-left-hide{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            transform: rotate(0deg);
+        }
+        .friends-f-right{
+            padding-right: 15px;
+        }
+        .xuanzhuan-box{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            overflow: hidden;
+        }
+        .hide{
+            height: 0;
+            overflow: hidden;
+        }
+        .liebiao-1{
+            overflow: hidden;
+        }
+
+        /* 列表高度 */
+        .liebiao-enter,.liebiao-leave-to{
+            height: 0 !important;
+        }
+        .liebiao-enter-active,.liebiao-leave-active{
+            transition: all 0.7s;
+        }
+        /* .liebiao-enter-to,.liebiao-leave{
+            height: 560px;
+        } */
+        
+
+        /* 旋转 */
+        .xuanzhuan-enter{
+            transform: rotate(0deg) ;
+        }
+        .xuanzhuan-enter-active{
+            transition: all 0.7s;
+        }
+        .xuanzhuan-enter-to{
+            transform: rotate(90deg) ;
+        }
+        .xuanzhuan-leave{
+            transform: rotate(90deg);
+        }
+        .xuanzhuan-leave-active{
+            transition: all 0.7s;
+        }
+        .xuanzhuan-leave-to{
+            transform: rotate(0deg);
+        }
+        #box{
+            width: 100%;
+            height: 50px;
+            display: flex;
+        }
+        .box-1{
+            width: 50%;
+            border: solid 1px black;
+            text-align: center;
+            line-height: 50px;
+        }
+        .gaoliang{
+            background-color: lightblue;
+        }
+        .new{
+            display: inline-block;
+            width: 100%;
+            height: 50px;
+            background-color: red;
+        }
+        .c3{
+            position: absolute;
+        }
+        .v3{
+            width: 100%;
+            position: absolute;
+        }
+
+        /* 切换 */
+        /* 左向右 */
+        .ani1-enter{
+            left: -100%;
+        }
+        .ani1-enter-to,.ani1-leave{
+            left: 0;
+        }
+        .ani1-enter-active,.ani1-leave-active{
+            transition: all 0.7s;
+        } 
+        .ani1-leave-to{
+            left: 100%;
+        }
+
+        /* 右向左 */
+        .ani2-enter{
+            left: 100%;
+        }
+        .ani2-leave-to{
+            left: -100%;
+        }
+        .ani2-leave,.ani2-enter-to{
+            left: 0;
+        } 
+        .ani2-enter-active,.ani2-leave-active{
+            transition: all 0.7s;
+        }
+        
+       
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="box">
+            <div id="box-one" :class="!val?'gaoliang':''" class="box-1" @click="haoyou" >好友列表</div>
+            <div id="box-two" :class="val?'gaoliang':''" class="box-1" @click="xiaoxi">最近消息</div>
+        </div>
+        <div id="box2">
+            <transition :name="ani" made="out-in">
+                <div  v-if="!val" class="v3">
+                    <template  v-for="b,i in friends">
+                        <com1 :friends="b" :key="i"></com1>
+                    </template>
+                </div>
+                <com3 v-if="val" class="c3"></com3>
+            </transition>
+        </div>
+        
+    </div>
+
+
+    <script src="vue.js"></script>
+    <script type="text/html" id="com1">
+        <div class="friends">
+            <div class="friends-f" @click="btnClick">
+                <div class="friends-f-f">
+                    <div class="xuanzhuan-box">
+                        <transition name="xuanzhuan" mode="out-in">
+                            <span v-if="bool" class="friends-f-left-show">> </span>
+                        </transition>
+                        <transition name="xuanzhuan" mode="in-out">
+                            <span v-if="!bool" class="friends-f-left-hide">> </span>
+                        </transition>
+                    </div>
+                    <span>&nbsp;{{friends.name}}</span>
+                </div>
+                <span class="friends-f-right">{{line}}/{{friends.list.length}}</span>
+            </div>
+            
+            <transition name="liebiao">
+                <div class="liebiao-1" :style="lineHeight" v-show="bool">
+                    <div   v-for="b in friends.list">
+                        <com2  :list="b"></com2>
+                    </div>
+                </div>
+            </transition>
+        </div>
+    </script>
+    <script type="text/html" id="com2"> 
+        <div>
+            <p :style="{color:list.online?'black':'grey'}">{{list.name}}</p>
+            <p>{{list.sign}}</p>
+            <hr>
+        </div>
+    </script>
+    <script type="text/html" id="com3">
+        <div class="new">
+            消息
+        </div>
+    </script>
+    <script>
+        let com2={
+            template:"#com2",
+            props:["list"],
+        }
+
+        Vue.component("com1",{
+            template:"#com1",
+            props:["friends"],
+            data(){
+                return{
+                    num:0,
+                    bool:false,
+                }
+            },
+            methods:{
+                btnClick(e){
+                    console.log(e.target);
+                    this.bool = !this.bool;
+                }
+            },
+            computed:{
+                line(){
+                    for(var i = 0;i<this.friends.list.length;i++){
+                        if(this.friends.list[i].online){
+                            this.num++
+                        }
+                    }
+                    return this.num;
+                },
+                lineHeight(){
+                    return{
+                        height:this.friends.list.length*93+"px"
+                    }
+                   
+                }
+            },
+            components:{
+                com2
+            }
+        })
+
+        Vue.component("com3",{
+            template:"#com3",
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+                friends:[
+                    {
+                        name:"同学",
+                        list:[
+                            {name:"小明",sign:"个性签名",online:true},
+                            {name:"李磊",sign:"hello world 1",online:true},
+                            {name:"韩梅梅",sign:"hello world 2",online:false}
+                        ]
+                    },
+                    {
+                        name:"朋友",
+                        list:[
+                            {name:"二明",sign:"个性签名2",online:true},
+                            {name:"李二磊",sign:"hello world 3",online:true},
+                            {name:"韩二梅",sign:"hello world 4",online:true},
+                            {name:"王斌",sign:"hello world 5",online:false},
+                        ]
+                    },
+                    {
+                        name:"家人",
+                        list:[
+                            {name:"三明",sign:"个性签名3",online:true},
+                            {name:"李三磊",sign:"hello world 6",online:true},
+                            {name:"韩三梅",sign:"hello world 7",online:true},
+                            {name:"王三斌",sign:"hello world 8",online:false},
+                        ]
+                    }
+                ],
+                val:false,
+                ani:"ani2"
+            },
+            methods:{
+                haoyou(){
+                    this.val = false
+                    this.ani = "ani1"
+                },
+                xiaoxi(){
+                    this.val = true
+                    this.ani = "ani2"
+                }
+            },
+        })
+    </script>
+</body>
+</html>

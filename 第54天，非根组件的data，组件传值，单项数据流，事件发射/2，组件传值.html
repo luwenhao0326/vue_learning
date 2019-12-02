@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        @keyframes marq{
+            0%{
+                transform: translate(100%,0);
+            }
+            100%{
+                transform: translate(-100%,0);
+            }
+        }
+
+        .marquee{
+            animation: marq 10s linear infinite;
+        }
+
+        .com-root{
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 父组件在模板中通过子组件标签的属性进行传值 -->
+        <!-- 父组件给子组件的传值也是绑定的，当父组件中的数据发生变化时，变化也会同步到子组件中 -->
+        <input type="text" v-model="title">
+        <com :content="title"></com>
+    </div>
+
+    <script src="vue.js"></script>
+
+    <script type="text/html" id="com">
+        <div class="com-root">
+            <h1 class="marquee">{{content}}</h1>
+        </div> 
+    </script>
+
+    <script>
+
+        Vue.component("com",{
+            template:"#com",
+            
+            // 为了降低组件之间的耦合度，提高组件的通用性，子组件中不能直接使用父组件的数据，而是“主动声明”自己需要接收哪些数据
+            // props，用于声明本组件所能够接受的传值，数组中以字符串的形式声明接收的传值名字，传值的名字不能是html中的原有属性名。传值的名字也不能和data，computed，methods中的名字重复
+            props:["content"]
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+                title:"跑马灯内容"
+            }
+        });
+    </script>
+</body>
+</html>

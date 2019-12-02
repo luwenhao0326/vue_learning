@@ -1,0 +1,16 @@
+webpack是一个前端开发辅助工具，用于打包前端文件（js，css图片等）。
+
+webpack识别三种(nodejs模块化，es6模块化，amd)模块化格式，可以将多个使用模块化相互依赖的js文件打包成一个js文件。
+
+grunt,gulp 这两个是前端自动构建化工具，但是现在都不经常使用，都用更高级的webpack
+
+
+npm install webpack webpack-cli -g
+全局下载打包工具
+
+webpack有两种使用方式：
+    1，直接使用webpack命令进行打包
+    webpack xxxx.js -o yyyy.js
+    将xxxx.js作为入口文件，将xxxx.js和所依赖的所有文件进行打包，生成yyyy.js
+    2，使用配置文件进行打包，将打包的具体设置写成一个文件，名字是webpack.config.js。然后在项目目录下执行webpack命令
+

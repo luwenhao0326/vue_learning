@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <select v-model="loginType">
+            <option value="username">使用用户名登录</option>
+            <option value="email">使用邮箱登录</option>
+        </select>
+
+        <br>
+
+        <!-- vue在重新渲染页面时，实现条件切换渲染页面时，会尽可能少的进行DOM删除和添加，尽可能的重用页面中已有的元素，例如if和else中元素相同但属性不同时，在切换时只修改元素的属性，而不删除添加新元素。这叫做vue渲染的惰性机制 -->
+
+        <!-- 但是某些时候，惰性机制可能会导致一些问题，页面中不想采用惰性渲染，则需要手动关闭惰性渲染 -->
+
+        <!-- vue页面中的元素可以添加key属性，用于标记这个元素的重用类型，只有key相同的元素才可以重用 -->
+        <input 
+            v-if="loginType=='username'" 
+            type="text" 
+            name="username" 
+            placeholder="请输入用户名" 
+            key="username"
+            v-model="username"
+        >
+
+        <input 
+            v-else 
+            type="text" 
+            name="email" 
+            placeholder="请输入邮箱" 
+            key="email"
+            v-model="email"
+        >
+
+    </div>
+
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                loginType:"username",
+                username:"",
+                email:""
+            },
+        })
+    </script>
+</body>
+</html>

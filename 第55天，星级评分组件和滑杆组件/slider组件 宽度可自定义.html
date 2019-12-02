@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        .slider-root{
+            position: relative;
+            
+            height: 40px;
+        }
+        .slider-bar{
+            
+            height: 10px;
+            background-color: grey;
+            position: absolute;
+            top: 15px;
+            left: 10px;
+        }
+        .slider-ball{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            background: radial-gradient(white,black);
+            position: relative;
+            top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.number="num">
+        <input type="text" v-model.number="num2">
+        <slider v-model="num" rootwidth="400px" zongfen="1000"></slider>
+        <slider v-model="num2"></slider>
+    </div>
+
+
+    <script src="vue.js"></script>
+    <script type="text/html" id="slider">
+        <div class="slider-root" :style="boxWidth"  @mousedown="md" >
+            <div class="slider-bar" :style="ballWidth"></div>
+            <div class="slider-ball" :style="ballStyle"></div>
+        </div>
+    
+    </script>
+        
+    <script>
+
+        Vue.component("slider",{
+            template:"#slider",
+            props:{
+                value:Number,
+                rootwidth:{
+                    type:String,
+                    default:"300px"
+                },
+                zongfen:{
+                    type:String,
+                    default:"100"
+                }
+            },
+            data(){
+                return{
+                    isMouseDown:false
+                }
+            },
+            computed:{
+                ballStyle(){
+                    let width = parseFloat(this.rootwidth)-20;
+                    let left = this.value/(this.zongfen)*width;
+                    left = left<0?0:left;
+                    left = left>width?width:left;
+                    return {
+                        left:left+this.rootwidth.replace(/\d/g,"")
+                    }
+                },
+                ballWidth(){
+                    return{
+                        width: parseFloat(this.rootwidth)-20+this.rootwidth.replace(/\d/g,"")
+                    }
+                },
+                boxWidth(){
+                    return{
+                        width:this.rootwidth
+                    }
+                }
+            },
+            methods:{
+                md(e){
+                    // 获得点击点相对于组件根元素的横坐标
+                    let x = e.pageX-this.$el.offsetLeft;
+                    let width = parseFloat(this.rootwidth)-20;
+                    x-=10;
+                    x = x<0?0:x;
+                    x = x>width?width:x;
+                    let left = x/width*(this.zongfen);
+                    this.$emit("input",Math.round(left));
+                    this.isMouseDown = true;
+                },
+                mv(e){
+                    if(this.isMouseDown){
+                        let x = e.pageX-this.$el.offsetLeft;
+                        let width = parseFloat(this.rootwidth)-20;
+                        x-=10;
+                        x = x<0?0:x;
+                        x = x>width?width:x;
+                        let left = x/width*(this.zongfen);
+                        this.$emit("input",Math.round(left));
+                    }
+                },
+                mu(){
+                    this.isMouseDown = false;
+                }
+            },
+
+            mounted(){
+                document.addEventListener("mousemove",this.mv);
+                document.addEventListener("mouseup",this.mu);
+            },
+            destroyed(){
+                document.removeEventListener("mousemove",this.mv);
+                document.removeEventListener("mouseup",this.mu);
+            }
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+                num:0,
+                num2:0
+            }
+        });
+    </script>
+</body>
+</html>

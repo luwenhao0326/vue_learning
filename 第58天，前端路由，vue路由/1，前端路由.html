@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #router-view{
+            height: 600px;
+            overflow: scroll;
+            border: solid;
+
+        }
+    </style>
+</head>
+<body>
+    <!-- 单页网站：整个网站只有一个网页，通过页内跳转实现界面的切换 -->
+    <!-- 简单的单页效果可以通过选项卡实现，但是界面很多的单页就不适合使用选项卡 -->
+
+    <!-- 对于真正的单页网站，需要使用前端路由进行界面的切换 -->
+
+    <!-- url中第一个#(含)之后的所有内容都是本url的哈希值 -->
+
+    <a href="http://www.baidu.com">百度</a>
+
+    <!-- 一个页面中url的前5部分发生变化页面都会跳转，而哈希值发生变化时，页面不会进行跳转。 哈希值用于前端页面路由，进行前端的业内跳转，当哈希值变化时，前端页面切换不同的界面-->
+    <!-- url中的哈希值仅用于前端页面控制，是不会发送到服务器的 -->
+    <!-- <a href="#home">首页</a>
+    <a href="#setting">设置</a> -->
+
+
+    <div id="router-view">
+        
+    </div>
+
+    <script>
+        
+        let routerView = document.getElementById("router-view");
+
+        // onhashchange事件，当页面的url哈希值发生变化时触发，可以监听此事件来监视页面hash的变化，从而实现前端路由
+        
+        // 前端路由的实质功能：根据不同的url哈希值，在路由视图中显示不同的页面实现非跳转式的页面切换
+        
+        function refreshHash() {
+            if(location.hash=="#home"||location.hash==""){
+                routerView.innerHTML = `
+                <h1>首页内容</h1>
+                <a href="#setting">设置</a>
+                `;
+            }else if(location.hash == "#setting"){
+                routerView.innerHTML = `
+                <h1>设置页面</h1>
+                <a href="#home">首页</a>
+                `;
+            }
+        }
+
+        window.onhashchange = refreshHash;
+
+        refreshHash();
+    </script>
+</body>
+</html>

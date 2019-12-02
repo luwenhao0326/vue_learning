@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        #title{
+            margin: 0;
+            text-align: center;
+            background-color: lightblue;
+        }
+        .open-btn{
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .friend-cell-root{
+            border-bottom: solid 1px black;
+            padding-left: 10px;
+        }
+        .friend-cell-root h3{
+            margin: 8px 0;
+        }
+        .friend-cell-root p{
+            color: grey;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        .friend-group-down{
+            display: inline-block;
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 id="title">好友列表</h1>
+        <friend-list :friends="friends"></friend-list>
+
+    </div>
+</body>
+<script src="vue.js"></script>
+
+<script type="text/html" id="friend-list">
+    <div>
+        <friend-group 
+            v-for="group,i in friends"
+            :group="group"
+            :key="i"
+        ></friend-group>
+    </div>
+</script>
+
+<script type="text/html" id="friend-group">
+    <div>
+        <button class="open-btn" @click="isOpen=!isOpen">
+            <span>
+                <span :class="{'friend-group-down':isOpen}">&gt;</span>
+                <span>{{group.name}}</span>
+            </span>
+            <span>{{onlineNumber}}/{{group.list.length}}</span>
+        </button>
+        <div v-show="isOpen">
+            <friend-cell 
+                v-for="f,i in group.list"
+                :key="i"
+                :f="f"
+            ></friend-cell>
+        </div>
+        
+    </div>
+</script>
+
+<script type="text/html" id="friend-cell">
+    <div class="friend-cell-root">
+        <h3 :style="{color:f.online?'black':'grey'}">{{f.name}}</h3>
+        <p>{{f.sign}}</p>
+    </div>
+</script>
+
+<script>
+
+    let friendCell = {
+        template:"#friend-cell",
+        props:["f"]
+    }
+
+    let friendGroup = {
+        data(){
+            return {
+                isOpen:false
+            }
+        },
+        template:"#friend-group",
+        props:["group"],
+        components:{
+            friendCell
+        },
+        computed:{
+            onlineNumber(){
+                return this.group.list.filter(e=>{
+                    return e.online;
+                }).length;
+            }
+        }
+    }
+
+    Vue.component("friend-list",{
+        template:"#friend-list",
+        props:["friends"],
+        components:{
+            friendGroup
+        }
+    });
+
+
+    new Vue({
+        el:"#app",
+        data:{
+            friends:[
+                {
+                    name:"同学",
+                    list:[
+                        {name:"小明",sign:"个性签名",online:true},
+                        {name:"李磊",sign:"what`s your name?",online:true},
+                        {name:"韩梅梅",sign:"how are you",online:true}
+                    ]
+                },
+                {
+                    name:"家人",
+                    list:[
+                        {name:"爸爸",sign:"个性签名",online:true},
+                        {name:"妈妈",sign:"what`s your name?",online:true},
+                        {name:"爷爷",sign:"how are you",online:false},
+                        {name:"奶奶",sign:"how are you",online:false}
+                    ]
+                },
+                {
+                    name:"朋友",
+                    list:[
+                        {name:"马云",sign:"买买买",online:true},
+                        {name:"马化腾",sign:"what`s your name?",online:true},
+                        {name:"李彦宏",sign:"how are you",online:true},
+                        {name:"习近平",sign:"how are you",online:false}
+                    ]
+                },
+            ]
+        },
+        mounted() {
+            console.log(this);
+        },
+    });
+</script>
+</html>

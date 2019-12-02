@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+        <!-- 父子组件之间可以通过props和$emit进行传值，但是非父子组件之间不能直接传值 -->
+
+        <!-- 兄弟组件之间传值，可以先将值传给共同的父组件，然后父组件再通过props传给兄弟组件 -->
+        <com1 @pass="pass"></com1>
+        <hr>
+        <com2 :str="value"></com2>
+    </div>
+    <script src="vue.js"></script>
+
+    <script type="text/html" id="com1">
+        <div>
+            <input type="text" v-model="str">
+            <p>{{str}}</p>
+        </div>
+        
+    </script>
+    <script>
+
+        // 对于相距很远的两个组件，逐层传值显然行不通，
+        // 这种情况可以使用 总线 传值
+
+        // 创建总线对象，总线对象的本质其实就是一个空组件。
+        let bus = new Vue();
+
+        Vue.component("com1",{
+            template:"#com1",
+            data(){
+                return{
+                    str:"hello"
+                }
+            },
+            watch:{
+                str(n,o){
+                    // this.$emit("pass",n)
+
+                    // 当组件需要传值给其他组件时，可以在总线上发射事件，将传递的值作为事件参数。
+                    bus.$emit("fix",n)
+                }
+            },
+            mounted(){
+                this.$emit("pass",this.str)
+            }
+        });
+
+        Vue.component("com2",{
+            template:`<div>{{string}}</div>`,
+            props:["str"],
+            data(){
+                return{
+                    string:""
+                }
+            },
+            mounted(){
+                // 需要接收总线传值的组件要主动监听总线上的传值事件
+                
+                bus.$on("fix",function(v){
+                    this.string = v;
+                }.bind(this))
+            }
+
+        });
+
+        new Vue({
+            el:"#app",
+            data:{
+                value:""
+            },
+            methods:{
+                pass(v){
+                    this.value = v;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="show">
+        <!-- 在transition标签中使用js动画需要监听enter事件和leave事件，分别表示入场动画事件和离场动画事件 -->
+        <transition
+            @enter="aniEnter"
+            @leave="aniLeave"
+        >
+            <div id="box" v-show="show"></div>
+        </transition>
+        
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                show:false
+            },
+            methods:{
+                // 动画事件绑定的函数有两个参数，分别表示动画的元素对象和动画结束时的回调函数
+                aniEnter(el,cb){
+                    // console.log(arguments);
+                    // 在动画事件绑定的函数中使用js代码，并在动画结束时调用cb回调函数
+                    el.style.opacity = 0;
+                    let opa = 0;
+                    function next(){
+                        requestAnimationFrame(function(){
+                            opa+=0.02;
+                            el.style.opacity = opa;
+                            if(opa>=1){
+                                cb();
+                            }else{
+                                next();
+                            }
+                        });
+                    }
+                    next();
+
+                    
+                },
+                aniLeave(el,cb){
+                    
+                    let opa = 1;
+                    function next(){
+                        requestAnimationFrame(function(){
+                            opa-=0.02;
+                            el.style.opacity = opa;
+                            if(opa<=0){
+                                cb();
+                                el.style.opacity = 1;
+                            }else{
+                                next();
+                            }
+                        });
+                    }
+                    next();
+                }
+            }
+        })
+    </script>
+</body>
+</html>

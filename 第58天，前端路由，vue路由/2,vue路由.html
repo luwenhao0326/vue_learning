@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        body{
+            margin: 0;
+        }
+        #tab-bar{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            border: solid 1px black;
+            box-sizing: border-box;
+        }
+        #tab-bar ul{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+        }
+        #tab-bar li{
+            width: 25%;
+            border-right: solid 1px black;
+        }
+        #tab-bar li:nth-of-type(4){
+            border: none;
+        }
+        #tab-bar a{
+            display: inline-block;
+            margin: 0;
+            height: 49px;
+            /* border: solid 1px black; */
+            width: 100%;
+            text-align: center;
+            line-height: 49px;
+            /* box-sizing: border-box; */
+        }
+        
+        .router-view{
+            border: solid 1px red;
+            box-sizing: border-box;
+            height: calc(100vh - 49px);
+            overflow: scroll;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <!-- router-view是vue-router中自带的组件，作为路由视图使用，被路由匹配到的组件会显示在这个标签中 -->
+        <keep-alive>
+            <router-view class="router-view"></router-view>
+        </keep-alive>
+        
+        
+        <nav id="tab-bar">
+            <ul>
+                <li>
+                    <!-- routerlink标签相当于a标签，不用添加# -->
+                    <router-link to="/home">主页</router-link>
+                </li>
+                <li><a href="#/friend">好友</a></li>
+                <li><a href="">新闻</a></li>
+                <li><a href="">设置</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</body>
+<script src="vue.js"></script>
+<script src="vue-router.js"></script>
+<script>
+
+    let home = {
+        template:`<div class="home-root">
+            <h1>主页</h1>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+            <p>首页内容</p>
+        </div>`,
+        mounted() {
+            console.log(this.$el);
+        },
+        destroyed() {
+            console.log("home销毁了");
+        },
+    }
+
+    let friend = {
+        template:`<div>
+            <h1>好友列表</h1>
+        </div>`
+    }
+
+
+    // 使用vue路由，需要创建一个路由对象，用于添加路由规则。
+    let router = new VueRouter({
+        // 路由配置对象中通过toutes数组添加路由规则
+        routes:[
+            // 路由规则中记录哪个哈希路径对应哪个组件，
+            // 当页面的哈希值为#/home时，router-view中显示home组件
+            {path:"/home",component:home},
+            {path:"/friend",component:friend},
+            // 路由规则中可以使用重定向
+            {path:"/",redirect:"/home"}
+        ]
+    });
+
+    // vue路由中实现的是根据页面hash不同，在router-view中显示不同的组件，从而实现页内跳转，这种直接当做页面使用，写入路由规则的组件，叫做 *页面级组件*。
+    
+
+    new Vue({
+        el:"#app",
+        data:{
+
+        },
+        components:{
+            home,
+            friend
+        },
+        // 路由配置对象创建之后必须注入根组件才能生效。
+        router
+    });
+
+
+</script>
+</html>

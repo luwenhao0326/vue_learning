@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .biaoti{
+            width: 200px;
+            display: flex;
+            justify-content: space-between;
+            line-height: 50px;
+            font-size: 25px;
+            height: 50px;
+            background-color: gainsboro;
+            border-bottom: solid 1px black;
+        }
+        .liebiao{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-for="b,i in friends">
+            <div class="biaoti" :index="i+1" @click="dianji" >
+                <span>{{b.name}}</span>
+                <span>{{online1[i]}}/{{b.list.length}}</span>
+                
+            </div>
+            
+            <div v-for="z,x in baohan">
+                <div v-if="baohan[x]==num4&&bool" >
+                    <div  class="liebiao"   v-for="w,j in b.list">
+                        <div v-if="baohan[x]==i+1">
+                            <p>{{w.name}}</p>
+                            <p>{{w.sign}}</p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+    <script src="vue.js"></script>
+   
+    <script>
+
+
+        new Vue({
+            el:"#app",
+            data:{
+                friends:[
+                    {
+                        name:"同学",
+                        list:[
+                            {name:"小明",sign:"个性签名",online:true},
+                            {name:"李磊",sign:"hello world 1",online:true},
+                            {name:"韩梅梅",sign:"hello world 2",online:true}
+                        ]
+                    },
+                    {
+                        name:"朋友",
+                        list:[
+                            {name:"二明",sign:"个性签名2",online:true},
+                            {name:"李二磊",sign:"hello world 3",online:true},
+                            {name:"韩二梅",sign:"hello world 4",online:true},
+                            {name:"王斌",sign:"hello world 5",online:false},
+                        ]
+                    },
+                    {
+                        name:"家人",
+                        list:[
+                            {name:"三明",sign:"个性签名3",online:true},
+                            {name:"李三磊",sign:"hello world 6",online:true},
+                            {name:"韩三梅",sign:"hello world 7",online:true},
+                            {name:"王三斌",sign:"hello world 8",online:true},
+                        ]
+                    }
+                ],
+                num1:1,
+                num2:2,
+                num3:3,
+                num4:0,
+                bool:true,
+                arr2:[]
+            },
+            computed:{
+                online1(){
+                    let arr = [];
+                    for(var i = 0;i<this.friends.length;i++){
+                        let q = 0;
+                        for(var j = 0;j<this.friends[i].list.length;j++){
+                            if(this.friends[i].list[j].online){
+                                q++
+                            }
+                        }
+                        arr.push(q);
+                    }
+                    return arr;
+                },
+                baohan(){
+                    let arr3 = [];
+                    for(var i =0;i<this.arr2.length;i++){
+                        
+                        if(this.num1==this.arr2[i]){
+                            arr3.push(this.num1)
+                        }
+                        if(this.num2==this.arr2[i]){
+                            arr3.push(this.num2)
+                        }
+                        if(this.num3==this.arr2[i]){
+                            arr3.push(this.num3)
+                        }
+                    }
+                    return arr3;
+                }
+                
+            },
+            methods:{
+                
+                dianji(e){
+                    this.bool = !this.bool;
+                    this.num4 = e.target.attributes[0].nodeValue;
+                    this.arr2.push(this.num4);
+                    for(var i = 0;i<this.arr2.length;i++){
+                        for(var j = i+1;j<this.arr2.length;j++){
+                            if(this.arr2[i]==this.arr2[j]){
+                                this.arr2.splice(j,1);
+                                j--;
+                            }
+                        }
+                    }
+                    return this.arr2;
+                    console.log(e.target.attributes[0].nodeValue);
+                }
+            }
+
+            
+        })
+    </script>
+</body>
+</html>

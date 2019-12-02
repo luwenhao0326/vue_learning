@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 80px;
+            height: 40px;
+            border-radius: 40px;
+            border: solid 1px gray;
+            position: relative;
+        }
+        .ball{
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: all 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="bool">
+        <p>{{bool}}</p>
+        <kaiguan v-model="bool"></kaiguan>
+    </div>
+
+
+
+    <script src="vue.js"></script>
+    <script type="text/html" id="kaiguan">
+        <div class="box" :style=" boxStyle" @click="click1">
+            <div class="ball" :style="ballStyle"></div>
+        </div>
+    </script>
+
+    <script>
+        Vue.component(("kaiguan"),{
+            template:"#kaiguan",
+            props:{
+                value:Boolean
+            },
+            computed:{
+                ballStyle(){
+                    if(this.value){
+                        return{
+                        "background-color": "white",
+                        }
+                    }else{
+                        return{
+                            "background-color": "rgb(204, 201, 201)",
+                            left:"40px"
+                        }
+                    }
+                },
+                boxStyle(){
+                    if(this.value){
+                        return{
+                            "background-color": "green",
+                        } 
+                    }else{
+                        return{
+                            "background-color": "gray",
+                            left:"0px"
+                        }
+                    }
+                }
+            },
+            methods:{
+                click1(){
+                    this.$emit("input",!this.value)
+                }
+            }
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+                bool:false
+            }
+        })
+    </script>
+</body>
+</html>

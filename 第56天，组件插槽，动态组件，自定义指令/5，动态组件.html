@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>登录页面</h1>
+        <select v-model="loginType">
+            <option value="com1">用户名登录</option>
+            <option value="com2">邮箱登录</option>
+        </select>
+        <!-- 根据不同条件显示不同的组件，可以通过v-if实现，但是这种方法不是最好的方法 -->
+        <!-- <com1 v-if="loginType=='username'"></com1>
+        <com2 v-if="loginType=='email'"></com2> -->
+
+        <!-- 某个组件根据条件，在不同的组件之间切换，可以使用动态组件技术 -->
+
+        <!-- component标签是动态组件标签，需要设置is属性，is属性设置为哪个组件名，conponent在渲染时就会被渲染为这个组件 -->
+
+        <!-- 所以，要想实现组件的切换，只需要将component的is属性绑定到一个变量上，变量的值在多个组件名切换，就能实现组件的切换 -->
+
+        <!-- 如果希望组件切换时保留原来的组件，切回时不创建新的组件，则需要把component写在keep-alive标签中 -->
+        <keep-alive>
+            <component :is="loginType"></component>
+        </keep-alive>
+        
+
+    </div>
+    <script src="vue.js"></script>
+
+    <script type="text/html" id="com1">
+        <div>
+            <label for="">用户名</label>
+            <input type="text">
+            <br>
+            <label for="">密码</label>
+            <input type="password">
+            <br>
+            <button>注册</button>
+        </div>
+    </script>
+    <script type="text/html" id="com2">
+        <div>
+            <label for="">邮箱</label>
+            <input type="text">
+            <br>
+            <label for="">密码</label>
+            <input type="password">
+            <br>
+            <button>注册</button>
+        </div>
+    </script>
+
+    <script>
+
+        // 动态组件在切换时，总是销毁旧的组件，创建新的组件
+
+        let com1 = {
+            template:"#com1",
+            created() {
+                console.log("com1组件创建了");
+            },
+            mounted() {
+                console.log("com1组件渲染完毕了");
+            },
+            destroyed() {
+                console.log("com1销毁了");
+            },
+            // activated生命周期函数，当组件被激活时调用
+            activated() {
+                console.log("com1 activated");
+            },
+        }
+
+        let com2 = {
+            template:"#com2",
+            created() {
+                console.log("com2组件创建了");
+            },
+            mounted() {
+                console.log("com2组件渲染完毕了");
+            },
+            destroyed() {
+                console.log("com2销毁了");
+            },
+            activated() {
+                console.log("com2 activated");
+            },
+        }
+
+        new Vue({
+            el:"#app",
+            data:{
+                loginType:"com1"
+            },
+            components:{
+                com1,
+                com2
+            }
+        })
+    </script>
+</body>
+</html>

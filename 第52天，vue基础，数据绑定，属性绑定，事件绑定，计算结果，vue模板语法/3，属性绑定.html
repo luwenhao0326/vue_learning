@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .bg{
+            background-color: aqua;
+        }
+        .border{
+            border: solid 1px red;
+        }
+        .round{
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <select v-model="imgsrc">
+            <option value="a.jpg">图片1</option>
+            <option value="b.jpg">图片2</option>
+            <option value="c.jpg">图片3</option>
+        </select>
+        <p>{{imgsrc}}</p>
+
+        <!-- {{}}只能绑定标签内容，不能绑定标签属性 -->
+<!--         <img src="{{imgsrc}}" >-->
+
+        <!-- 属性绑定需要绑定 v-bind 指令。格式为v-bind:属性名="属性值" -->
+        <!-- 属性值可以是数据或表达式 -->
+<!--         <img v-bind:src="imgsrc">-->
+
+
+        <!-- v-bind：指令可以缩写为 ： -->
+        <img :src="imgsrc" >
+
+        <hr>
+
+        <label for="">背景色</label>
+        <input type="checkbox" v-model="classes" value="bg">
+        <label for="">边框</label>
+        <input type="checkbox" v-model="classes" value="border">
+        <label for="">圆角</label>
+        <input type="checkbox" v-model="classes" value="round">
+        
+        <!-- class属性可以绑定一个数组，数组中存放需要设置的class值 -->
+        <div :class="classes">
+            class属性和其他属性不同，绑定一般不直接绑字符串
+        </div>
+        <hr>
+
+        
+        <label for="">背景色</label>
+        <input type="checkbox" v-model="classObj.bg" value="bg">
+        <label for="">边框</label>
+        <input type="checkbox" v-model="classObj.border" value="border">
+        <label for="">圆角</label>
+        <input type="checkbox" v-model="classObj.round" value="round">
+
+        <!-- class属性除了可以绑定数组，还可以绑定对象 -->
+        <!-- 对象中键是class值，值是布尔值，表示元素的class列表中是否有这个class -->
+        <div :class="classObj">
+            class还可以绑定对象
+        </div>
+
+        <hr>
+
+
+        <!-- 标签的style属性一般也不直接绑字符串，而是绑定为一个对象 -->
+        <!-- 对象中键是样式名，值是样式值 -->
+        <div :style="styleObj">
+            style属性绑定对象
+        </div>
+
+        <hr>
+        <!-- 对于只有属性名，没有属性值的属性可以绑定一个bool值来控制属性是否存在,true存在，false不存在 -->
+        <button :disabled="dis">qweqwe</button>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                imgsrc:"",
+                classes:["bg","border","round"],
+                classObj:{
+                    bg:true,
+                    border:true,
+                    round:true
+                },
+                styleObj:{
+                    color:"red",
+                    backgroundColor:"yellow"
+                },
+                dis:true
+            }
+        })
+    </script>
+</body>
+</html>

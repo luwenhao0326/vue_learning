@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 在vue组件的模板中，可以使用{{}}为标签绑定内容(不能绑定属性) -->
+        <!-- 绑定的数据可以是data中的数据 -->
+        <!-- 组件的数据绑定只能针对组件模板生效，模板之外不能生效 -->
+        <h1>{{txt}}</h1>
+        <p>{{welcome}}</p>
+
+        <hr>
+
+        <!-- v-model指令，用于数据双向绑定：当组件数据发生变化时，数据会同步到页面上，当页面上的数据被编辑时，也会同步到组件数据上 -->
+        <input type="text" v-model="content">
+        <p>{{content}}</p>
+        <hr>
+
+        <input type="text" v-model="q1">+
+        <input type="text" v-model="q2">=
+        <!-- {{}}中,还可以绑定表达式 -->
+        <span>{{q1*1+q2*1}}</span>
+
+    </div>
+
+
+    <script src="vue.js"></script>
+    <script>
+        // vue框架，将整个页面看做一个 组件(页面的根组件)，创建vue页面的第一个项目就是创建根组件。
+
+        // new Vue,用于创建一个组件。
+        new Vue({
+            // el，设置根组件的挂载点(挂载元素不能是body)，创建根组件需要设置组建的挂载点，根组件初始化时会自动将挂载点元素设置为本组件的模板
+            el:"#app",
+            
+            // data表示组件数据，是对象类型，对象中以键值对的形式添加数据
+            data:{
+                txt:"hello world",
+                welcome:"欢迎使用vue.js",
+                content:"初始值",
+                q1:0,
+                q2:0,
+                
+                
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>

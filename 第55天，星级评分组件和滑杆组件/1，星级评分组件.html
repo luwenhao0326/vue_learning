@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .star-span{
+            display: inline-block;
+            /* width: 50px;
+            height: 50px;
+            font-size: 60px;
+            line-height: 50px; */
+            text-align: center;
+            overflow: hidden;
+            /* margin: 0 -5px; */
+            cursor: default;
+        }
+        .star-root{
+            position: relative;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        .star-box{
+            position: absolute;
+            left: 0;
+            top: 0;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.number="score">
+        
+        <!-- 组件标签上的属性在组件渲染时会被移动到组件模板的根元素上 -->
+        <!-- 所以组件的模板只能有一个根元素 -->
+        <star 
+            v-model="score"
+            color="red"
+            :total="10"
+            size="100px"
+            :editable="true"
+        ></star>
+    </div>
+    <script src="vue.js"></script>
+    <script type="text/html" id="star">
+        <div :style="colorStyle" class="star-root" :title="'评分:'+value">
+            <div class="star-box">
+                <span 
+                    class="star-span" 
+                    v-for="b in total"
+                    @click="starClick(b)"
+                    :style="starStyle"
+                >☆</span>
+            </div>
+            <div class="star-box" :style="boxSytle">
+                <span 
+                    class="star-span" 
+                    v-for="b in total"
+                    @click="starClick(b)"
+                    :style="starStyle"
+                >★</span>
+            </div>
+        </div>
+    </script>
+    <script>
+
+        Vue.component("star",{
+            template:"#star",
+            props:{
+                value:Number,
+                color:String,
+                total:{
+                    default:5
+                },
+                size:{
+                    type:String,
+                    default:"50px"
+                },
+                editable:{
+                    type:Boolean,
+                    default:true
+                }
+
+            },
+            computed:{
+                boxSytle(){
+                    return {
+                        width:this.value*parseFloat(this.size)*0.8+"px"
+                    }
+                },
+                colorStyle(){
+                    return{
+                        color:this.color?this.color:"gold"
+                    }
+                },
+                starStyle(){
+                    return{
+                        width:this.size,
+                        height:this.size,
+                        "line-height":this.size,
+                        "font-size":parseFloat(this.size)+10+this.size.replace(/\d/g,""),
+                        margin:"0 -"+parseFloat(this.size)/10+this.size.replace(/\d/g,""),
+                    }
+                }
+            },
+            methods:{
+                starClick(i){
+                    if(this.editable){
+                    this.$emit("input",i);
+                    }
+                }
+            }
+        });
+
+
+        new Vue({
+            el:"#app",
+            data:{
+                score:2
+            }
+        });
+    </script>
+</body>
+</html>

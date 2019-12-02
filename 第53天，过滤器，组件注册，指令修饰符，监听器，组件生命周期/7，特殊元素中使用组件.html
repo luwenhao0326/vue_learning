@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <!-- 在页面中使用vue.js时，注册组件可以使用驼峰命名法和横线分割法，但是在模板中使用组件时，必须使用横线分割法 -->
+
+            <!-- html的某些特殊的元素中只能添加特定的子元素，例如table中只能添加tr。那么在这些元素中使用组件会被浏览器把组件移动到元素之外，导致组件位置错误 -->
+
+            <!-- 在这种特殊的元素中使用组件时需要添加元素中允许使用的标签，通过is属性设置使用的组件的名字，那么vue就会把这个标签视为组件 -->
+            <tr is="my-tr"></tr>
+        </table>
+    </div>
+
+    <script src="vue.js"></script>
+
+    <script type="text/html" id="myTr">
+        <tr>
+            <td>学号</td>
+            <td>姓名</td>
+        </tr>
+    </script>
+
+    <script>
+
+        Vue.component("myTr",{
+            template:"#myTr"
+        });
+
+        new Vue({
+            el:"#app",
+            data:{
+
+            }
+        });
+    </script>
+</body>
+</html>

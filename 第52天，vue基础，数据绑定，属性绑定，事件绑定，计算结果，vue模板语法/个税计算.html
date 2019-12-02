@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        main{
+            width: 70vw;
+            margin: 0 auto;
+            border: solid 1px black;
+            background-color: lavender;
+        }
+        
+        .q1{
+            width: 40px;
+        }
+        .q2{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .a1{
+            margin-left: 4vw;
+            width: 60vw;
+            margin-top: 5px;
+            height: 30px;
+            font-size: 25px;
+            padding-left: 10px;
+        }
+        .a2{
+            margin-left: 2vw;
+        }
+        .a3{
+            margin-right: 2vw;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>个税计算器</h1>
+        <div id="app">
+            <label for=""></label>
+            <input class="a1" type="text" v-model="data1" :placeholder="tishi1" @input="change1" @focus="focus1('data1')" @blur="blur1('data1')">
+            <br>
+            <input class="a1" type="text" v-model="data2" :placeholder="tishi2" @input="change2" @focus="focus1('data2')" @blur="blur1('data2')">
+            <br>
+            <input class="a1" type="text" v-model="data3" :placeholder="tishi3" @input="change3" @focus="focus1('data3')" @blur="blur1('data3')">
+            <br>
+            <p class="a2">总工资：{{zonggongzi}}元</p>
+            <hr>
+            <div class="q2">
+                <div>
+                    <span class="a2">养老保险</span>
+                    <input class="q1" type="text" v-model="data4">%
+                </div>
+                <span class="a3">￥{{zonggongzi*data4*0.01}}</span>
+            </div>
+            <div class="q2">
+                <div>
+                    <span class="a2">医疗保险</span>
+                    <input class="q1" type="text" v-model="data5">%
+                </div>
+                <span class="a3">￥{{zonggongzi*data5*0.01}}</span>
+            </div>
+            <div class="q2">
+                <div>
+                    <span class="a2">工伤保险</span>
+                    <input class="q1" type="text" v-model="data6">%
+                </div>
+                <span class="a3">￥{{zonggongzi*data6*0.01}}</span>
+            </div>
+            <div class="q2">
+                <div>
+                    <span class="a2">失业保险</span>
+                    <input class="q1" type="text" v-model="data7">%
+                </div>
+                <span class="a3">￥{{zonggongzi*data7*0.01}}</span>
+            </div>
+            <div class="q2">
+                <div>
+                    <span class="a2">生育保险</span>
+                    <input class="q1" type="text" v-model="data8">%
+                </div>
+                <span class="a3">￥{{zonggongzi*data8*0.01}}</span>
+            </div>
+            <div class="q2">
+                <div>
+                    <span class="a2">公积金 </span>
+                    <input class="q1" type="text" v-model="data9">%
+                </div>
+                <span class="a3">￥{{zonggongzi*data9*0.01}}</span>
+            </div>
+            
+            <br>
+            <hr>
+            <div class="q2">
+                <span class="a2">税前工资</span>
+                <span class="a3">￥{{shuiqiangongzi}}</span>
+            </div>
+            <div class="q2">
+                <span class="a2">个税</span>
+                <span class="a3">￥{{geshui}}</span>
+            </div>
+            <div class="q2">
+                <span class="a2">税后工资</span>
+                <span class="a3">￥{{shuiqiangongzi-geshui}}</span>
+            </div>
+            <br>
+            <br>
+            <br>
+        </div>
+    </main>
+    
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                data1:0,
+                data2:0,
+                data3:0,
+                data4:8,
+                data5:2,
+                data6:0,
+                data7:0.5,
+                data8:0,
+                data9:8,
+                tishi1:"",
+                tishi2:"",
+                tishi3:""
+            },
+            methods:{
+                
+                focus1(k){
+                    if(!this[k]||this[k]==0)
+                    this[k] = "";
+                },
+                blur1(k){
+                    if(!this[k])
+                    this[k] = 0;
+                }
+            },
+            computed:{
+                change1(){
+                    if(this.data1.length==0){
+                        return this.tishi1 = "请输入您的工资"
+                    }
+                },
+                change2(){
+                    if(this.data2.length==0){
+                        return this.tishi2 = "请输入您的奖金"
+                    }
+                },
+                change3(){
+                    if(this.data3.length==0){
+                        return this.tishi3 = "请输入您的绩效"
+                    }
+                },
+                zonggongzi(){
+                    return (this.data1*1+this.data2*1+this.data3*1).toFixed(2);
+                },
+                shuiqiangongzi(){
+                    return (this.zonggongzi*(1-(this.data4*1+this.data5*1+this.data6*1+this.data7*1+this.data8*1+this.data9*1)*0.01)).toFixed(2);
+                },
+                geshui(){
+                    let salary = this.shuiqiangongzi;
+                    let num = 0;
+                    if (salary <= 3500) {
+                        num = 0;
+                    } else if (salary <= 5000) {
+                        num = ((salary - 3500) * 3 / 100);
+                    } else if (salary <= 8000) {
+                        num = ((salary - 3500) * 0.1 - 105) ;
+                    } else if (salary <= 13500) {
+                        num = ((salary - 3500) * 0.2 - 555) ;
+                    } else if (salary <= 38500) {
+                        num = ((salary - 3500) * 0.25 - 1005);
+                    } else if (salary <= 58500) {
+                        num = ((salary - 3500) * 0.3 - 2755) ;
+                    } else if (salary <= 83500) {
+                        num = ((salary - 3500) * 0.35 - 5505);
+                    } else {
+                        num = ((salary - 3500) * 0.45 - 13505);
+                    }
+                    return num.toFixed(2);
+                },
+            }
+        })
+    </script>
+</body>
+</html>

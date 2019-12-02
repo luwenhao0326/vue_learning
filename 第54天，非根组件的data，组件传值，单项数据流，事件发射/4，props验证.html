@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <com :age="1" name="zxf"></com>
+    </div>
+
+    <script src="vue.js"></script>
+
+    <script>
+
+        Vue.component("com",{
+            template:"<div>{{age}}</div>",
+            // props声明的接收传值还可以添加类型的限制。如果要添加传值验证，则props需要写成对象类型。对象的键是传值名字，值是类型限制
+            props:{
+                // 限制类型为数字类型
+                page:Number,
+                // 只能是字符串或数字
+                title:[Number,String],
+                // 属性必须且类型为字符串
+                name:{
+                    required:true,
+                    type:String
+                },
+                // 可选的传值，有默认值
+                propa:{
+                    default:10,
+                },
+                // 自定义验证规则
+                age:{
+                    type:Number,
+                    validator(age){
+                        return age>=0;
+                    }
+                } 
+            }
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+
+            }
+        });
+    </script>
+</body>
+</html>

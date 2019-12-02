@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 在vue中标签的内容和属性都可以绑定数据，所以一般不需要操作模板中的原生元素，但是也有少量情况需要在组件的方法中使用组件中的原生元素。 -->
+        <!-- 可以给需要在组件方法中使用的元素添加一个ref属性，那么在组件的方法中就可以通过this.$refs.xxxx获得这个原生元素 -->
+        <div ref="box">hello</div>
+        <p ref="line">ref:reference</p>
+        <button @click="btnClick">修改div元素</button>
+
+        <!-- 通过v-for渲染的多个元素可以设置相同的ref，那么在组件对象的$refs中找到的不再是原生元素对象，而是一个数组，数组中存放着这些元素的原生对象 -->
+        <ul>
+            <li ref="item" v-for="i in 3">{{i}}</li>
+        </ul>
+
+
+        <!-- 如果ref用在组件标签上，那么在组件方法中this.$refs中获得的是这个组件的组件对象 -->
+        <com ref="c1"></com>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+
+        Vue.component("com",{
+            template:`<div>这是com组件</div>`,
+            mounted(){
+                // 组件对象中的$el属性表示本组件的根元素。
+                // console.log(this.$el);
+
+                // 组件对象的$parent属性表示本组件的父组件对象
+                console.log(this.$parent);
+                
+                // $root属性表示本组件所属的根组件
+                console.log(this.$root);
+                
+            }
+        });
+
+        new Vue({
+            el:"#app",
+            data:{
+
+            },
+            methods:{
+                btnClick(){
+                    // console.log(this.$refs);
+                    this.$refs.box.style.color = "red";
+                },
+                
+            },
+            // created函数调用在组件渲染之前，这时组件的模板还没有被渲染到页面上，模板中的元素也就不存在，所以在created函数不能使用$refs
+            created() {
+                // console.log(this.$refs.box);
+            },
+            mounted(){
+                // console.log(this.$refs.box);
+                // console.log(this.$refs.item);
+                // console.log(this.$refs.c1);
+                
+                
+            }
+        })
+    </script>
+</body>
+</html>

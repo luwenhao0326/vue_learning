@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .friend-cell-root{
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 在组件标签上使用v-for要添加key属性 -->
+        <friend-cell 
+            v-for="b,i in friends"
+            :key="i" 
+            :content="b" 
+        ></friend-cell>
+        
+    </div>
+    <script src="vue.js"></script>
+
+    <script type="text/html" id="friend-cell">
+        <div class="friend-cell-root">
+            <!-- <h3 v-if="content.vip" style="color:red">{{content.name}}</h3>
+            <h3 v-else>{{content.name}}</h3> -->
+            <h3 :style="cellStyleObj">{{content.name}}</h3>
+            <p>{{content.sign}}</p>
+        </div>
+        
+    </script>
+
+    <script>
+
+        Vue.component("friend-cell",{
+            template:"#friend-cell",
+            props:["content"],
+            computed:{
+                cellStyleObj(){
+                    return {
+                        color:this.content.vip?"red":"black"
+                    }
+                }
+            }
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+                friends:[
+                    {name:"老王",sign:"今天星期四",vip:true},
+                    {name:"李磊",sign:"how are you",vip:false},
+                    {name:"韩梅梅",sign:"i`m fine",vip:false}
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

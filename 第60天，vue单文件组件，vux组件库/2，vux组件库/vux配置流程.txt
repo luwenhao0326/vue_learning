@@ -1,0 +1,24 @@
+
+1，下载vux
+npm install vux --save
+
+2，下载vux-loader
+npm install vux-loader --save
+
+3，在项目文件夹下创建vue.config.js 在其中添加
+
+let vuxLoader = require("vux-loader");
+module.exports = {
+    configureWebpack: config => {
+        vuxLoader.merge(config, {
+            options: {},
+            plugins: ['vux-ui']
+        })
+    },
+}
+
+4，在下载一个 vue-loader@14.2.2 
+npm install vue-loader@14.2.2  --save -dev
+
+5，下载less-loader
+npm install less-loader --save

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 在页面中可以使用已经注册的组件，直接将组件名作为标签名使用 -->
+        <!-- 在页面渲染时，组件标签会被替换为该组件的模板， -->
+        <my-header></my-header>
+        <com2></com2>
+    </div>
+
+
+    <script src="vue.js"></script>
+
+    <script type="text/html" id="my-header">
+        <div>
+            <h1>这是我的第一个组件</h1>
+            <p>my-header组件</p>
+        </div>
+    </script>
+    <script>
+
+        // vue框架使用组件化开发思想，将一个庞大的页面拆分为若干个组件，组件之间是相互独立的，共同形成一个完整的页面，每个组件还可以继续被拆分为若干个组件。
+        // 组件化开发有两个好处：1，可以将复杂的问题分解为多个简单的问题逐个解决。2，可以方便的实现功能和页面的重用。
+
+
+        // 要在页面中使用组件就必须先注册组件
+        // 组件的注册有两种方式：全局注册和局部注册。
+        
+        // Vue.component方法，用于全局注册一个组件，全局注册必须在根组件之前。全局注册的组件可以在项目中任何地方使用
+        // 第一个参数是注册的组件名(不能是html中原有的标签名)，第二个参数是组件的配置对象
+        Vue.component("my-header",{
+            // 根组件的配置对象中写el,组件的挂载元素。
+            // 非根组件的配置对象中不能通过指定挂载元素设置模板，必须直接设置模板
+            // 组件的模板只能有一个根元素
+            // template:`
+            //     <div>
+            //         <h1>这是我的第一个组件</h1>
+            //         <p>my-header组件</p>
+            //     </div>
+            // `
+                
+            // 组件的配置对象中template可以直接写模板的字符串，但是这样会降低代码的可读性，书写不方便，所以还有一种模板写法。
+            // 将组件的模板写在一个<script>标签中，template设置为这个script标签的选择器
+            template:"#my-header"
+        });
+
+        new Vue({
+            el:"#app",
+            data:{
+
+            },
+            // components用于在某个组件中局部注册组件，在组件A中局部注册的组件只能在组件A的模板中使用。
+            components:{
+                // components的类型是一个对象，其中键是注册的组件名，值是组件的配置对象
+                com2:{
+                    template:"<h1>这是com2组件</h1>"
+                }
+            }
+        });
+    </script>
+</body>
+</html>

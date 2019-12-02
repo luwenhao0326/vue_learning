@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+        #b2{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        /* 通过class设置动画方式，一共需要设置6个class */
+        /* 设置元素入场动画开始时的样式 */
+        .v-enter,.v-leave-to{
+            opacity: 0;
+        }
+        /* 设置元素入场动画过程中的样式 */
+        .v-enter-active,.v-leave-active{
+            transition: all 0.7s;
+        }
+        /* 设置入场动画结束后的样式 */
+        .v-enter-to,.v-leave{
+            opacity: 1;
+        }
+        
+
+        /* 设置元素离场动画开始时的样式 */
+        /* .v-leave{
+            opacity: 1;
+        } */
+        /* 设置元素离场动画过程中的样式 */
+        /* .v-leave-active{
+            transition: all 0.7s;
+        } */
+        /* 设置元素离场动画结束后的样式 */
+        /* .v-leave-to{
+            opacity: 0;
+        }*/
+
+        /* v-开头的动画样式是为匿名transition标签设置的样式，还可以使用xxxx-enter为某种transition标签设置动画样式 */
+        .ani-enter{
+            height: 0 !important;
+        }
+        .ani-enter-active{
+            transition: all 0.7s;
+        }
+        .ani-enter-to{
+            height: 100px;
+        }
+        .ani-leave{
+            width:100px;
+        }
+        .ani-leave-active{
+            transition: all 0.7s;
+        }
+        .ani-leave-to{
+            width: 0 !important;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="show">
+
+        <!-- v-show和v-if在显示和隐藏之间切换时是不带动画的，如果需要添加动画，要使用transition标签 -->
+
+        <!-- v-show和v-if写在teansition标签中时，当元素需要隐藏时，不会立刻隐藏，而是执行离场动画，动画结束之后才隐藏 -->
+        <transition>
+            <div id="box" v-show="show"></div>
+        </transition>
+
+        <!-- 如果在页面中需要执行多种动画，则可以为transition标签设置name属性，在css中单独为这个transition设置动画方式 -->
+        <transition name="ani">
+            <div id="b2" v-show="show"></div>
+        </transition>
+        
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                show:false
+            }
+        })
+    </script>
+</body>
+</html>

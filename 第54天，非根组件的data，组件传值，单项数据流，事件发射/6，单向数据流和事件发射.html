@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>当前是第{{page}}页</h1>
+
+        <!-- v-on还可以用于监听子组件发射的事件 -->
+        <page-control 
+            v-model="page"
+            :total-page="totalPage"
+        >
+        </page-control>
+    </div>
+
+    <script src="vue.js"></script>
+
+    <script type="text/html" id="page-control">
+        <div>
+            <button @click="decreaseClick">-</button>
+            <span>{{value}}/{{totalPage}}</span>
+            <button @click="increaseClick">+</button>
+        </div>
+    </script>
+    <script>
+
+        Vue.component("page-control",{
+            template:"#page-control",
+            props:["value","total-page"],
+            methods:{
+                decreaseClick(){
+                    // props中接受的数据只能读，不能修改。子组件不能直接修改父组件中的数据，数据只能自上而下传递，这叫做组件的单向数据流。
+                    // this.page--;
+
+                    // 子组件需要修改父组件中的数据时，可以给父组件发射一个事件，父组件中监听这个事件，在事件的监听函数中修改数据。
+
+                    // 组件对象的$emit方法，用于向父组件发射一个事件，第一个参数是事件名称，第二个参数是事件的参数
+                    if(this.value>1){
+                        this.$emit("input",this.value-1);
+                    }
+                    
+                },
+                increaseClick(){
+                    if(this.value<this.totalPage){
+                        this.$emit("input",this.value+1);
+                    }
+                    
+                }
+            }
+        });
+
+        new Vue({
+            el:"#app",
+            data:{
+                page:5,
+                totalPage:10
+            },
+            methods:{
+                pageChange(v){
+                    this.page = v;
+                    console.log(v);
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

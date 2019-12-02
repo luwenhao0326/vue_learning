@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        body{
+            margin: 0;
+            overflow-x: hidden;
+        }
+        #tab-bar{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            border: solid 1px black;
+            box-sizing: border-box;
+            background-color: #eeeeee;
+            z-index: 3;
+        }
+        #tab-bar ul{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+        }
+        #tab-bar li{
+            width: 25%;
+            border-right: solid 1px black;
+        }
+        #tab-bar li:nth-of-type(4){
+            border: none;
+        }
+        #tab-bar a{
+            display: inline-block;
+            margin: 0;
+            height: 49px;
+            /* border: solid 1px black; */
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            
+            /* box-sizing: border-box; */
+        }
+        #tab-bar a img{
+            padding-top: 4px;
+            height: 26px;
+            width: 26px;
+            
+        }
+        #tab-bar a p{
+            font-size: 10px;
+            margin: 0;
+            line-height: 10px;
+            color: gray;
+        }
+        
+        .router-view{
+            border: solid 1px red;
+            box-sizing: border-box;
+            overflow: scroll;
+        }
+        
+        .tab-highlighted{
+            background-color: aqua;
+        }
+        #tab-bar .tab-highlighted a p{
+            color: black;
+        }
+
+        .myHeader-root{
+            height: 44px;
+            background-color: skyblue;
+            text-align: center;
+            line-height: 44px;
+            font-size: 24px;
+            color: white;
+            position: relative;
+        }
+        
+        .myHeader-back{
+            width: 40px;
+            height: 34px;
+            position: absolute;
+            left: 10px;
+            top: 3px;
+            border: none;
+            background-color: transparent;
+            font-size: 24px;
+        }
+
+        .friend-list{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .friend-list a{
+            text-decoration: none;
+            display: block;
+            height: 60px;
+            line-height: 60px;
+            padding-left: 10px;
+            border-bottom: solid 1px black;
+            font-size: 20px;
+        }
+
+        .chat-root,.friend-root{
+            background-color: white;
+        }
+        .chat-root{
+            height: 100vh;
+        }
+        
+        .push-enter-active,
+        .push-leave-active,
+        .pop-enter-active,
+        .pop-leave-active{
+            top: 0;
+            position: absolute;
+            transition: all 0.7s;
+            width: 100%;
+        }
+        .push-enter-active{
+            z-index: 2;
+        }
+        .push-leave-active{
+            z-index: 1;
+        }
+        .pop-enter-active{
+            z-index: 1;
+        }
+        .pop-leave-active{
+            z-index: 2;
+        }
+        .push-enter{
+            left: 100%;
+        }
+        .push-enter-to{
+            left: 0;
+        }
+        .push-leave{
+            left: 0;
+        }
+        .push-leave-to{
+            left: -30%;
+        }
+
+
+        .pop-enter{
+            left: -30%;
+        }
+        .pop-enter-to{
+            left: 0;
+        }
+        .pop-leave{
+            left: 0;
+        }
+        .pop-leave-to{
+            left: 100%;
+        }
+
+        .first-level-page{
+            height: calc(100vh - 49px);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <!-- router-view是vue-router中自带的组件，作为路由视图使用，被路由匹配到的组件会显示在这个标签中 -->
+        <transition :name="aniType">
+            <keep-alive>
+                <router-view class="router-view"></router-view>
+            </keep-alive>
+        </transition>
+        
+        <nav id="tab-bar" v-show="showTabbar">
+            <ul>
+                <li 
+                    v-for="p,i in pages" 
+                    :class="{'tab-highlighted':i==highlightedIndex}"
+                >
+                    <!-- routerlink标签相当于a标签，不用添加# -->
+                    <a :href="p.path">
+                        <img :src="p.icon" alt="">
+                        <p>{{p.title}}</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+       
+        
+    </div>
+</body>
+<script src="vue.js"></script>
+<script src="vue-router.js"></script>
+
+<!-- 首页模板 -->
+<script type="text/html" id="home">
+    <div class="home-root first-level-page" @scroll="didScroll">
+        <h1>主页</h1>
+        <p v-for=" i in 15">首页内容</p>
+    </div>
+</script>
+
+<!-- 好友页面模板 -->
+<script type="text/html" id="friend">
+    <div class="friend-root first-level-page">
+        <my-header>好友列表</my-header>
+        <ul class="friend-list">
+            <li v-for="f in friends">
+                <a :href="'#/friend/chat/'+f">{{f}}</a>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<script type="text/html" id="myHeader">
+    <header class="myHeader-root">
+        <button class="myHeader-back" v-if="back" @click="goBack">←</button>
+        <slot></slot>
+    </header>
+</script>
+
+<script>
+
+    let myHeader = {
+        template:"#myHeader",
+        props:["back"],
+        methods:{
+            goBack(){
+                history.back();
+            }
+        }
+    }
+
+    let home = {
+        template:"#home",
+        mounted() {
+            // console.log(this.$el);
+        },
+        destroyed() {
+            console.log("home销毁了");
+        },
+        data(){
+            return{
+                scrollTop:0
+            }
+        },
+        methods:{
+            didScroll(e){
+                this.scrollTop = e.target.scrollTop;
+            }
+        },
+        activated() {
+            this.$el.scrollTop = this.scrollTop;
+        },
+    }
+
+    let friend = {
+        template:"#friend",
+        data(){
+            return{
+                friends:["小芳","大芳","翠花"]
+            }
+        }
+    }
+
+    let news = {
+        template:`<div class="first-level-page">
+            <h1>新闻页面</h1>
+        </div>`
+    }
+
+    let setting = {
+        template:`<div class="first-level-page">
+            <h1>设置页面</h1>
+        </div>`
+    }
+
+    let chat = {
+        template:`<div class="chat-root">
+            <my-header :back="true">{{data1}}</my-header>
+            <h1>聊天页面</h1>
+        </div>`,
+        data(){
+            return{
+                data1:null
+            }
+        },
+        activated() {
+            // 使用了vue-router之后，所有组件对象中都会有一个$route属性表示当前页面的路由地址信息
+            // console.log(this.$route.params.name);
+            this.data1 = this.$route.params.name
+        },
+    }
+
+
+    // 使用vue路由，需要创建一个路由对象，用于添加路由规则。
+    let router = new VueRouter({
+        // 路由配置对象中通过toutes数组添加路由规则
+        routes:[
+            // 路由规则中记录哪个哈希路径对应哪个组件，
+            // 当页面的哈希值为#/home时，router-view中显示home组件
+            {path:"/home",component:home},
+            {path:"/friend",component:friend},
+            {path:"/news",component:news},
+            {path:"/setting",component:setting},
+            // 路由规则中可以使用重定向
+            {path:"/",redirect:"/home"},
+
+            // 页面之间通过路由跳转时可以通过路由路径传参，路径中的名字可以写为 :开头的占位符，跳转之后可以在新页面中通过$route.params获得这个传参
+            {path:"/friend/chat/:name",component:chat}
+        ]
+    });
+
+    // vue路由中实现的是根据页面hash不同，在router-view中显示不同的组件，从而实现页内跳转，这种直接当做页面使用，写入路由规则的组件，叫做 *页面级组件*。
+    
+    Vue.component("myHeader",myHeader);
+
+    new Vue({
+        el:"#app",
+        data:{
+            pages:[
+                {title:"首页",path:"#/home",icon:"a.png"},
+                {title:"好友",path:"#/friend",icon:"b.png"},
+                {title:"新闻",path:"#/news",icon:"c.png"},
+                {title:"设置",path:"#/setting",icon:"d.png"},
+            ],
+            // 页面跳转动画类型
+            aniType:"",
+            // tabBar是否显示
+            showTabbar:true
+            
+        },
+        computed:{
+            highlightedIndex(){
+                switch (this.$route.path) {
+                    case "/home":
+                        return 0;
+                    case "/friend":
+                        return 1;
+                    case "/news":
+                        return 2;
+                    case "/setting":
+                        return 3;
+                    default:
+                    break;
+                }
+            }
+        },
+        mounted() {
+            let level = this.$route.path.split("/").length-1;
+            if(level==1){
+                    this.showTabbar = true;
+            }else{
+                this.showTabbar = false;
+            }
+        },
+        // 路由配置对象创建之后必须注入根组件才能生效。
+        router,
+        watch:{
+            // 监听器可以监听路由地址的变化
+            $route(n,o){
+                // console.log("从"+o.path+"跳转到"+n.path);
+                // 根据页面组件的路径判断出原页面和跳转目标页面的层级，从而改变动画方式
+                let oLevel = o.path.split("/").length-1;
+                let nLevel = n.path.split("/").length-1;
+                if(nLevel>oLevel){
+                    this.aniType = "push";
+                }else if(oLevel>nLevel){
+                    this.aniType = "pop";
+                }else{
+                    this.aniType = "";
+                }
+                
+                // 根据跳转目标的层级设置tabBar是否显示
+                if(nLevel==1){
+                    this.showTabbar = true;
+                }else{
+                    this.showTabbar = false;
+                }
+            }
+        }
+    });
+</script>
+</html>

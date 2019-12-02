@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model=title>
+
+        <!-- v-once指令，用于一次性渲染赋值，数据在页面渲染时赋值一次，当数据发生变化时，不再进行渲染。 -->
+        <h1 v-once>{{title}}</h1>
+
+        <!-- 使用{{}}绑定的内容会被自动html转译，所以数据中的html字符串会显示为字符串而不是元素 -->
+        <!-- 如果需要显示html元素效果，则需要使用v-html指令绑定 -->
+        <p>{{html}}</p>
+        <p v-html="html"></p>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                title:"hello world",
+                html:"<b>你好</b>"
+            }
+        })
+    </script>
+</body>
+</html>
