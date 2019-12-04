@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // 字面量创建对象。
+        // var p1 = {
+        //     name = "张雪峰",
+        //     speak:function(){
+        //         console.log("我是"+this.name);   
+        //     }
+        // }
+        
+        // 如果需要创建多个同一类型（属性和方法相同）的对象，使用字面量不合适，可以使用构造函数创建。
+
+        // 声明构造函数的语法和普通函数相同，但是构造函数的函数首字母大写。
+        function Student(name,stuID){
+            // 通过new调用时，构造函数中的this表示正在创建的对象。
+
+            // 在构造函数中，需要把参数赋值给创建的对象的属性。
+            this.name = name;
+            this.stuID = stuID;
+
+            // 属于同一类的多个对象，属性值可以不同，但是方法都是相同的。
+            this.study = function(){
+                console.log("正在学习");  
+            }
+        }
+
+        // 使用构造函数创建对象，必须通过new 调用
+
+        var s1 = new Student("张雪峰",20);
+
+        console.log(s1);
+        s1.study();
+
+
+        // -----------------------------------
+
+        function Cellphone(e){
+            this.brand = e.brand;
+            this.price = e.price;
+            this.size = e.size;
+            this.color = e.color;
+            this.type = e.type;
+        }
+        
+        // 如果一个函数中参数非常多，其中某些参数还是可选的，那么函数设计时如果使用普通的形参列表，在调用时就会很麻烦，需要记住每一个位置对应的是哪个参数
+        // var c1 = new Cellphone("华为",998,null,null,"荣耀");
+
+        // 对于这种函数，可以把参数写为一个对象，在调用时，临时字面量创建一个对象，需要传哪些参数就添加哪些属性
+        var c2 = new Cellphone({
+            brand:"小米",
+            price:1000,
+            type:"红米"
+        });
+
+        console.log(c2);
+        
+    </script>
+</body>
+</html>

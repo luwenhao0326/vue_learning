@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>css伪类和伪元素</title>
+        <meta charset="utf-8">
+        <style>
+            #link{
+                text-decoration: none;
+            }
+            
+            /* 在一个选择器后可以通过：添加伪类，伪类是在一定条件下才能触发的样式 */
+
+            /* hover当鼠标指针在元素上悬停触发 */
+            #link:hover{
+                text-decoration: underline;
+                background-color: yellow;
+            }
+
+            /* focus伪类，当元素成为焦点时触发 */
+            /* 用户可以交互的元素才能成为焦点，一个页面中同一时间只有一个元素能够成为焦点 */
+            #filed:focus{
+                width: 300px;
+            }
+
+            /* 当元素被鼠标按下时触发 */
+            #txt:active{
+                font-size: 20px;
+            }
+
+            /* visited,是a标签的专用伪类，表示访问过的 */
+            #link:visited{
+                color: gray;
+            }
+
+            #p1{
+                text-indent: 2em;
+            }
+
+            /* 元素中文本内容的第一个字 */
+            #p1:first-letter{
+                font-size: 40;
+            }
+
+            /* 第一行 */
+            #p1::first-line{
+                color: red;
+            }
+
+
+            /* 前缀伪元素,为元素内容添加一个前缀 */
+            .currency:before{
+                /* 前缀内容 */
+                content: "￥";
+                font-size: 16px;
+                color: red;
+            }
+            
+            /* 后缀伪元素 */
+            .currency:after{
+                content: "元";
+                color: green;
+                font-size: 10px;
+            }
+        </style>
+    </head>
+    <body>
+            <a id="link" href="http://www.baidu.com">百度一下</a>
+
+            <input id="filed" type="text">
+
+            <span id="txt">按下会变大</span>
+
+            <p id="p1">习近平总书记关于坚决维护党中央权威和集中统一领导重要论述摘录（2015年1月—2018年6月） 维护党中央权威和集中统一领导，是党和国家前途命运所系，是全国各族人民根本利益所在重要论述摘录（2015年1月—2018年6月） 维护党中央权威和集中统一领导，是党和国家前途命运所系，是全国各族人民根</p>
+
+
+            <table>
+                <tr>
+                    <td>工资</td>
+                    <td class="currency">3000</td>
+                </tr>
+                <tr>
+                    <td>奖金</td>
+                    <td class="currency">1000</td>
+                </tr>
+                <tr>
+                    <td>总计</td>
+                    <td class="currency">4000</td>
+                </tr>
+            </table>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        var arr = ["梨","橘子","香蕉","苹果","桃子","哈密瓜","火龙果","葡萄"];
+        var t1 = document.createElement("select");
+        document.body.appendChild(t1);
+        for(var i = 0;i<arr.length;i++){
+            var t2 = document.createElement("option");
+            t2.textContent = arr[i];
+            t1.appendChild(t2);
+        }
+        
+    </script>
+
+
+</body>
+</html>

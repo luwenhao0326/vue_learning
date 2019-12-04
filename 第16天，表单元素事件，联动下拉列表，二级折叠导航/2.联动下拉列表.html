@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=z, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        var provinces = [
+            {
+                name:"河南省",
+                cities:["郑州","开封","洛阳"]
+            },
+            {
+                name:"山东省",
+                cities:["济南","青岛","日照","烟台"]
+            },
+            {
+                name:"河北省",
+                cities:["石家庄","邯郸","保定"]
+            }
+        ];
+
+        var proSel = document.createElement("select");
+        document.body.appendChild(proSel);
+
+        for(var i = 0;i<provinces.length;i++){
+            var p = provinces[i];
+            var opt = document.createElement("option");
+            opt.textContent = p.name;
+            proSel.appendChild(opt);
+        }
+
+        var citySel = document.createElement("select");
+        document.body.appendChild(citySel);
+
+        for(var i = 0;i<provinces[0].cities.length;i++){
+            var c = provinces[0].cities[i];
+            var opt = document.createElement("option");
+            opt.textContent = c;
+            citySel.appendChild(opt);
+        }
+
+        // ------------------------------------------
+
+        proSel.onchange = function(){
+            // 下拉列表元素对象的.selectedIndex属性，表示当前被选中的option的索引
+            // console.log(proSel.selectedIndex);
+            var p = provinces[proSel.selectedIndex];
+            // 添加新的城市之前，先把原来显示的城市清空。
+            citySel.innerHTML = "";
+            for(var i = 0;i<p.cities.length;i++){
+                var c = p.cities[i];
+                var opt = document.createElement("option");
+                opt.textContent = c;
+                citySel.appendChild(opt);
+            }
+
+            
+            addChange();
+        }
+
+        //--------------------------------------------
+        var p1 = document.createElement("p");
+        p1.textContent = "请选择地址";
+        document.body.appendChild(p1);
+        
+        
+        function addChange(){
+             // 方法一
+            // p1.textContent =proSel.value+ citySel.value;
+
+
+            // 方法二
+            // 先根据左侧下拉列表被选中的索引，从省份数组中取出当前被选中的省份对象。
+            var p = provinces[proSel
+            .selectedIndex];
+
+            // 再根据右侧下拉列表被选中的索引，从这个省的城市数组中取出被选中的城市
+            var c = p.cities[citySel.selectedIndex];
+
+            p1.textContent = p.name+","+c;
+        }
+
+        citySel.onchange = addChange;
+           
+        
+    </script>
+
+</body>
+</html>

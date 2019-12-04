@@ -1,0 +1,5 @@
+cookie是服务端发送给浏览器并由浏览器存储在客户端的。
+
+session是使用cookie作为键，存储在服务端的数据。当浏览器向服务端发送请求时，服务端可以根据本次请求附带的cookie找到它对应的session对象
+
+session是基于cookie的。

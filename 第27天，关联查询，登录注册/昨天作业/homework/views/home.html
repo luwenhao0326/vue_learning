@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .tiezi{
+            border: solid 6px black;
+            margin: 10px;
+        }
+        .reply{
+            text-align: right;
+            border: solid 1px black;
+        }
+
+        .break{
+            /* word-break: break-all; */
+        }
+    </style>
+</head>
+<body>
+    <h1>我的贴吧</h1>
+    <form action="/tiezi/commit" method="POST">
+        <label for="">发帖内容：</label>
+        <br>
+        <textarea name="content"></textarea>
+        <button>提交</button>
+    </form>
+
+    <hr>
+
+    {{each data t}}
+    <div class="tiezi">
+        <h5>{{t.time}}</h5>
+        <p>{{t.ip}}</p>
+        <pre class="break">
+{{t.content}}
+        </pre>
+
+        <!-- 回帖内容 -->
+        {{each t.replies r}}
+        <div class="reply">
+            <h6>{{r.time}}</h6>
+            <p>{{r.ip}}</p>
+            <p class="break">{{r.content}}</p>
+        </div>
+        {{/each}}
+
+
+        <div>
+            <form action="/tiezi/reply" method="POST">
+                <input type="text" style="display: none" value="{{t._id}}" name="_id">
+                <textarea name="content"></textarea>
+                <button>回帖</button>
+            </form>
+        </div>
+    </div>
+    {{/each}}
+
+
+
+</body>
+</html>

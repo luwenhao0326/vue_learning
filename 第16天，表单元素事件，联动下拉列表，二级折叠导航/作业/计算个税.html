@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 8px;
+        }
+
+        input {
+            width: 96%;
+            height: 40px;
+            border-radius: 10px;
+            margin-top: 10px;
+            border: solid 1px black;
+            font-size: 20px;
+            padding-left: 8px;
+        }
+
+        input:hover {
+            border: solid 1px aqua;
+        }
+
+        input:focus {
+            box-shadow: 0 0 5px aqua inset;
+            border: solid 1px aqua;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            color: white;
+            background-color: aqua;
+            height: 50px;
+            font-size: 20px;
+            padding: 0;
+            border-radius: 10px;
+            border: none;
+        }
+
+        #check:disabled {
+            background-color: #999999;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <input id="money1" type="text" placeholder="工资">
+    <input id="money2" type="text" placeholder="奖金">
+    <input id="money3" type="text" placeholder="绩效">
+    <button id="check" disabled>计&emsp;&emsp;算</button>
+
+    <script>
+        var money1 = document.getElementById("money1");
+        var money2 = document.getElementById("money2");
+        var money3 = document.getElementById("money3");
+        var check = document.getElementById("check");
+        // console.log(money1.value);
+
+        money1.oninput = change;
+        money2.oninput = change;
+        money3.oninput = change;
+
+
+        function change() {
+            if (money1.value * 1 != "" && money2.value * 1 != "" && money3.value * 1 != "" && (money1.value * 1 + money2.value * 1 + money3.value * 1) > 2000) {
+                //     console.log(123);
+                check.disabled = false;
+            } else {
+                check.disabled = true;
+            }
+            
+            // qq.classList.remove = "qq1";
+        }
+
+
+
+
+
+
+        check.onclick = function () {
+
+
+
+            var qq = document.createElement("div");
+            document.body.appendChild(qq);
+            qq.id = "qq";
+            var qq = document.getElementById("qq");
+
+
+            // 总工资
+            var div = document.createElement("div");
+            var p1 = document.createElement("p");
+            var p2 = document.createElement("p");
+            p1.textContent = "总工资";
+            var sum1 = money1.value * 1 + money2.value * 1 + money3.value * 1;
+            p2.textContent = "￥" + sum1;
+            qq.appendChild(div);
+            div.style.display = "flex";
+            div.style.justifyContent = "space-between";
+            p1.style.marginBottom = "0";
+            p2.style.marginBottom = "0";
+            div.appendChild(p1);
+            div.appendChild(p2);
+
+            // 养老保险
+            var div2 = document.createElement("div");
+            var p3 = document.createElement("p");
+            var p4 = document.createElement("p");
+            p3.textContent = "养老保险8%";
+            var sum2 = sum1 * 0.08;
+            sum2 = sum2.toFixed(2);
+            p4.textContent = "-￥" + sum2;
+            qq.appendChild(div2);
+            div2.style.display = "flex";
+            div2.style.justifyContent = "space-between";
+            p3.style.marginBottom = "0";
+            p4.style.marginBottom = "0";
+            div2.appendChild(p3);
+            div2.appendChild(p4);
+
+            // 公积金
+
+            var div3 = document.createElement("div");
+            var p5 = document.createElement("p");
+            var p6 = document.createElement("p");
+            p5.textContent = "公积金8%";
+            var sum3 = sum1 * 0.08;
+            sum3 = sum3.toFixed(2);
+            p6.textContent = "-￥" + sum3;
+            qq.appendChild(div3);
+            div3.style.display = "flex";
+            div3.style.justifyContent = "space-between";
+            p5.style.marginBottom = "0";
+            p6.style.marginBottom = "0";
+            div3.appendChild(p5);
+            div3.appendChild(p6);
+
+            // 医疗保险
+
+            var div4 = document.createElement("div");
+            var p7 = document.createElement("p");
+            var p8 = document.createElement("p");
+            p7.textContent = "医疗保险2%";
+            var sum4 = sum1 * 0.02;
+            sum4 = sum4.toFixed(2);
+            p8.textContent = "-￥" + sum4;
+            qq.appendChild(div4);
+            div4.style.display = "flex";
+            div4.style.justifyContent = "space-between";
+            p7.style.marginBottom = "0";
+            p8.style.marginBottom = "0";
+            div4.appendChild(p7);
+            div4.appendChild(p8);
+
+            // 失业保险
+
+            var div5 = document.createElement("div");
+            var p9 = document.createElement("p");
+            var p10 = document.createElement("p");
+            p9.textContent = "失业保险1%";
+            var sum5 = sum1 * 0.01;
+            sum5 = sum5.toFixed(2);
+            p10.textContent = "-￥" + sum5;
+            qq.appendChild(div5);
+            div5.style.display = "flex";
+            div5.style.justifyContent = "space-between";
+            p9.style.marginBottom = "0";
+            p10.style.marginBottom = "0";
+            div5.appendChild(p9);
+            div5.appendChild(p10);
+
+            // 税前工资
+            var div6 = document.createElement("div");
+            var p11 = document.createElement("p");
+            var p12 = document.createElement("p");
+            p11.textContent = "税前工资(扣除五险一金后)";
+            var sum6 = sum1 - sum2 - sum3 - sum4 - sum5;
+            sum6 = sum6.toFixed(2);
+            p12.textContent = "￥" + sum6;
+            qq.appendChild(div6);
+            div6.style.display = "flex";
+            div6.style.justifyContent = "space-between";
+            p11.style.marginBottom = "0";
+            p12.style.marginBottom = "0";
+            div6.appendChild(p11);
+            div6.appendChild(p12);
+
+            // 所得税
+            var div7 = document.createElement("div");
+            var p13 = document.createElement("p");
+            var p14 = document.createElement("p");
+            p13.textContent = "所得税";
+            if (sum6 <= 3500) {
+                sum7 = 0;
+            } else if (sum6 <= 5000) {
+                sum7 = (sum6 - 3500) * 3 / 100;
+            } else if (sum6 <= 8000) {
+                sum7 = (sum6 - 3500) * 0.1 - 105;
+            } else if (sum6 <= 13500) {
+                sum7 = (sum6 - 3500) * 0.2 - 555;
+            } else if (sum6 <= 38500) {
+                sum7 = (sum6 - 3500) * 0.25 - 1005;
+            } else if (sum6 <= 58500) {
+                sum7 = (sum6 - 3500) * 0.3 - 2755;
+            } else if (sum6 <= 83500) {
+                sum7 = (sum6 - 3500) * 0.35 - 5505;
+            } else {
+                sum7 = (sum6 - 3500) * 0.45 - 13505;
+            }
+            sum7 = sum7.toFixed(2);
+            p14.textContent = "-￥" + sum7;
+            qq.appendChild(div7);
+            div7.style.display = "flex";
+            div7.style.justifyContent = "space-between";
+            p13.style.marginBottom = "0";
+            p14.style.marginBottom = "0";
+            div7.appendChild(p13);
+            div7.appendChild(p14);
+
+            // 税后工资
+            var div8 = document.createElement("div");
+            var p15 = document.createElement("p");
+            var p16 = document.createElement("p");
+            p15.textContent = "税后工资";
+            var sum8 = sum6 - sum7;
+            sum8 = sum8.toFixed(2);
+            p16.textContent = "￥" + sum8;
+            qq.appendChild(div8);
+            div8.style.display = "flex";
+            div8.style.justifyContent = "space-between";
+            p15.style.marginBottom = "0";
+            p16.style.marginBottom = "0";
+            div8.appendChild(p15);
+            div8.appendChild(p16);
+
+
+            money1.onfocus = huidaojiaodian;
+            money2.onfocus = huidaojiaodian;
+            money3.onfocus = huidaojiaodian;
+            function huidaojiaodian() {
+                qq.remove();
+            }
+            
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+cookie,是一种让服务器能够在用户浏览器中存储数据的一种技术，常用于用户身份验证。
+
+cookie并不是http协议的标准，但是现在所有的浏览器都实现了cookie功能。
+
+cookie技术的原理：
+服务器给客户端返回响应报文时，在响应头中添加Set-Cookie字段，值设置为任意内容(cookie的值)，浏览器在收到响应报文时，发现响应头中有Set-Cookie的话，会把cookie的值存储起来，下次再向这个域名发送情求时，会把cookie附加在本次请求头中的Cookie字段中，发送给服务器。
+
+cookie是按照域名分别存储的，例如请求baidu.com得到的cookie，只有再次向baidu.com发送请求才会附带在请求头中发送，向其他域名发送请求，不会附带baidu.com的cookie，只会附带这个域名返回的cookie.(url中，协议名，域名(ip),端口号，三者有一个不同，就算不同的域(跨域));
+
+
+cookie分为临时cookie和持久化cookie，如果在cookie的字段中没有设置有效期，则是临时cookie,临时cookie会保存到浏览器关闭为止，设置了有效期的cookie，会保存到有效期结束为止。

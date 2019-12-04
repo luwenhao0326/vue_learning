@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="weather-box"></div>
+
+    <script type="text/html" id="t1">
+        <h1>天气预报</h1>
+        <p><%=currentCity%></p>
+        <p>空气质量:
+            <%if(pm25<=50){%>
+                优
+            <%}else if(pm25<=100){%>
+                良
+            <%}else if(pm25<=200){%>
+                一般
+            <%}else{%>
+                差
+            <%}%>
+        </p>
+        <hr>
+        <%for(var i = 0;i<weather_data.length;i++){%>
+        <div>
+            <%var w = weather_data[i]%>
+            <p><%=w.date%></p>
+            <%if(new Date().getHours()<18){%>
+            <img src="<%=w.dayPictureUrl%>" alt="">
+            <%}else{%>
+            <img src="<%=w.nightPictureUrl%>" alt="">
+            <%}%>
+            <p>气温：<%=w.temperature%></p>
+            <p>天气：<%=w.weather%></p>
+            <p><%=w.wind%></p>
+        </div>
+        <hr>
+        <%}%>
+    </script>
+
+    <script src="libs/jquery.js"></script>
+    <script src="/libs/ejs.js"></script>
+    <script>
+        $.getJSON("http://api.map.baidu.com/telematics/v3/weather?location=郑州市&output=json&ak=KrkaA9DvVjOR7F3mAy6kQBaIVe8TcT05&callback=?",function(res){
+            console.log(res);
+            let htmlStr = ejs.render($("#t1").text(),res.results[0]);
+            $("#weather-box").html(htmlStr);
+        })
+        
+    </script>
+</body>
+</html>

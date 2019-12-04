@@ -7,99 +7,109 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app">
-        <input type="text" v-model.number="money">
+<div id="app">
+    <input type="text" v-model.number="money">
 
-        <!-- 有时在页面上渲染的数据需要进行一定的加工，例如四舍五入，格式转换等，在vue中推荐的做法是使用过滤器 -->
-        <!-- 过滤器使用格式：{{数据|过滤器1|过滤器(参数)}} -->
-        <p>{{money|rounding|seperate2|currency}}</p>
-    </div>
-    <script src="vue.js"></script>
-    <script>
+<!--     有时在页面上渲染的数据需要进行一定的加工，例如四舍五入，格式转换等，在vue中推荐的做法是使用过滤器-->
+<!--     过滤器使用格式：{{数据|过滤器1|过滤器(参数)}}-->
+    <p>{{money|rounding|seperate2|currency(2)}}</p>
+</div>
+<script src="vue.js"></script>
+<script>
 
-        // vue中没有自带的过滤器，必须自己创建过滤。
-        // 创建过滤器有两种方法:全局注册过滤器,局部注册过滤器.(全局注册的过滤器可以在项目中任何地方使用，在某个组件中局部注册的过滤器只能在这个组件的模板中使用)
+    vue中没有自带的过滤器，必须自己创建过滤。
+    创建过滤器有两种方法:全局注册过滤器,局部注册过滤器.(全局注册的过滤器可以在项目中任何地方使用，
+    在某个组件中局部注册的过滤器只能在这个组件的模板中使用)
 
-        // Vue.filter方法，用于全局注册一个过滤器，第一个参数是过滤器名字，第二个参数是过滤函数。过滤函数接收需要过滤的值为参数，返回过滤之后的值
-        // 全局创建过滤器必须在根组件之前。
-        Vue.filter("currency",function(v,c){
-            if(c)
-            return c+v;
-            return "￥"+v;
-        })
+    Vue.filter方法，用于全局注册一个过滤器，第一个参数是过滤器名字，第二个参数是过滤函数。
+    过滤函数接收需要过滤的值为参数，返回过滤之后的值
+    全局创建过滤器必须在根组件之前。
+    Vue.filter("currency", function (v, c) {
+        console.log(v)
+        console.log(c)
+        console.log('currency')
+        if (c)
+            return c + v;
+        return "￥" + v;
+    });
 
-        new Vue({
-            el:"#app",
-            data:{
-                money:null
+    new Vue({
+        el: "#app",
+        data: {
+            money: null
+        },
+        // filters用于在本组件中注册过滤器，在某个组件中局部注册的过滤器只能在这个组件的模板中使用。
+        // 类型是一个对象，对象中键是过滤器名字，值是过滤函数。
+        filters: {
+            rounding(v) {
+                console.log('rounding')
+
+                if (v == null || v == undefined || v == "") {
+                    return null;
+                }
+                return v.toFixed(2);
             },
-            // filters用于在本组件中注册过滤器，在某个组件中局部注册的过滤器只能在这个组件的模板中使用。类型是一个对象，对象中键是过滤器名字，值是过滤函数。
-            filters:{
-                rounding(v){
-                    if(v==null||v==undefined||v==""){
-                        return null;
+            // 我的
+            seperate(v) {
+                console.log('seperate')
+                if (v == null || v == undefined || v == "") {
+                    return null;
+                }
+                if (v > 10000) {
+                    // 整数
+                    let q = Math.floor(v);
+                    // 余数
+                    let w = (v - q).toFixed(2);
+                    // 将整数换成字符串
+                    q = q + "";
+                    // 判断要加多少个逗号
+                    let num = Math.ceil(q.length / 4) - 1;
+                    // 定义俩空字符串用来拼接
+                    let z = "";
+                    let x = "";
+                    for (var i = 0; i < num; i++) {
+                        // 取最后三位
+                        let t = q.substr(q.length - 4, q.length)
+                        let e = t;
+                        // 截取剩下的3位之前的
+                        q = q.substring(0, q.length - 4);
+                        t = q.substr(q.length - 4, q.length);
+                        let r = "," + e;
+                        // 大于三位的拼接
+                        z = r + z;
+                        // 记录最终的第一位
+                        x = q;
                     }
-                    return v.toFixed(2);
-                },
-                // 我的
-                seperate(v){
-                    if(v==null||v==undefined||v==""){
-                        return null;
-                    }
-                    if(v>10000){
-                        // 整数
-                        let q = Math.floor(v);
-                        // 余数
-                        let w = (v - q).toFixed(2);
-                        // 将整数换成字符串
-                        q= q + "";
-                        // 判断要加多少个逗号
-                        let num = Math.ceil(q.length/4)-1;
-                        // 定义俩空字符串用来拼接
-                        let z = "";
-                        let x = "";
-                        for(var i = 0;i<num;i++){
-                            // 取最后三位
-                            let t = q.substr(q.length-4,q.length)
-                            let e = t;
-                            // 截取剩下的3位之前的
-                            q = q.substring(0,q.length-4);
-                            t = q.substr(q.length-4,q.length);
-                            let r = ","+e;
-                            // 大于三位的拼接
-                            z = r+z;
-                            // 记录最终的第一位
-                            x = q;
-                        }
-                        // 将余数前面的0.去掉
-                        w = w.substr(2)
-                        // 总值拼接
-                        let c = x+z+"."+w;
-                        return  c;
-                    }else{
-                        return v;
-                    }
-                },
-                // 老师的
-                seperate2(v){
-                    if(v==null||v==undefined||v==""){
-                        return null;
-                    }
-                    let str = v;
-                    let count = 0;
-                    for(let i = str.length-4;i>=0;i--){
-                        count++;
-                        if(count==4&&i!=0){
-                            count = 0;
-                            let arr = str.split("");
-                            arr.splice(i,0,",");
-                            str = arr.join("");
-                        }
-                    }
-                    return str;
+                    // 将余数前面的0.去掉
+                    w = w.substr(2)
+                    // 总值拼接
+                    let c = x + z + "." + w;
+                    return c;
+                } else {
+                    return v;
                 }
             },
-        });
-    </script>
+            // 老师的
+            seperate2(v) {
+                console.log('seperate2')
+                if (v == null || v == undefined || v == "") {
+                    return null;
+                }
+                let str = v;
+                let count = 0;
+                for (let i = str.length - 4; i >= 0; i--) {
+                    count++;
+                    if (count == 4 && i != 0) {
+                        count = 0;
+                        let arr = str.split("");
+                        arr.splice(i, 0, ",");
+                        str = arr.join("");
+                    }
+                }
+                return str;
+            }
+        },
+    });
+</script>
 </body>
 </html>

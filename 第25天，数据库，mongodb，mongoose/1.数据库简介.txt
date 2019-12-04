@@ -1,0 +1,14 @@
+数据库（database）是一种提供数据存储和数据查询服务的程序。它在操作系统中常以服务形式的进程存在，为其他进程提供数据服务(所以数据库没有用户界面系统)。
+
+SQL：structrue query language：结构化查询语言。
+数据库按照操作方式可分为SQL数据库(使用SQL进行数据库操作)和非SQL数据库
+
+
+SQL数据库：MYSQL,SQLserver，Oracle
+
+非SQL数据库：mongoDB，CouchDB
+
+
+mongoDB是一款是一款js语言操作的文档型数据库。
+
+

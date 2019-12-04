@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <label for="username">用户名：</label>
+    <!-- autocomplete=off 关闭输入框的自动提示功能 -->
+    <input id="username" type="text" autocomplete="off">
+
+    <button onclick="btnClick()">确定</button>
+    
+    <p id="p1"></p>
+
+    <label for="agree">同意</label>
+    <input id="agree" type="checkbox" checked>
+    
+    <br>
+
+    <!-- 表单元素的disabled属性，设置这个元素不可交互 -->
+    <button id="regist-btn" disabled onclick="registBtnClick()">注册</button>
+
+    <br>
+
+    <select  id="sel">
+        <option>苹果</option>
+        <option>橘子</option>
+        <!-- 下拉列表显示的内容总是option标签的内容，获取value时，如果设置了value，则获取value的值，如果没有设置value则获取内容的值 -->
+        <option value="banana">香蕉</option>
+    </select>
+    
+
+    <p id="p2"></p>
+
+    
+    
+    
+    <script>
+        var username = document.getElementById("username");
+        var p1 = document.getElementById("p1");
+        username.value = "请输入用户名";
+        function btnClick(){
+            // console.log(username);
+            
+            // input元素对象的value属性，表示当前输入框中输入的内容。是字符串类型
+            // console.log(username.value);
+
+            // 还可以通过value属性设置输入框中的内容
+            username.value = "请输入用户名";
+        }
+
+        // onfocus,元素获得焦点时
+        username.onfocus = function(){
+            if(username.value == "请输入用户名"){
+                username.value = "";
+            }
+            
+        }
+
+        // onblur,元素失去焦点的事件
+        username.onblur = function(){
+            if(username.value == ""){
+                username.value == "请输入用户名";
+            }
+        }
+        
+        // oninput事件，当输入框中的内容发生编辑时触发
+        username.oninput = function(){
+            p1.textContent = username.value;
+        }
+
+        // -----------------------------------------
+
+        function registBtnClick(){
+            console.log(123);
+            
+        }
+
+        var agree = document.getElementById("agree");
+        var registBtn = document.getElementById("regist-btn");
+
+        agree.oninput = function(){
+            // 对于多选框，获取内容不是用value，而是用checked，是一个布尔值
+            // console.log(agree.checked);
+            if(agree.checked){
+                registBtn.disabled = false;
+            }else{
+                registBtn.disabled = true;
+            }
+        }
+
+        // -----------------------------------------
+
+        var sel = document.getElementById("sel");
+        var p2 = document.getElementById("p2");
+        // 下拉列表的onchange事件，当列表选中内容发生变化时触发
+        sel.onchange = function(){
+            // console.log(123);
+            // 下拉列表元素对象的value表示当前被选中的option的value
+            p2.textContent = sel.value;
+        }
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

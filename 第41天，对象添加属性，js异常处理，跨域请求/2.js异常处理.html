@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // js代码在执行时,如果执行到了错误的代码,就会抛出异常,不同的错误会抛出不同的异常。
+
+        // 1.syntaxError 语法错误
+        // for vsvbb;
+
+        // 2.referenceError 引用错误,调用了一个不存在的函数或方法。
+        // abc();
+
+        // 3.typeError 类型错误,使用错误类型的对象调用方法。
+        // let str = "123214";
+        // str.splice(2,3);
+
+        // 4.RangeError 范围错误,传递了一个不合法的参数时可能出现。
+        // let num = 134;
+        // let ch = num.toFixed(-1);
+        // console.log(ch);
+
+        // -------------------------------------------------------------------------------
+
+        // 有可能出现异常的代码可以写在try-catch代码块中,如果代码出现异常,则会捕获这个异常。
+        // 格式：try{代码块1}catch{代码块2}finally{代码块3}
+        // 代码块1中的代码是要执行的代码,如果代码1出现异常,则会立刻停止代码1的执行(代码1剩下的代码不再执行),
+        // 执行代码块2,代码块2中的error参数就是捕获到的异常对象。无论代码块1是否抛出异常,finally中的代码都会执行。
+        // 如果代码1出现了异常,且在代码块2中继续抛出了这个异常,那么这个异常会被上层try-catch捕获到。
+        // 如果异常被抛出到js执行环境,则程序崩溃,停止执行。如果代码2 没有抛出异常,则程序会继续执行。
+        // let num = 1128;
+        // let ch;
+        // try {
+        //     ch = num.toFixed(-1);
+        // } catch (error) {
+        //     console.log(error)
+        // } finally{
+        //     console.log("finally");
+        // }
+        // console.log("继续执行");
+
+        // -----------------------------------------------------------------------------------------
+
+        // window.onerror事件,当js出现异常时触发,可以监视全局异常(但不能捕获)。
+        // window.onerror = function(e){
+        //     console.log(e);
+        //     $.post("/api/error",{err:e});
+        // }
+        // let str = "123214";
+        // str.splice(2,3);
+
+        // --------------------------------------------------------------------------------------
+
+        function setAge(age){
+            if(age>=0){
+                console.log(age);
+            }else{
+                // 可以通过构造函数创建异常对象并抛出
+                throw new RangeError("年龄不能为负数");
+            }
+        }
+        setAge(-10);
+        console.log("abc");
+    </script>
+</body>
+</html>

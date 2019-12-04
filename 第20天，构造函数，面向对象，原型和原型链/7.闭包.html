@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        // var abc = 100;
+
+        // function f1(){
+        //     var num = 123;
+        //     console.log(num);  
+        // }
+        
+        // f1();
+
+        // console.log("全局变量的生命周期是整个页面的生命周期");
+        
+        // console.log("函数内部的局部变量生命周期从函数调用声明局部变量开始，到函数调用完毕结束");
+
+        // --------------------------------------
+        
+        // 在函数A中声明了函数B，函数B中使用了函数A的作用域中的变量，且函数A返回了函数B，那么函数B就对函数A的作用域形成了闭包，函数A调用完毕后，只要返回的函数B存在，函数A的作用域也一直存在。
+        function makefn(){
+            var n1 = 100;
+
+            function fn(){
+                var n2 = 200;
+                console.log(n1);
+            }
+
+            return fn;
+        }
+        
+        var f2 = makefn();
+
+        f2();
+
+        // -----------------------------------------
+
+        // 闭包可以实现对象的私有属性
+
+        function makeObj(){
+            var name = "zxf";
+            var age = 20;
+            var obj = {
+                speak:function(){
+                    console.log("我叫"+name);
+                    
+                }
+            }
+            return obj;
+        }
+
+        console.log(obj.speak());
+        
+    </script>
+</body>
+</html>

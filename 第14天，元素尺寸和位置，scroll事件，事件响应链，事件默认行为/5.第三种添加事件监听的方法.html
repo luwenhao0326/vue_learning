@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #outer{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        #inner{
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <div id="inner">
+        
+        </div>
+    </div>
+        
+
+    <script>
+        var outer = document.getElementById("outer");
+        var inner = document.getElementById("inner");
+
+        // 元素对象的addEventListener方法，为元素添加一个事件监听。第一个参数是要监听的事件类型，第二个参数是事件函数，第三个参数可选，是否在捕获阶段监听，默认为true
+        // 相比于前两种方法，这种方法可以为同一个元素的同一个事件添加多个事件函数。
+        outer.addEventListener("click",function(e){
+            console.log("outer捕获阶段");
+        },true);
+
+        outer.addEventListener("click",function(e){
+            console.log("outer冒泡阶段");
+        },false);
+
+        function f1(e){
+            console.log("inner捕获阶段");
+        }
+        inner.addEventListener("click",f1,true);
+
+        inner.addEventListener("click",function(e){
+            console.log("inner冒泡阶段");
+        },false);
+
+        // 在事件响应链中任何阶段都可以阻止事件的传播
+
+
+        // removeEventListener移除已经添加过的事件监听
+        inner.removeEventListener("click",f1,true);
+    </script>
+</body>
+</html>

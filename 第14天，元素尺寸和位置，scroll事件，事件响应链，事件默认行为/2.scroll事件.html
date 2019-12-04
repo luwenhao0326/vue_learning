@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 300px;
+            border:  solid 1px black;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <p>第1行</p>
+        <p>第2行</p>
+        <p>第3行</p>
+        <p>第4行</p>
+        <p>第5行</p>
+        <p>第6行</p>
+        <p>第7行</p>
+        <p>第8行</p>
+        <p>第9行</p>
+        <p>第10行</p>
+        <p>第11行</p>
+        <p>第12行</p>
+
+    </div>
+
+
+    <script>
+        var box = document.getElementById("box");
+        
+        // 元素对象的onscroll事件，当元素内容发生滚动时触发，它是一个频繁触发的事件
+        box.onscroll = function(){
+            // console.log("div发生滚动了");
+
+            // console.log(box.clientHeight);
+
+            // scrollTop属性表示元素纵向的滚动偏移量。
+            // console.log(box.scrollTop);
+
+
+            // scrollHeight属性表示元素的内容高度
+            // console.log(box.scrollHeight);
+            
+
+            // 元素内容高度 - 元素本身高度 = 最大偏移量。
+            // 元素的当前偏移量等于最大偏移量时，说明滚动到底部了
+            if(box.scrollHeight-box.clientHeight==box.scrollTop){
+                console.log("到底了");
+            }
+            
+            
+            
+            
+        }
+
+    </script>
+</body>
+</html>

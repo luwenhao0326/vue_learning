@@ -1,0 +1,344 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>我的个人介绍</title>
+    <link rel="stylesheet" href="zuoye.css">
+    <style>
+        body {
+            margin: 0px;
+            background-color: gainsboro;
+        }
+
+        #first {
+            height: 400px;
+            background-image: url(timg.jpg);
+            background-position: 50% 50%;
+        }
+
+        #main {
+            width: 1000px;
+            margin: 0 auto;
+
+
+        }
+
+        #biaoti {
+            font-size: 30px;
+            color: #000000;
+            text-align: center;
+            font-family: 楷体;
+        }
+
+        .line {
+            color: #999999;
+            text-indent: 2em;
+        }
+
+        .pic {
+            width: 1000px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+
+        #subtitle {
+            color: #555555;
+        }
+
+        #gerentedian {
+            background-image: url(wdxinxi.jpg);
+            background-size: 1000px;
+            height: 300px;
+            margin-bottom: 20px;
+
+
+        }
+
+        #jibenxinxi {
+            float: left;
+            width: 500px;
+            text-indent: 2em;
+            color: greenyellow;
+        }
+
+        #jibenxinxi p {
+            text-indent: 7em;
+            color: yellow;
+        }
+
+        #aihao {
+            float: left;
+            width: 400px;
+            text-indent: 2em;
+            color: magenta;
+        }
+
+        #aihao p {
+            color: red;
+        }
+
+        #aihao h3 {
+            padding-left: -10px;
+        }
+
+        #wantsay {
+            background-image: url(zuoyouming.jpg);
+            background-size: 1000px;
+            height: 300px;
+            margin-bottom: 40px;
+
+
+
+        }
+
+        #last {
+            margin-top: 10px;
+            font-size: 23px;
+
+        }
+
+        #wantsay p {
+            color: lawngreen;
+            text-indent: 2em;
+            margin-top: 30px;
+        }
+
+        #daohang {
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: inline-block;
+            height: 50px;
+            width: 100%;
+            background-color: #999999;
+
+        }
+
+        #daohang ul {
+            margin-top: 0px;
+        }
+
+        #daohang li {
+            list-style: none;
+            float: left;
+            width: 150px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .clear-fix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        #daohang li a {
+            text-decoration: none;
+
+            display: inline-block;
+            width: 150px;
+            height: 50px;
+        }
+
+        #daohang li a:hover {
+            background-color: cyan;
+        }
+
+        #a1 {
+            width: 100%;
+            height: 900px;
+        }
+
+        #student {
+            background-image: url(tongxvebg.jpg);
+            background-size: 1000px 500px;
+            height: 500px;
+            margin-bottom: 40px;
+            position: relative;
+
+        }
+
+        #student h2 {
+            text-indent: 2em;
+            display: inline-block;
+            margin-top: 30px;
+            position: absolute;
+            left: 50px;
+            top: 3px;
+        }
+
+        #student li {
+            text-decoration: none;
+            display: inline-block;
+            width: 300px;
+            color: rgb(76, 0, 255);
+            font-size: 30px;
+
+            height: 300px;
+
+        }
+
+        #student p {
+            color: red;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        #q1 {
+            position: absolute;
+        }
+
+        #q1:hover {
+            background-image: url(xxx.jpg);
+            background-size: 300px 300px;
+        }
+
+        #q2 {
+            position: absolute;
+            left: 350px;
+        }
+
+        #q2:hover {
+            background-image: url(yyy.jpg);
+            background-size: 300px 300px;
+        }
+
+        #q3 {
+            position: absolute;
+            left: 680px;
+        }
+
+        #q3:hover {
+            background-image: url(zzz.jpg);
+            background-size: 300px 300px;
+        }
+
+        #xinxitou {
+            width: 100%;
+            height: 30px;
+        }
+
+
+        .w1 h3 {
+            padding-left: 30px;
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .w1 {
+            height: 41px;
+        }
+
+        .icon {
+            vertical-align: middle;
+        }
+
+        #e1 {
+            padding-left: 0;
+        }
+
+        #r1 {
+            padding-left: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="daohang">
+
+        <ul class="clear-fix">
+            <li>
+                <a href="#biaoti">我的学校</a>
+            </li>
+            <li>
+                <a href="#a1">我的家乡</a>
+            </li>
+            <li>
+                <a href="#xinxitou">我的个人信息</a>
+            </li>
+            <li>
+                <a href="#wantsay">我想说的</a>
+            </li>
+            <li>
+                <a href="#student">我的同学</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div id="first"></div>
+    <div id="main">
+        <h1 id="biaoti">我的个人介绍</h1>
+        <!-- 我的学校 -->
+        <div>
+            <div class="w1">
+                <div class="tupian1 icon"></div>
+                <h3 id="xvexiao" class="subtitle">我的学校</h3>
+            </div>
+
+            <p class="line">河南机电职业学院是省教育厅直属、公办全日制高等院校。学院始建于1953年，坐落于郑州南大学城，占地面积782.4亩，建筑面积40万平方米，教学仪器设备总值2.1亿元，图书35万册。学院下设13个二级学院，开设43个专业，与洛阳理工学院联合开设机械设计制造及其自动化等4个本科专业。学院现有专兼职教师586人，其中教授、副教授116人，博士学位教师30人，90%以上的青年教师具有硕士以上学位，“双师型”教师占全院专业课教师的98%，在校生12000人。</p>
+            <img class="pic" src="xvexiao.jpg">
+        </div>
+        <!-- 我的家乡 -->
+        <div id="a1">
+            <div class="w1">
+                <div class="tupian2 icon"></div>
+                <h3 id="jiaxiang" class="subtitle">我的家乡</h3>
+            </div>
+
+            <p class="line">开封，古称老丘、大梁、陈留、汴州、东京、汴京、汴梁等，简称汴，河南省地级市，地处河南省中东部，西与省会郑州市毗邻，东与商丘市相连，南接许昌市和周口市，北隔黄河与新乡市相望。截至2016年，开封市总面积6266平方公里，下辖5个市辖区、4个县，常住454.67万人</p>
+            <p class="line">开封迄今已有4100余年的建城史和建都史，先后有夏朝，战国时的魏国，五代时期的后梁、后晋、后汉、后周，宋朝，金朝等相继在此定都，被誉为八朝古都。开封是世界上唯一一座城市中轴线从未变动的都城，城摞城遗址在世界考古史和都城史上少有。宋都东京城是当时世界第一大城市。有着“琪树明霞五凤楼，夷门自古帝王州”、“汴京富丽天下无”的美誉。开封是清明上河图的创作地，有“东京梦华”之美誉</p>
+            <p class="line">开封是戏曲之乡，中国第一大地方剧种豫剧发源于此。开封市内五湖四河环绕分布，素有“北方水城”之称。开封是中国优秀旅游城市、中国菊花名城、中国书法名城，拥有国家5A、4A级旅游景区8家，全国重点文物保护单位19处。中国开封清明文化节、中国开封菊花文化节吸引着众多海内外游客</p>
+            <p class="line">开封是河南省新兴副中心城市、中原城市群核心发展区城市，郑州大都市区核心城市。开封自贸区也是中国（河南）自由贸易试验区三大片区之一。</p>
+            <img class="pic" src="jiaxiang.jpg">
+
+        </div>
+        <div id="xinxitou"></div>
+
+        <!-- 我的个人信息 -->
+
+        <div id="gerentedian">
+            <div id="jibenxinxi">
+                <div class="w1">
+                    <div class="tupian3 icon"></div>
+                    <h3 id="e1" class="subtitle">我的个人信息</h3>
+                </div>
+                <p>年龄：20</p>
+                <p>性别：男</p>
+                <p>籍贯：河南省开封县</p>
+                <p>电话：110</p>
+                <p>qq：123456789(梦想的)</p>
+            </div>
+            <div id="aihao">
+                <div class="w1">
+                    <div class="tupian4 icon"></div>
+                    <h3 id="r1" class="subtitle">我的基本爱好</h3>
+                </div>
+                <p>我这个人比较懒，最喜欢的事情就是睡觉，因为我感觉睡的舒服才有精力去做其他事情。除了睡觉呢我还比较喜欢玩游戏，打乒乓球。我还曾经为了一部需要vip的电视剧遍寻会员，电影我也偶尔会看，最喜欢喜剧方面的电影，最喜爱的演员是周星驰，因为我觉得他拍戏很认真，电影也很搞笑，有的很有哲理，引人深思。</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="wantsay">
+            <div class="w1">
+                <div class="tupian5 icon"></div>
+                <h3 id="last">我的座右铭</h3>
+            </div>
+            <p class="">不拼不博，等于白活。一个人如何证明自己活着，只有当你受苦感觉到痛的时候，你才觉得你还活着。人与动物的区别是什么：因为人懂得思考，懂得拼搏。正值大好青春，那就大胆的去闯，哪怕头破血流，你也能重新再来。</p>
+        </div>
+        <div id="student">
+            <div class="w1">
+                <div class="tupian6 icon"></div>
+                <h2 class="subtitle">我的同学</h2>
+            </div>
+            <p>我有三个同学，他们分别是：xxx,yyy,zzz</p>
+            <ul>
+                <li id="q1">xxx</li>
+                <li id="q2">yyy</li>
+                <li id="q3">zzz</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

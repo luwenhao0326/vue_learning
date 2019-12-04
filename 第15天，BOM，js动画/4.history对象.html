@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 500px;
+            margin: 20px;
+            background-color: aqua;
+        }
+        #ctrl{
+            height: 50px;
+            position: fixed;
+            left: 0;
+            top:0;
+           
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <a href="#page3">前往page3</a>
+    <a href="#page4">前往page4</a>
+    <br>
+    
+    <div id="ctrl">
+        <button id="back-btn">后退</button>
+        <button id="forward-btn">前进</button>
+        <button id="create-btn">生成历史记录</button>
+    </div>
+    <div id="page1" class="box">第1行</div>
+    <div id="page2" class="box">第2行</div>
+    <div id="page3" class="box">第3行</div>
+    <div id="page4" class="box">第4行</div>
+    <div id="page5" class="box">第5行</div>
+
+    <script>
+        // history对象，用于控制页面的历史记录，例如前进后退等
+        // console.log(history);
+        document.getElementById("back-btn").onclick = function(){
+            // history.back方法，使当前页面后退一层。
+            history.back();
+
+            // 前进或退后N层
+            // history.go(-2);
+        }
+
+        document.getElementById("forward-btn").onclick = function(){
+            // 前进一层
+            history.forward();
+        }
+
+        document.getElementById("create-btn").onclick = function(){
+
+            // history.pushState,用于生成一条历史记录，第一个参数是自定义数据，第二个参数是历史记录标题，第三个参数是url
+            history.pushState("自定义数，可以是任何类型","人工插入的记录","#page5");
+        }
+
+        // 通过js代码插入的历史记录，在后退时浏览器不会执行页面上的操作，而是会通过触发onpopstate事件提示开发者用户后退了，开发者在这个事件函数中执行需要修改的代码
+        window.onpopstate = function
+        (e){
+            console.log(e);
+            
+        }
+
+    </script>
+</body>
+</html>

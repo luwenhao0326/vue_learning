@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .line{
+            color: red;
+        }
+
+        .border{
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">jquery元素查找</h1>
+
+    <button id="btn">按钮</button>
+
+    <input type="text" id="field">
+
+    <p class="line">第1行</p>
+    <p class="line">第2行</p>
+    <p class="line">第3行</p>
+</body>
+
+<!-- 1，script标签是按照顺序先后导入并执行的，在第一个script标签执行完毕之前不会执行第二个script -->
+
+<!-- 2，多个script标签，本质上是将其中的代码拼接在了一起，所以他们处于同一个全局作用域 -->
+
+
+<!-- 导入jquery必须写在使用它之前 -->
+<script src="jquery.js"></script>
+
+<script>
+
+    // 导入jquery之后，在全局域增加了两个变量，$和jQuery。这两个变量都指向jq函数。
+    // 为了不污染开发者的全局作用域，jquery只使用了两个全局变量，$和jQuery。
+    // console.log($);
+    // console.log(jQuery);
+
+
+    // $函数，参数写为一个选择器的字符串时，用于查找DOM中符合这个选择器的所有元素，返回值是一个类数组（这个类数组成为jq对象，功能非常强大），它是一个容器，其中包含了所有本次查找到的元素。
+    var $title = $(".line");
+
+    // 使用jq查找元素时，一般不使用变量记录结果，什么时候用什么时候查找。
+
+    // 使用$进行查找，即使结果只有一个元素，返回值也是一个jq对象。
+    // console.log($("#title"));
+    // console.log($("#title")[0]);
+    
+    //-------------------------------------------------------------
+
+    // $函数，参数是一个原生元素对象时，返回值是一个jq对象，对象中包含这个元素对象。
+    var tit = document.getElementById("title");
+    console.log($(tit));
+
+    //-------------------------------------------------------------
+
+    //jqueryDOM属性操作
+
+    // jq对象大部分DOM操作方法，用于修改元素属性的方法都是针对jq对象中所有元素进行的，例如设置字体为红色，则jq对象中所有元素都设置为了红色。
+    // 对于获取jq对象中元素的属性的方法，大部分都是获取其中第0个元素的属性。
+
+
+    // jq对象的.css方法，用于设置或获取元素的样式值。
+    // 设置样式时，第一个参数是样式名，第二个参数是样式值。设置的样式是行内样式。
+    // $(".line").css("color","red");
+
+    // 如果要同时设置多个样式，参数还可以写为对象。
+    $(".line").css({
+        "font-size":"20px",
+        margin:"40px"
+    });
+
+    // .css方法，也可以用于获取元素的样式，写一个参数表示获取某个样式，参数是要获取的样式名。 相比于原生的style属性，style属性只能获取行内样式之，而css获取的样式值，是元素实际显示的样式值(优先级最高的样式值)。
+    console.log($(".line").css("color"));
+
+
+    //------------------------------------------------
+
+    // jq对象的.text方法，用于设置或获取元素的内容。
+    // 写一个参数时，表示设置内容。
+    $("#title").text("jq设置元素内容");
+
+    // 不写参数时表示获取
+    console.log($("#title").text());
+
+    // jq对象的.html方法，也用于设置或获取元素内容，和.text的区别是.html设置的标签会被显示为标签元素，而.text设置的标签会显示为字符串。(textContent和innerHTML的区别)
+    $("#title").html("<i>html方法也可用于设置内容</i>");
+
+    //----------------------------------------------------
+
+    // jq对象的.addClass方法，用于为元素添加一个class值。
+    $("#title").addClass("border");
+
+    // .removeClass方法，用于删除一个class
+    $("#title").removeClass("border");
+
+    // 切换一个class。
+    $("#title").toggleClass("border");
+
+    // jq对象的hasClass方法，用于判断元素是否包含某个class值，包含则返回true
+    console.log($("#title").hasClass("border"));
+
+    //----------------------------------------------------------
+
+    // jq对象的attr方法，用于设置或获取元素的属性。写两个参数时表示设置某个属性，第一个参数是属性名，第二个参数是属性值。
+    $(".line").attr("title","鼠标悬停时的提示");
+
+    // 写一个参数时，表示获取某个属性的值。
+    console.log($(".line").attr("title"));
+
+
+    // 对于只有属性名，可以没有属性值的属性，需要通过.prop设置或获取。
+
+    // .prop方法，用于设置或获取没有值的属性，写两个参数用于设置，第一个参数是属性名，第二个参数是布尔值，表示是否有这个属性，true表示添加这个属性，false表示删除这个属性。
+    $("#btn").prop("disabled",true);
+
+    //prop方法写一个参数表示获取某个没有值的属性。返回值是布尔值。
+    console.log($("#btn").prop("disabled")); 
+
+    //------------------------------------------------------------
+
+    // jq对象的val方法，用于设置或获取元素的value值，一个参数表示设置，不写参数表示获取。
+    $("#field").val("写参数表示设置");
+    console.log($("#field").val());
+
+    
+
+
+</script>
+
+
+
+
+</html>

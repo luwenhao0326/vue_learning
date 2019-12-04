@@ -1,0 +1,130 @@
+### 页面适配
+目前采用的是vw单位适配，即将屏幕宽度均分为100份，一个屏幕的宽度即为100vw,这样伴随着屏幕大小的变化，
+页面内的元素也会等比例的变化。
+
+参考了这篇文章：[如何在Vue项目中使用vw实现移动端适配](https://www.w3cplus.com/mobile/vw-layout-in-vue.html)，阅读码:`368906`
+
+#######postcsssrc.js中具备了postcss-import postcss-url autoprefixer
+///
+postcss-import
+主要功有是解决@import引入路径问题。使用这个插件，可以让你很轻易的使用本地文件、node_modules或者web_modules的文件。
+这个插件配合postcss-url让你引入文件变得更轻松。
+///
+postcss-url
+该插件主要用来处理文件，比如图片文件、字体文件等引用路径的处理。在Vue项目中，vue-loader已具有类似的功能，只需要配置中将vue-loader配置进去。
+///
+autoprefixer
+插件是用来自动处理浏览器前缀的一个插件。如果你配置了postcss-cssnext，其中就已具备了autoprefixer的功能。
+
+####Vue-cli默认配置了上述三个PostCSS插件，但我们要完成vw的布局兼容方案，或者说让我们能更专心的撸码，还需要配置下面的几个PostCSS插件：
+npm i postcss-aspect-ratio-mini postcss-px-to-viewport postcss-write-svg postcss-cssnext postcss-viewport-units cssnano --S  
+
+###cssnano
+主要用来压缩和清理CSS代码。在Webpack中，cssnano和css-loader捆绑在一起，所以不需要自己加载它。
+不过你也可以使用postcss-loader显式的使用cssnano。
+
+###postcss-px-to-viewport
+主要用来把px单位转换为vw、vh、vmin或者vmax这样的视窗单位，
+"postcss-px-to-viewport": {
+    viewportWidth: 750,      // 视窗的宽度，对应的是我们设计稿的宽度，一般是750
+    viewportHeight: 1334,    // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置
+    unitPrecision: 3,        // 指定`px`转换为视窗单位值的小数位数（很多时候无法整除）
+    viewportUnit: 'vw',      // 指定需要转换成的视窗单位，建议使用vw
+    selectorBlackList: ['.ignore', '.hairlines'],  // 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名
+    minPixelValue: 1,       // 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值
+    mediaQuery: false       // 允许在媒体查询中转换`px`
+}
+
+平板像素尺寸（考虑虚拟键盘高度）：
+
+```
+华为老白板、联想板(1.0dpr)：
+物理像素：1280 * 752
+CSS像素：1280 * 752
+
+华为M5 Pro(2.5dpr)：
+物理像素：2560 * 1517
+CSS像素：1024 * 607
+
+华为MediaPac C5(2.0dpr)：
+物理像素：1920 * 1133
+CSS像素：960 * 567
+
+设备显示的物理像素数和你css的px数的比值就叫做设备像素比（device pixel radio），简称dpr
+```
+适配过程中整理的一些经验如下：
+#### 1.图片需指定`width`和`height`
+注意：如果使用如before after 之类的伪类的content里放一个图的链接，这时即使设置content的宽高也不能限制图片的大小。建议放`background-image`里面，然后设置`background-size`来定义图片大小。
+
+![](content-url.png)
+
+![](content-size.png)
+
+#### 2.js中计算的`px`需手动转换为`vw`
+注意：
+一般写死或者计算出来的需要手动转，如下例子:
+```
+elem.style.marginRight = this.ToVw(50)。是获取到页面中的宽高再赋值则不需要转：如下面的例子elem.style.width = option_widths[0] + 'px';和elem.style.height = option_heights[0] + 'px';是不需要转的，因为 option_widths[0]获取的本就是vw对应该分辨率的准确的px值。
+var option_widths = [];//所有选项的宽
+var option_heights = [];//所有选项的高 
+options.forEach((elem) => {  
+  option_widths.push(elem.clientWidth + 1); 
+  option_heights.push(elem.clientHeight);
+});
+ options.forEach((elem) => {
+  elem.style.marginRight = this.ToVw(50);
+  elem.style.width = option_widths[0] + 'px';
+  elem.style.height = option_heights[0] + 'px';
+});
+```
+特殊情况，通过代码动态获取到的尺寸属性，如选项动态格式化后获取到的宽高，已经相当于转换后的`px`，所以不需要手动转换。
+#### 3.元素高度或多个元素高度累加的值等于全屏高度，尽量不要使用`px`，建议采用`vh`或者适配性强的写法
+以登录页面为例：
+    
+- 背景图`height:752px`  
+![](lenovo-752.png)
+![](M5-752.png)
+- 背景图`height:100vh`,表现都正常
+![](lenovo-vh.png)
+![](M5-vh.png)
+
+分析如下：
+
+联想平板总高度采用`vw`为`752 / 1280 * 100vw = 58.75vw`，
+华为M5总高度采用`vw`为`607 / 1024 * 100vw = 59.27vw`。如果高度写成`752px`，转换成`vw`在华为M5平板加载，则
+`58.75vw < 59.27vw`，造成背景图高度无法填满全屏。
+
+根本原因在于不同平板的宽高比不同。
+#### 4.在多种写法都可以实现相同效果的情况下，优先采用适配性强的写法（上边为特例之一）
+如左右居中对齐：`margin: auto 0`，水平居中对齐使用`flex`
+
+#### 5.不要在行内样式中写宽高或者字号，因为自动转化插件不会识别行内样式中的px
+
+#### 6.`vw`转换成的`px`有时会是小数，但元素的属性如scrollHeight,clientHeight都会四舍五入为整数，
+如arrow组件中：scrollHeight,clientHeight可能会四舍五入，差值可能是永远比scrollTop大,导致下拉箭头永远不会消失，scrollTop+2再比较即可 
+``` 
+this.isArrowShow = arrowBox.scrollTop+2 < 
+(arrowBox.scrollHeight - arrowBox.clientHeight); 
+```
+#### 7.需要将元素在当前屏幕下的`px`转换为对应屏幕下的`px`的情况，可使用如下函数
+```
+computed: {
+    screenRate(){
+       return window.screen.width/1280;
+    }
+}
+```
+如数理化划线：
+
+![](rate.png)
+
+### 接口轮询
+对于类似请求批改结果的接口轮询，在遇到诸如下课，导致页面销毁的情况，即使最后`clearTimeout`,轮询也可能不停止，
+所以增加了页面销毁的判断
+![](loop.png)
+
+### 非常规问题
+##### 1.build模式动画不执行，但dev模式时可以:
+去掉`-webkit-keyframes`的`-webkit`前缀
+##### 2.文本多行省略时使用的属性`-webkit-box-orient`需写成行内样式，否则build后该属性会丢失
+

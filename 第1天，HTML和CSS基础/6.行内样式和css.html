@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>行内样式和css</title>
+        <meta charset="UTF-8">
+        <!-- CSS:cascading style sheet 层叠样式表 -->
+        <!-- style标签是一个特殊的标签，它的标签内容是css样式表 -->
+        <style>
+            /* style标签中可以添加多条样式规则 */
+            /* 每条样式规则由选择器和样式表两部分组成 */
+            /* 样式表中可以添加多条样式 */
+            /* 每条样式由样式名和样式值组成 */
+            p{
+                color:blue;
+                font-size: 12px;
+            }
+            /* 选择器:本条规则中的样式针对页面中那些标签生效 */
+            h6{
+                font-size: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 通过style属性可以给标签设置行内样式，行内样式只能给某个标签单独设置样式所以并不常用 -->
+        <h1 style="color:red;font-size:16px;">标签的style属性表示标签的样式，在style属性中设置的样式叫做行内样式</h1>
+
+        <p>可以使用css给批量的标签设置样式</p>
+        <p>可以使用css给批量的标签设置样式</p>
+        <p>可以使用css给批量的标签设置样式</p>
+
+        <h6>h6</h6>
+    </body>
+</html>

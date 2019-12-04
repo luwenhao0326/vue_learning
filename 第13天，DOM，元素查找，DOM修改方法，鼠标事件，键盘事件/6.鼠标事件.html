@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #btn1{
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: aqua;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        #btn1:hover{
+            border: solid 1px red;
+        }
+
+        #btn2{
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: rgb(217, 255, 0);
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        #btn2:hover{
+            border: solid 1px red;
+        }
+        #box{
+            width: 200px;
+            height: 150px;
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- 页面中某个事件发生时，捕获这个事件并执行一段代码，叫做事件监听 -->
+
+    <!-- 监听某个元素的事件，可以为这个元素标签添加 onxxxxxx属性，xxxxxx表示要监听的事件类型，属性的值就是要执行的js代码 -->
+    <!-- onclick表示鼠标左键点击事件 -->
+    
+    <!-- <div id="btn1" onclick="alert('蓝色')">蓝色</div> -->
+
+    <!-- 如果事件对应的代码只有一行，可以直接写在属性值中，如果事件对应的代码非常复杂，则可以把这段代码写成一个函数，写在js代码中，然后在事件代码中调用这个函数 -->
+    <!-- 给时间绑定事件函数时，可以传递一个全局对象event作为参数 -->
+    <!-- event是一个对象，里面存储着本次事件的详细信息 -->
+    <div id="btn1" onclick="blueClick(event)">蓝色</div>
+    <div id="btn2" onclick="yellowClick(event)">黄色</div>
+    <div id="box"></div>
+
+
+    <script>
+        // event,事件：表示某件事发生了，例如，鼠标点击，键盘点击，窗口尺寸发生变化，网络请求完成等。前端开发属于事件驱动式开发，程序的主要任务就是针对不同的事件做出做出不同的响应。例如，按下按钮之后执行什么，按下回车之后执行什么。
+        
+
+        // 元素标签属性绑定的事件函数，必须是全局域中的函数
+        
+        
+        // function btn1Cliick(e){
+        //     var box = document.getElementById("box");
+        //     // e是事件对象，记录着本次事件的详细信息
+        //     // e.target 表示触发本次事件的元素
+        //     if(e.target.id=="btn1"){
+        //         box.style.backgroundColor = "aqua";
+        //     }else{
+        //         box.style.backgroundColor = "yellow";
+        //     }
+        // }
+
+
+
+        // 给多个按钮绑定事件函数时，可以绑定为同一个函数，在函数中通过e.target区分是哪个按钮点击的。
+        // 也可以给这些按钮分别绑定不同的函数
+        
+        
+        function blueClick(){
+            box.style.backgroundColor = "aqua";
+        }
+         
+        function yellowClick(){
+            box.style.backgroundColor = "yellow";
+        }
+
+        var box = document.getElementById("box");
+
+        // ----------------------------------------
+
+
+        // 给元素添加事件监听的另一种方法：
+
+        // 通过元素对象添加监听，元素对象可以是从DOM中查找，也可以是创建的。
+
+        var btn = document.createElement("button");
+        btn.textContent = "通过js添加的按钮";
+        document.body.appendChild(btn);
+
+        // 可以通过元素对象为这个元素添加事件监听，格式为:
+        // 元素对象.onxxxxx = 事件函数
+        // xxxxx是监听的事件类型,事件函数一般写为匿名函数,当元素触发这个事件时,事件函数就会被执行,自动传递event对象
+        btn.onclick = function(){
+            alert("你好");
+        }
+
+    </script>
+
+</body>
+</html>

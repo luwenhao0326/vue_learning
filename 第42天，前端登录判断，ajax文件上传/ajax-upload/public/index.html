@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        header{
+            background-color: aqua;
+        }
+
+        .width-fix{
+            width: 70vw;
+            margin: 0 auto;
+
+        }
+        #nav-bar{
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #brand{
+            line-height: 100px;
+            margin: 0;
+            padding: 0 10px;
+        }
+        #brand:hover{
+            /* background-color: chartreuse; */
+        }
+        #nav-list{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style: none;
+            padding-top: 20px;
+            
+        }
+        #nav-list li{
+            
+            font-size: 18px;
+            cursor: pointer;
+            padding: 20px 20px;
+        }
+        #nav-list li:hover{
+            background-color: darkorchid;
+        }
+
+        #file-field{
+            display: none;
+        }
+
+        #choose-btn{
+            display: flex;
+            width: 200px;
+            height: 200px;
+            border: dashed 6px black; 
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            background-size: 100% 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        #user-avatar{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="nav-bar" class="width-fix">
+            <div>
+                <h2 id="brand">头像系统</h2>
+            </div>
+            <div>
+                <ul id="nav-list">
+                    
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    
+
+    <script src="/libs/jquery.js"></script>
+    <script src="/libs/layer/layer.js"></script>
+
+    <script>
+        let layerid;
+        $("body").delegate("#regist-btn","click",function(){
+            layerid = layer.open({
+                title:"注册",
+                type: 1,
+                area: ['420px', '240px'], //宽高
+                content: `<form id="regist-form">
+                    <label for="">账号</label>
+                    <input type="text" name="account">
+                    <br>
+                    <label for="">密码</label>
+                    <input type="password" name="psw" >
+                    <br>
+                    <label for="">确认密码</label>
+                    <input type="password">
+                    <br>
+                    <button id="regist-send">注册</button>
+                </form>`
+            });
+        });
+
+        $("body").delegate("#login-btn","click",function(){
+            layerid = layer.open({
+                title:"登录",
+                type: 1,
+                area: ['420px', '240px'], //宽高
+                content: `<form id="login-form">
+                    <label for="">账号</label>
+                    <input type="text" name="account">
+                    <br>
+                    <label for="">密码</label>
+                    <input type="password" name="psw" >
+                    <br>
+                    <button id="login-send">登录</button>
+                </form>`
+            });
+        });
+
+        $("body").delegate("#regist-send","click",function(e){
+            e.preventDefault();
+            let param = $("#regist-form").serialize();
+            $.post("/users/regist",param)
+            .then(res=>{
+                if(res.err){ 
+                    layer.alert(res.msg);
+                }else{
+                    layer.close(layerid);
+                    layer.msg("注册成功");
+                }
+            })
+        });
+
+        $("body").delegate("#login-send","click",function(e){
+            e.preventDefault();
+            let param = $("#login-form").serialize();
+            $.post("/users/login",param)
+            .then(res=>{
+                if(res.err){ 
+                    layer.alert(res.msg);
+                }else{
+                    layer.close(layerid);
+                    layer.msg("登录成功");
+                    refreshLoginStatus();
+                }
+            })
+        });
+
+        // ------------------------------
+
+        // 在前端需要通过是否通过进行条件渲染，页面必须先向服务器发送一个ajax请求，询问当前是否是已登录状态
+
+        function refreshLoginStatus(){
+            $.get("/users/isLogin")
+            .then(res=>{
+                $("#nav-list").empty();
+                if(res.err){
+                    $(`<li id="login-btn">登录</li>
+                    <li id="regist-btn">注册</li>`)
+                    .appendTo($("#nav-list"));
+                }else{
+                    $(`<li id="upload-btn">上传头像</li>`)
+                    .appendTo($("#nav-list"));
+                    $(`<img id="user-avatar" src="/avatars/${res.user.avatar}">`).appendTo($("#nav-list"));
+                }
+            })
+        }
+
+        refreshLoginStatus();
+
+        // --------------------------------------
+
+        // 准备一个全局变量，记录用户所选择的文件对象。
+        let file;
+
+        // 上传头像
+        $("body").delegate("#upload-btn","click",function(){
+            layerid = layer.open({
+                title:"登录",
+                type: 1,
+                area: ['800px', '600px'], //宽高
+                content: `<form>
+                    <label for="file-field" id="choose-btn">
+                    <span style="z-index:-1">点击选择图片或将图片拖拽至此</span> 
+                    </label>
+                    <input type="file" accept="image/*" id="file-field">
+                    <br>
+                    <button id="upload-send">上传</button>
+                </form>`
+            });
+        })
+
+        // 监听图片选择框的change事件
+        $("body").delegate("#file-field","change",function(e){
+            // console.log(e.target)
+            // input选择文件时，输入框的files属性表示目前已经选择的文件
+            // files数组中存放的是文件对象，其中保存了文件的文件名，大小等属性，但是没有文件的url
+            // 使用URL类可以生成一个文件对象的本地url
+            file = e.target.files[0]
+            let url = URL.createObjectURL(file);
+            
+            $("#choose-btn").text("")
+            .css("background-image",`url(${url})`)
+        });
+
+        // drop事件，当有内容被拖拽到元素中时触发。
+        $("body").delegate("#choose-btn","drop",function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            $("#choose-btn").css("background-color","transparent");
+
+            // drop的原生事件对象的dataTransfer属性中包含本次拖拽的内容
+            // console.log(e.originalEvent.dataTransfer.files);
+            file = e.originalEvent.dataTransfer.files[0];
+            let url = URL.createObjectURL(file);
+            $("#choose-btn").text("")
+            .css("background-image",`url(${url})`)
+        });
+
+        // dragenter拖拽进入事件
+        $("body").delegate("#choose-btn","dragenter",function(){
+            $("#choose-btn").css("background-color","rgba(255,165,0,0.5)");
+        })
+        // dragleave拖拽离开事件
+        $("body").delegate("#choose-btn","dragleave",function(){
+            $("#choose-btn").css("background-color","transparent");
+        });
+        
+        // 解决兼容性问题
+        $("body").delegate("#choose-btn","dragover",function(){
+            e.preventDefault();
+        });
+        
+
+        
+        // 上传请求按钮
+        $("body").delegate("#upload-send","click",function(e){
+            e.preventDefault();
+
+            // jquery的serialize，不能收集表单中的数据。
+            if(!file){
+                layer.alert("请先选择一张图片")
+            }else{
+
+                // 上传文件，不能使用urlencode格式的数据，必须使用multipart/form-data格式的数据。
+                // 使用ajax请求上传文件，必须先创建一个form-data格式的数据。
+                let data = new FormData();
+                // 表单数据对象的.append方法，用于向表单数据中添加一条数据，第一个参数是数据的键，第二个参数是数据的值，值可以是字符串也可以是一个文件对象。
+                data.append("avatar",file);
+                console.log(data)
+                $.ajax({
+                    url:"/users/upload",
+                    method:"POST",
+                    data:data,
+                    processData:false,
+                    cache:false,
+                    contentType:false
+                   
+                })
+                .then(res=>{
+                    if(res.err){
+                        layer.alert(res.msg)
+                    }else{
+                        layer.close(layerid);
+                        layer.msg("上传成功");
+                        refreshLoginStatus();
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <title>努比亚手机官网</title>
+    <style>
+        
+        body{
+            margin: 0;
+        }
+        /* ****************第一行*********** */
+        #title{
+            width: 100%;
+            height: 70px;
+            background-color: rgb(40, 40, 40);
+            display: flex;
+            justify-content: space-between;
+            
+        }
+        #title-left{
+            
+            width: 500px;
+            /* border: solid 1px red;  */
+            position: relative; 
+        }
+        #title-left img{
+            width: 140px;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        #title-main{
+            width: 930px;
+            /* border: solid 1px white; */
+            margin-left: -62px;
+        }
+        #title-main table{
+            width: 100%;
+        }
+        #title-main table td{
+            width: 103px;
+            line-height: 70px;
+            color: white;
+            font-size: 13px;
+            font-weight: 300;
+        }
+        #title-main table td:hover{
+            color: #999;
+            cursor: pointer;
+        }
+        #title-right{
+            display: flex;
+            /* border: solid 1px red; */
+            color: white;
+            width: 170px;
+            margin-right: 166px;
+        }
+        
+        #title-right p {
+            color: white;
+            background-color: rgb(242, 92, 74);
+            height: 70px;
+            padding: 0;
+            margin: 0;
+            line-height: 70px;
+        }
+        #title-right p:nth-of-type(1){
+            width: 80px;
+            text-align: right;
+        }
+        #title-right p:nth-of-type(2){
+            width: 40px;
+            text-align: left;
+        }
+        .user{
+            height: 100%;
+            width: 55px;
+            text-align: center;
+            line-height: 70px;
+        }
+        .user:hover{
+            color: #999;
+            cursor: pointer;
+        }
+        #q1{
+            display: flex;
+        }
+        #q1:hover{
+            cursor: pointer;
+        }
+        /* ********************第二行轮播图*********************** */
+        #two img{
+            width: 100%;
+            height: 630px;
+        }
+        #two img:hover{
+            cursor: pointer;
+        }
+        /* *****************第三行***************** */
+        #three{
+            width: 100%;
+            height: 750px;
+            background-color: rgb(239, 238, 235);
+        }
+        #three-top{
+            width: 100%;
+            height: 295px;
+            /* border: solid 1px aqua; */
+            display: flex;
+            justify-content: space-between;
+        }
+        .a1{
+            width: 33%;
+            /* border: solid 1px black; */
+            margin: 5px;
+            background-size: 110% 110%;
+            background-position: 50% 50%;
+            color: white;
+            font-size: 23px;
+            text-align: center;
+            height: 100%;
+            line-height: 295px;
+        }
+        .a1:hover{
+            cursor: pointer;
+            background-size: 100% 100%;
+            background-position: 50% 50%;
+            transition-duration: 2s;
+            opacity: 0.95;
+        }
+        #three-top-one{
+            background-image: url(bg1.jpg);
+        }
+        #three-top-two{
+            background-image: url(bg2.jpg);
+        }
+        #three-top-three{
+            background-image: url(bg3.jpg);
+        }
+        #three-bottom{
+            width: 1920;
+            height: 457px;
+           
+        }
+        #three-bottom table{
+            width: 1450px;
+            height: 300px;
+            margin: 60px auto;
+        }
+        #three-bottom table tr{
+            font-size: 14px;
+            height: 25px;
+            color: #999;
+        }
+        #three-bottom table tr td{
+            width: 241px;
+            padding-left: 40px;
+           
+        }
+        #three-bottom table tr td:hover{
+            color: red;
+            cursor: pointer;
+        }
+        #three-bottom table tr:nth-of-type(1){
+            font-size: 20px;
+            color: black;
+        }
+        #three-bottom table tr:nth-of-type(1) td:hover{
+            color: black;
+            cursor:default;
+        }
+        #four{
+            height: 230px;
+            width: 800px;
+            margin: 0 auto;
+            /* border:  solid 1px red; */
+        }
+        #four-one{
+            width: 105px;
+            height: 60px;
+            background-image: url(logo2.png);
+            margin: 0 auto;
+            background-size: 100% 100%;
+        }
+        #four-two{
+            width: 140px;
+            height: 50px;
+            background-image: url(logo3.png);
+            margin: 0 auto;
+            background-size: 100% 100%;
+            
+        }
+        #four-three{
+            width:800px;
+            margin: 0 auto;
+            margin-left: 250px;
+            font-size: 11px;
+            margin-top: 25px;
+            
+        }
+        #four-four{
+            width: 580px;
+            height: 42px;
+            margin: 0 auto;
+            /* border:  solid 1px red; */
+            display: flex;
+            font-size: 11px;
+            text-align: center;
+            line-height: 42px;
+        }
+        #four-four-one{
+            width: 13px;
+            height: 18px;
+            background-image: url(logo4.jpg);
+            background-size: 100% 100%;
+            /* margin-top: 10px;
+            margin-left: 5px; */
+            margin: 10px 5px 0px 5px;
+        }
+        .y1:hover{
+            cursor: pointer;
+        }
+        .u1:hover{
+            color: red;
+        }
+        #four-four-three{
+            width: 14px;
+            height: 14px;
+            background-image: url(logo5.png);
+            background-size: 100% 100%;
+            
+            margin: 12px 5px 0px 5px;
+        }
+        #four-four-five{
+            width: 81px;
+            height: 30px;
+            background-image: url(cnnic.png);
+            background-size: 100% 100%;
+            margin-top: 6px;
+        }
+        #four-four-six{
+            width: 83.4px;
+            height: 30px;
+            background-image: url(cert.png);
+            background-size: 100% 100%;
+            margin-top: 6px;
+        }
+        #four-five{
+            width: 310px;
+            height: 23px;
+            margin: 0 auto;
+            display: flex;
+            font-size: 11px;
+        }
+        .x1{
+            margin-left: 15px;
+        }
+        .z1{
+            width: 54px;
+            height: 12px;
+            text-align: center;
+            color: rgb(207, 43, 0);
+        }
+        .z1:hover{
+            color: red;
+            cursor: pointer;
+        }
+        .x2{
+            width: 30px;
+        }
+        .z2{
+            width: 20px;
+            height: 12px;
+            text-align: center;
+        }
+        #z3{
+            width: 80px;
+            height: 12px;
+            color: #999;
+            padding: 4px 10px;
+            margin: 0;
+            margin-top: 8px;
+            background-color: rgb(233, 232, 230);
+            text-align: center;
+            line-height: 12px;
+            border-radius: 10px;
+        }
+        #z3:hover{
+            background-color: rgb(182, 182, 182);
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- 第一行导航 -->
+    <div id="title">
+        <div id="title-left">
+            <img src="logo.png" alt="">
+        </div>
+        <div id="title-main">
+            <table>
+                <tr>
+                    <td>商城</td>
+                    <td>手机</td>
+                    <td>红魔手机</td>
+                    <td>配件</td>
+                    <td>摄影</td>
+                    <td>服务</td>
+                    <td>体验店</td>
+                    <td>社区</td>
+                    <td>nubia&nbsp;&nbsp;UI</td>
+                </tr>
+            </table>
+        </div>
+        <div id="title-right">
+            <div class="fa fa-user-o user"></div>
+            <div id="q1">
+                <p>购物车</p>
+                <p class="fa fa-shopping-cart"></p>
+            </div>
+        </div>
+    </div>
+    <!-- 第二行轮播图 -->
+    <div id="two">
+        <img src="lunbo.jpg" alt="">
+    </div>
+    <!-- 第三行3个图片 -->
+    <div id="three">
+        <div id="three-top">
+            <div id="three-top-one"class="a1">不红魔&nbsp;不成活</div>
+            <div id="three-top-two" class="a1">nubia&nbsp;UI&nbsp5.0</div>
+            <div id="three-top-three" class="a1">努比亚摄影长廊</div>
+        </div>
+        <div id="three-bottom">
+            <table>
+                <tr>
+                    <td>关于我们</td>
+                    <td>手机</td>
+                    <td>配件</td>
+                    <td>服务中心</td>
+                    <td>关注我们</td>
+                    <td>全国服务热线</td>
+                </tr>
+                <tr>
+                    <td>关于nubia</td>
+                    <td>红魔电竞游戏手机</td>
+                    <td>保护壳</td>
+                    <td>个人中心</td>
+                    <td>社区</td>
+                    <td>400-700-6600</td>
+                </tr>
+                <tr>
+                    <td>新闻中心</td>
+                    <td>Z18mini</td>
+                    <td>皮套</td>
+                    <td>售后服务</td>
+                    <td>新浪微博</td>
+                    <td>周一到周日8:30-20:30</td>
+                </tr>
+                <tr>
+                    <td>体验店</td>
+                    <td>V18</td>
+                    <td>贴膜</td>
+                    <td>售后网点</td>
+                    <td>努比亚贴吧</td>
+                    <td>(全年无休)</td>
+                </tr>
+                <tr>
+                    <td>公益</td>
+                    <td>nubiaZ17S</td>
+                    <td>耳机</td>
+                    <td>特色服务</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>视频长廊</td>
+                    <td>nubiaZ17miniS</td>
+                    <td>数据线/充电器</td>
+                    <td>软件下载</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>联系我们</td>
+                    <td>nubia&nbsp;Z17</td>
+                    <td>周边产品</td>
+                    <td>产品安全</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>友情链接</td>
+                    <td>nubia&nbsp;Z17mini</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>合作伙伴</td>
+                    <td>nubia&nbsp;Z11</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>nubia&nbsp;N3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>M2青春版</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>N2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>M2畅玩版</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- 第四行底部 -->
+    <div id="four">
+        <div id="four-one"></div>
+        <div id="four-two"></div>
+        <div id="four-three">2012-2018 努比亚技术有限公司 版权所有 粤ICP备10006213号-2</div>
+        <div id="four-four">
+            <div id="four-four-one" class="y1"></div>
+            <div id="four-four-two"> ICP经营许可证编号：粤B2-20120688</div>
+            <div id="four-four-three" class="y1"></div>
+            <div id="four-four-four" class="y1 u1">粤公网安备 44030502000309号</div>
+            <div id="four-four-five" class="y1"></div>
+            <div id="four-four-six" class="y1"></div>
+        </div>
+        <div id="four-five">
+            <p class="z1 x1">加入我们</p>
+            <p class="z2">-</p>
+            <p class="z1 x2">公益</p>
+            <p class="z2">-</p>
+            <p class="z1">问题反馈</p>
+            <p class="z2">-</p>
+            <p id="z3">
+                <span class=" fa fa-cc-amex" style="color: red"></span>
+                简体中文
+            </p>
+        </div>
+    </div>
+    <div>
+        <div class=""></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+</body>
+</html>

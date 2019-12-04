@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>基本选择器</title>
+        <meta charset="utf-8">
+        <style>
+            /* 标签名显示器 选择页面中所有标签名为p的标签*/
+            /* 在页面设计中，很少需要针对全部的某种标签设置同样的样式，所以实际开发中标签名选择器基本不用 */
+            p{
+                color: red;
+            }
+            /* id选择器，格式 #+id值。 选中页面中id值为first的元素 */
+            /* 当需要为页面中的某一个元素设置样式时，使用id选择器 */
+            #first{
+                font-size: 20px;
+            }
+            /* class选择器，格式，.+class值。选中页面中所有class值中包含line的元素 */
+            .line{
+                /* 斜体 */
+                font-style: italic;
+            }
+            .bold{
+                /* 加粗 */
+                font-weight: bold;
+            }
+            /* 选择页面中id值为first且class中包含line的元素 */
+            #first.line{
+                
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 标签的id属性，是这个标签在本页面中的唯一标识符，所以页面中不应该有两个元素的id值相同 -->
+        <p id="first">第1行</p>
+
+        <!-- 标签的class属性，表示这个标签的类型 标签的class属性可以设置多个值，多个值之间以空格隔开-->
+        <p class="line">第2行</p>
+        <p class="line bold">第3行</p>
+        <h4 class="line bold">第4行</h4>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        while (true) {
+            
+            var salary = prompt("请输入你的工资") * 1;
+
+            if (salary <= 3500) {
+                alert("你应缴税的金额为：" + 0 + "元");
+            } else if (salary <= 5000) {
+                alert("你应缴税的金额为：" + ((salary - 3500) * 3 / 100) + "元");
+            } else if (salary <= 8000) {
+                alert("你应缴税的金额为：" + ((salary - 3500) * 0.1 - 105) + "元");
+            } else if (salary <= 13500) {
+                alert("你应缴税的金额为：" + ((salary - 3500) * 0.2 - 555) + "元");
+            } else if (salary <= 38500) {
+                alert("你应缴税的金额为：" + ((salary - 3500) * 0.25 - 1005) + "元");
+            } else if (salary <= 58500) {
+                alert("你应缴税的金额为：" + ((salary - 3500) * 0.3 - 2755) + "元");
+            } else if (salary <= 83500) {
+                alert("你应缴税的金额为：" + ((salary - 3500) * 0.35 - 5505) + "元");
+            } else {
+                alert("你应缴税的金额为：" + ((salary - 3500) * 0.45 - 13505) + "元");
+            }
+
+        }
+    </script>
+</body>
+
+</html>

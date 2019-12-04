@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ajax请求</h1>
+
+    <button id="btn1">使用原生js发起ajax请求</button>
+`   <br>
+    <button id="btn2">使用jquery发起ajax请求</button>
+
+    <script src="./libs/jquery.js"></script>
+
+    <script>
+        // AJAX,asynchronized javascript and XML(异步的javascript XML数据)
+        // 在ajax发明之初，主要用于请求XML数据，但是随着技术发展，ajax请求传输的数据格式逐渐被JSON格式替代，但是名字还是ajax
+
+        // ajax是一种前端开发的请求方式，ajax请求和普通的页面请求最大的区别是：
+        // 1，发起方式不同，普通的页面请求会通过点击a标签，表单提交，或直接在地址栏输入url地址回车发起，而ajax请求页面通过页面中的js代码发起
+        // 普通的页面请求，浏览器在收到响应时，会直接在页面中打开响应数据，而ajax请求浏览器在收到响应后，会将收到的数据交给本页面的js代码进行处理，而页面不发生跳转。（所以说ajax请求是非跳转式请求）
+
+        // --------------------------------------------
+        const btn1 = document.getElementById("btn1");
+        btn1.onclick = e=>{
+            // XMLHttpRequest类，用于发起ajax请求。
+            // 1，创建xhr对象
+            const xhr = new XMLHttpRequest();
+            
+            // 2，xhr对象的.onreadystatechange事件，当请求状态发生变化时触发。
+            // xhr对象刚创建成功时处于初始状态，设置了请求地址，请求方式和请求数据时，变为就绪状态。请求发出后，变为等待状态，收到响应后，变为完成状态
+            xhr.onreadystatechange = e=>{
+                // xhr的readyState属性表示当前请求的状态，为4时是完成状态
+                if(e.target.readyState==4){
+                    // xhr的responseText属性表示请求到的数据
+                    const data = JSON.parse(xhr.responseText);
+                    console.log(data);
+                    
+                }
+            }
+            
+            // 3，设置请求方式和请求地址
+            xhr.open("POST","/test");
+            
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+            // 4，设置请求数据(请求体的数据)并发送
+            xhr.send("name=zxf&age=23");
+        }
+        
+        // -----------------------------------------------
+        
+        $("#btn2").on("click",()=>{
+            // $.post,发起一个请求方式为post的ajax请求。
+            // 第一个参数是请求地址，第二个参数是请求数据(可选，而且可以是字符串也可以是对象)，第三个参数是请求成功的回调函数
+            // $.post("/test",{name:"zxf",age:11},res=>{
+            //     console.log(res);
+            // });
+            
+            // jquery的ajax请求支持promise
+            // $.post("/test",{name:"zxf",age:11})
+            // .then(res=>{
+            //     console.log(res);
+            // })
+            // .carch(err=>{
+            //     console.log(err);
+            // })
+            
+            // $.get用于发起一个请求方式为get的ajax请求。参数和POST请求一样。
+            // $.get("/get-test")
+            // .then(res=>{
+            //     console.log(res);
+            // })
+
+            // $.ajax,用于发起一个可以高度自定义的ajax请求。
+            $.ajax({
+                method:"POST",
+                url:"/test",
+                data:{name:"z"},
+                success(res){
+                    console.log(res);
+                },
+                error(err){
+                    console.log(err);
+                }
+            });
+
+            // ajax全局配置，参数和$.ajax方法的对象一样，通过全局配置设置的内容会作用到页面中所有的ajax请求。
+            $.ajaxSetup({
+                error(err){
+                    alert("您的网络异常");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

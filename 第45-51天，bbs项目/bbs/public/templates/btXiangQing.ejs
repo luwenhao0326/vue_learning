@@ -1,0 +1,97 @@
+
+<style>
+    
+        #bankuai-main-tiezi{
+            min-height: 200px;
+            border: solid 1px black;
+        }
+        #div4{
+            height: 150px;
+            z-index: 1;
+        }
+        #dlpd{
+            display: flex;
+            position: relative;
+            bottom:10px;
+            left: 40%;
+            z-index: 10;
+        }
+        h3{
+            cursor: pointer;
+            margin: 13px 3px;
+        }
+        .dlpd2{
+            display: none !important;
+        }
+        .bankuai-main-tiezi-zuoyou{
+            display: flex;
+            width: 100%;
+            height: 80px;
+            /* border: solid 1px red; */
+            border-bottom: solid 1px black;
+        }
+        .bankuai-main-tiezi-zuoyou img{
+            margin: 15px 10px 0;
+            width: 50px;
+            height: 50px;
+        }
+        
+        .bankuai-main-tiezi-zuoyou2{
+            flex-grow: 1;
+        }
+        .bankuai-main-tiezi-zuoyou3{
+            
+            display: flex;
+            justify-content: space-between;
+        }
+        .tiezixiangqing{
+            cursor: pointer;
+        }
+        .tiezixiangqing:hover{
+            color: red;
+        }
+    </style>
+    <h2><%=data%></h2>
+    <div id="bankuai-main-tiezi">
+        <% for(var i=0;i<data2.data.length;i++){%>
+        <div class="bankuai-main-tiezi-zuoyou">
+            <img src="/avatars/<%=data2.data[i].author.touxiang||'1.jpg'%>" alt="">
+            <div class="bankuai-main-tiezi-zuoyou2">
+                <h3 class="tiezixiangqing" index="<%=data2.data[i]._id%>"><%=data2.data[i].title%></h3>
+                <div class="bankuai-main-tiezi-zuoyou3">
+                    <span><%=data2.data[i].author.username%>于2018年9月13日发布</span>
+                    <div>
+                        <span>查看量：0</span>
+                        <span>回复：0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}%>
+    </div>
+    <hr>
+    <p style="font-size: 20px;font-weight: bold">快速发帖</p>
+
+    <input id="blogTitle" type="text">
+    <span id="blogTitle-span"></span>
+    <br>
+    <div id="div3" class="toolbar"></div>
+    <hr>
+    <div id="div4" class="text"></div>
+    <div id="dlpd" class="dlpd2"><p >还未登录，请先<h3 id="dlpd-p">登录</h3></p></div>
+    
+    <hr>
+    
+    <button id="send-btn">发表博客</button>
+    
+    <script>
+        var E = window.wangEditor;
+        var editor = new E("#div3","#div4");
+        editor.create();
+        
+    </script>
+    
+    
+    
+    
+    

@@ -1,0 +1,46 @@
+body{
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+header{
+    background-color: aqua;
+    box-shadow:  0 -10px 10px 10px black;
+}
+
+.fix-width-center{
+    width: 800px;
+    margin: 0 auto;
+}
+
+#nav-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;  
+}
+
+#nav-list li a{
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+#nav-list li a:hover{
+    background-color: greenyellow;
+}
+
+.selected-item{
+    background-color: yellow;
+}
+
+.my-input{
+    width: 200px;
+    height: 30px;
+    border: solid 1px gray;
+    border-radius: 4px;
+    padding-left: 5px;
+    font-size: 18px;
+}

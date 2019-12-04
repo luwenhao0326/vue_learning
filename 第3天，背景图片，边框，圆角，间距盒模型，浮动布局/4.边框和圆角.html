@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>边框和圆角</title>
+    <style>
+        #d1{
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            background-color: #cccccc;
+
+            /* border，用于设置元素边框，需要设置边框样式，线宽和颜色 */
+            /* solid：实线 */
+            /* border: solid 1px red; */
+            
+            /* border: dashed 10px red; */
+
+
+            /* border用于设置4个边的边框，还可以单独设置某一边的边框 */
+
+            border-top: solid 10px black;
+            border-left: dashed 15px red;
+            border-bottom: dotted 5px blue;
+            border-right: double 10px yellow;
+            border-right: dashed
+        }
+
+
+        #d2{
+            width: 100px;
+            height: 100px;
+            border: solid 1px black;
+            margin: 20px auto;
+
+            /* border-radius:设置边框4个角的圆角的半径 */
+            /* border-radius: 30px; */
+
+            /* 也可以单独设置某个角的圆角半径 */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 40px;
+        }
+
+
+        #d3{
+            width: 100px;
+            height: 100px;
+            border: solid 1px red;
+            margin: 20px auto;
+
+            /* 圆角半径可以设置为百分比，正方形的元素设置为50%，正好可以显示为圆形 */
+            border-radius: 50%;
+
+            background-color: yellow;
+            /* 圆角仅仅设置了边框和背景为圆形，元素内容还是原来的矩形 */
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+
+
+    <div id="d2"></div>
+
+    <div id="d3">
+        内容
+    </div>
+</body>
+</html>

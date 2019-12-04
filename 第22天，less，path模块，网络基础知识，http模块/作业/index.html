@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>外间距和内间距</title>
+    <style>
+        .item{
+            /* margin,表示元素距离相邻元素的长度，或距离父元素边界的长度 */
+            background-color: yellow;
+            /* margin设置一个值时表示4个方向的外间距，写两个值时表示上下和左右，写四个值时表示上右下左4个方向的外间距。 */
+            margin: 40px;
+
+            /* 也可以单独设置某个方向的外间距 */
+            margin-top: 80px;
+        }
+
+        #d1{
+            margin: 10px;
+            /* background-color: greenyellow; */
+            border: solid 1px black;
+            
+
+            /* padding，内间距，表示元素内容距离元素边框的长度 */
+            /* 和margin类似，可以设置1个值，2个值，4个值，也可以单独设置某个方向的内间距 */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <span class="item">第一块</span>
+    <span class="item">第二块</span>
+
+    <div id="d1">文本内容</div>
+
+    <!-- 某些元素会有自带的内间距 -->
+    <ul>
+        <li>123</li>
+    </ul>
+</body>
+</html>

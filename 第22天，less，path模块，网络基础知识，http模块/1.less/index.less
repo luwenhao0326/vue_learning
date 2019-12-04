@@ -1,0 +1,57 @@
+
+// less中可以声明变量，格式为
+// @[变量名]:[变量值]
+// 变量值可以是颜色，可以是长度，可以是复合值。
+@myColor:#ff0000;
+
+@textColor:#ffff00;
+@h:100px;
+#box{
+    background-color: @myColor;
+    color: @textColor;
+    height: @h;
+}
+
+
+// ----------------------------------------------
+
+// less可以进行样式嵌套
+#list{
+    list-style: none;
+
+    li{
+        color: @myColor;
+    }
+}
+
+
+// -------------------------------------------------
+
+// less可以将一个样式混入另一个样式
+.rect{
+    width: 100px;
+    height: 100px;
+    border: solid 1px black;
+    border-radius: 10px;
+    background-image:data-uri("1.jpg");
+}
+
+// 带参数的class，专门用于混入
+.text-color(@color){
+    color: @color;
+}
+
+.bg{
+    background-color: aqua;
+    text-align: center;
+    line-height: 100px;
+
+    // 在.bg中混入 .rect样式
+    .rect;
+    // 混入一个带参数的class
+    .text-color(blue);
+}
+
+
+//------------------------------------------------
+

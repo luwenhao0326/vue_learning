@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> 文本标签和html语义化</title> 
+        <style>
+            .bold{
+                font-weight: bold;
+            }
+            .delete{
+                text-decoration: line-through;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- b标签可以实现文本加粗 -->
+        <p>今天是<b>星期六</b></p>
+        <!-- strong标签也可以实现文本加粗 -->
+        <p>今天是<strong>星期六</strong></p>
+        <!-- span是普通的文本标签，不自带样式，但是可以通过设置span的css样式进行加粗 -->
+        <p>今天是<span class="bold">星期六</span></p>
+
+        <!-- 以上三种方式都可以实现文本加粗，但是语义不同。 -->
+        <!-- b标签仅仅是将文本加粗，标签中的内容不进行强调 -->
+        <!-- strong标签除了加粗，还有强调的语义，表示本标签的内容是本页面需要强调的重点内容 -->
+        <!-- 通过css样式设置的加粗，也仅仅是一个加粗效果，没有强调的语义 -->
+
+
+        <!-- 仅仅是删除线效果 -->
+        <s>明天上课</s>
+
+        <!-- del具有删除语义 -->
+        <del>明天上课</del>
+
+        <!-- 仅仅是删除线效果 -->
+        <span class="delete">明天上课</span>
+
+
+        <!-- 在html5中新增了很多语义化标签，例如header，footer，main，aside，nav，artical，section等，这些标签样式上和div一模一样，但是具有不同语义，例如header标示页面头部内容，footer表示页面尾部内容，nav表示页面导航菜单。 -->
+
+        <address></address>
+
+
+        <!-- html语义化好处： -->
+        <!-- 1.增加代码可读性。 -->
+        <!-- 2.SEO（搜索引擎优化）。 -->
+
+        <!-- html语义化的现状，由于html语义化的好处并不是十分明显，而且老一辈的前端程序员已经习惯div+css的写法，所以大部分的网站开发并没有很好的遵守html语义化标准 -->
+
+
+
+    </body>
+</html>

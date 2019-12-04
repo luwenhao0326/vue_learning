@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        // 直接在script标签中声明的变量属于全局作用域，叫做全局变量。
+        var num = 10;
+
+        function f1(){
+            // 在某个函数中定义的变量，属于这个函数的局部作用域，叫做局部变量
+            var n2 = 20;
+
+
+            // 在函数的局部作用域中，可以使用全局变量
+            console.log(num);
+
+
+        }
+        
+        // 全局域中不能使用某个函数的局部变量。
+        // console.log(n2);
+        
+        // -------------------------------------
+
+        function f2(){
+            // 函数中可以调用另一个函数
+            f3();
+            console.log("f2执行了");
+            
+        }
+        function f3(){
+            console.log("f3执行了"); 
+        }
+        // f2();
+        
+        // --------------------------------
+        function f4(){
+            var n3 = 10;
+            // 在函数内部声明的函数只能在函数内部调用。
+            function f5(){
+                var n4 = 20;
+            console.log(n3); 
+            }
+            // 如果是函数嵌套声明，里层函数可以使用外层函数的变量，外层函数不能使用里层函数的变量
+            // console.log(n4);
+            f5();
+        }
+        // f4();
+
+        // --------------------------------------
+
+        // var声明的变量，只有函数能够形成作用域
+
+        // -----------------------------------------
+        //------------------------------------------
+        //-------------------------------------------
+        //-------------------------------------------
+
+
+
+        // 一个函数内部可以调用自身，但是无条件调用会形成死循环。
+        // function f6(){
+        //     f7();
+        // }
+        // function f7(){
+        //    f6();
+        // }
+
+        // --------------------------------------
+            
+        // 使用条件约束函数自身调用，能够结束逐层退出函数，这种调用方式叫递归调用
+        // function f8(n){
+        //     if(n>0){
+        //         f8(n-1);
+        //     }
+        //     console.log(n);
+        // }
+        // f8(3);
+
+
+        // function febo(n){
+        //     if(n<4){
+        //         return n;
+        //     }else{
+        //         return febo(n-1)+febo(n-2);
+        //     } 
+        // }
+        // console.log(febo(10));
+
+
+        // function jiecheng(n){
+        //     if(n<=1){
+        //         return 1;
+        //     }else{
+        //         return n*jiecheng(n-1);
+        //     }
+        // }
+
+
+
+
+
+    </script>
+
+</body>
+</html>

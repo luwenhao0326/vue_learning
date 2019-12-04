@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 质因数分解
+        // function www(n) {
+        //     var num = n;
+        //     var flag = true;
+        //     while (flag) {
+        //         var isPrime = true;
+        //         for (var i = 2; i < num; i++) {
+        //             if (num % i == 0) {
+        //                 console.log(i);
+        //                 num /= i;
+        //                 isPrime = false;
+        //                 break;
+        //             }
+        //         }
+        //         if (isPrime) {
+        //             console.log(num);
+        //             flag = false;
+        //         }
+        //     }
+        // }
+        // www(20);
+        // ------------------------
+        function www(n) {
+            var num = n;
+            var flag = true;
+            first:
+            while (flag) {
+                var isPrime = true;
+                for (var i = 2; i < num; i++) {
+                    if (num % i == 0) {
+                        console.log(i);
+                        num /= i;
+                        continue first;
+                    }
+                }
+                    console.log(num);
+                    flag = false;
+            }
+        }
+        www(20);
+
+    </script>
+
+
+</body>
+
+</html>

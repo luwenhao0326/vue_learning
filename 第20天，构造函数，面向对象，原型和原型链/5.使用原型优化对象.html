@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 属于同一类的多个对象，各自有各自的属性值，但是方法是相同的。
+
+        // function People(name,age){
+        //     this.name = name;
+        //     this.age = age;
+        //     // 如果在构造函数中为创建的对象添加方法，那么这个方法是附加在对象上的，创建多个对象时，这些对象内部都会存储着一个相同的函数，而这是没有必要的，因为同一类对象，方法是相同的，所以只需要把这些方法存在一个公共的位置，这个类的对象都使用这个公共位置的方法即可
+        //     this.speak = function(){
+        //         console.log("my name is"+this.name);  
+        //     }
+        // }
+
+        
+        function People(name,age){
+            this.name = name;
+            this.age = age;
+        }
+
+        // 构造函数对象有一个属性叫做prototype，表示构造函数的原型对象，通过这个构造函数创建出的对象，原型(__proto__)都是这个prototype对象
+        
+        // 所以为某个类的对象添加方法时，需要添加在它的构造函数的prototype上，这样可以实现方法的共用
+        People.prototype.speak = function(){
+            console.log("my name is "+this.name);
+            
+        }
+
+        var p1 = new People("zxf",20);
+        // 在js中，所有对象都会有一个属性，叫做__proto__（原型）。原型也是一个对象。
+        // 当访问对象的属性或方法时，会先从对象本身中寻找这个属性或方法，如果存在则直接使用。如果不存在，则会在对象的原型中寻找这个属性或方法，如果存在则使用。
+
+        p1.speak();
+        
+        console.log(p1);
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        var p1 = {
+            name:"张雪峰",
+            age:20,
+
+            // 对象的属性可以是任何类型，所以对象的属性也可以是函数，对象的函数属性成为对象的方法(method)
+            // 通过字面量创建对象，方法一般都写为匿名函数
+            speak:function(){
+                // 对象的方法中可以访问自己的属性，通过this.属性名访问
+                // 在一个对象的方法中，this就表示这个对象。
+                console.log("我叫"+this.name);
+            }
+        }
+
+        // 对象创建之后，还可以添加新的方法。
+        p1.walk = function(){
+            console.log("走路");
+            // 对象的方法中也可以调用这个对象的其他方法。通过this
+            this.speak();
+        }
+
+
+        // 通过 对象.方法名() 的格式调用对象的方法。
+        p1.speak();
+
+
+        //----------------------------------------
+
+        
+
+    </script>
+
+</body>
+</html>

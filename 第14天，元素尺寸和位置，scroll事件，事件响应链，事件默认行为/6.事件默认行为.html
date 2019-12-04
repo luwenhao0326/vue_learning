@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a id ="link" href="http://www.baidu.com">百度一下</a>
+
+    <script>
+        // 在浏览器中，某些事件会触发浏览器的默认行为，例如，按下F5，浏览器就会刷新当前页面，点击a标签，页面就会跳转，
+
+        var link = document.getElementById("link");
+
+        link.onclick = function(e){
+
+            // 事件对象的preventDefault方法，可以阻止本次事件所触发的浏览器默认行为。
+            e.preventDefault();
+        }
+
+         document.body.onkeydown = function(e){
+            
+            if(e.keyCode==116){
+                e.preventDefault();
+            }
+            
+            
+        }
+    </script>
+</body>
+</html>

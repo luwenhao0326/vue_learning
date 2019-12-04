@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #containner{
+            
+
+            border: solid 1px red;
+
+            /* flex布局，会影响本元素的子元素布局方式 */
+            /* flex布局的元素中，子元素不再使用原有的流式布局，而是参与flex布局，flex布局中无论是行元素还是块元素，都会按照flex方向进行布局 */
+            display: flex;
+
+            /* flex-direction,设置flex布局方向，默认为row，从左向右，row-reverse，从右往左，colunm,从上往下，colunm-reverse,从下往上 */
+            flex-direction: row;
+
+            height: 100px;
+            /* 如果flex布局的父元素设置了垂直于布局方向上的长度，而子元素没有设置，则子元素的长度等于父元素的长度 */
+
+            /* justify-content,设置flex布局子元素在布局方向的对齐方式 */
+            /* flex-start，布局开始方向对齐，flex-end布局结束方向对齐 */
+            /* center表示居中 */
+            /* space-between:前后贴边，间距平分 */
+            /* space-around:间距平分 */
+            justify-content: center;
+
+            /* align-items表示flex子元素在垂直于布局方向上的对齐方式，样式值和justify-content一样 */
+            align-items: center;
+        }
+        .box{
+            border: solid 1px black;
+            /* width: 200px; */
+
+            height: 50px;
+
+            /* flex-basis:设置元素在布局方向上的长度 */
+            flex-basis: 200px;
+        }
+        .second{
+            /* 设置flex某个子元素自己的对齐方式 */
+            align-self: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <!-- flex布局，弹性布局 -->
+
+    <section id="containner">
+        <div class="box">第1块</div>
+        <div class="box second">第2块</div>
+        <div class="box">第3块</div>
+        <div class="box">第4块</div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+
+
+    <script>
+        var t1 = document.createElement("table");
+        document.body.appendChild(t1);
+
+        for (var i = 0; i < 6; i++) {
+            var tr = document.createElement("tr");
+
+            t1.appendChild(tr);
+            for (var j = 0; j < 8; j++) {
+                var td = document.createElement("td");
+                td.textContent = "(这是第" + (i + 1) + "行,第" + (j + 1) + "列)";
+                tr.appendChild(td);
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

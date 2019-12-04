@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>页内跳转</title>
+        <meta charset="utf-8">
+        <style>
+            .box{
+                height: 200px;
+                background-color: cyan;
+                margin: 40px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <!-- 把a标签的href设置为#xxx是，点击这个a标签页面会立刻滚动到id值为xxx的元素位置 -->
+            <li><a href="#d1">第1块</a></li>
+            <li><a href="#d2">第2块</a></li>
+            <li><a href="#d3">第3块</a></li>
+            <li><a href="#d4">第4块</a></li>
+            <li><a href="#d5">第5块</a></li>
+        </ul>
+        <div id="d1" class="box">第1块</div>
+        <div id="d2" class="box">第2块</div>
+        <div id="d3" class="box">第3块</div>
+        <div id="d4" class="box">第4块</div>
+        <div id="d5" class="box">第5块</div>
+    </body>
+</html>

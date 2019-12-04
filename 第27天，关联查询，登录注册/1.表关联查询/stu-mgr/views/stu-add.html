@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>学生添加页面</h1>
+    <form action="/stu/add" method="POST">
+        <label for="">姓名：</label>
+        <input type="text" name="name">
+        <br>
+
+        <label for="">年龄：</label>
+        <input type="text" name="age">
+        <br>
+
+        <span>性别：</span>
+        <label for="">男</label>
+        <input type="radio" value="male"name="gender">
+        <label for="">女</label>
+        <input type="radio" value="female"name="gender">
+        <br>
+
+        <label for="">班级：</label>
+        <select name="grade">
+            {{each data g}}
+                <option value="{{g._id}}">{{g.name}}</option>
+            {{/each}}
+        </select>
+
+        <br>
+
+        <button>提交</button>
+
+    </form>
+</body>
+</html>

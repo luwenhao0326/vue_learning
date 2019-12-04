@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        function People(name,age){
+            this.name = name;
+            this.age = age;
+        }   
+        
+        // 把类的方法写在构造函数原型对象中，子类就不能通过调用父类构造函数来继承方法(属性还是可以继承)。
+        People.prototype.speak = function(){
+            console.log("我是"+this.name);
+            
+        }
+                                                
+        
+        function Man(name,age,huzi){
+            People.call(this,name,age);
+            this.huzi = huzi;
+        }
+
+        // 不能直接把子类的prototype指向父类的prototype，这样会导致两个构造函数共用同一个prototype，其中的方法父类子类都可以访问，而正确的情况应该是子类可以访问父类的方法，而父类不能访问子类的方法。
+        // Man.prototype = People.prototype;
+        Man.prototype.smoke = function(){
+            console.log("我爱抽烟");    
+        }
+
+        // -----------------------------------------
+        
+        // 对象的原型也是对象，所以原型也有原型
+        // 当访问一个对象的方法时，如果对象中存在则直接访问，如果不存在则在对象的原型中寻找，有则访问，没有则会在原型的原型中寻找，如果还没有则继续往上寻找，直到找到Object为止。
+        // Object是一个类(构造函数)，这个类的对象的原型没有原型。
+
+        // 对象的原型，与原型的原型组成的链式的结构叫做原型链。
+        
+        // 子类要继承父类的方法，则需要把子类的构造函数的prototype对象的原型(__proto__)设置为父类构造函数的prototype。
+        // 方法一：可以实现，不推荐使用
+        // Man.prototype.__proto__ = People.prototype;
+        // Object.create方法用于指定原型创建一个对象(空对象)。
+        // 方法二：官方版
+        Man.prototype = Object.create(People.prototype);
+
+        // 子类继承父类时，除了可以扩展新的方法，还可以重写父类已有的方法，当使用子类对象调用重写的方法时，会执行子类自己的方法。
+        Man.prototype.speak = function(){
+            console.log("男性");
+            
+        }
+
+        var m1 = new Man("zxf",20,"白色");
+        m1.speak();
+        
+        // var p1 = new People("123",23);
+        // p1.smoke();
+    </script>
+</body>
+</html>

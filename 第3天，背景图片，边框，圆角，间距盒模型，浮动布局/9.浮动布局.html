@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       #web-list{
+           list-style: none;
+           padding: 0;
+           background-color: aqua;
+       } 
+       #web-list li{
+           /* float,设置元素使用浮动布局，浮动有左浮动和右浮动 */
+           /* 元素浮动布局中会脱离原有的文档流，参与浮动文档流，在浮动文档流中，块元素也横向排列，而且不再自动宽度为100% */
+           float: left;
+           background-color: greenyellow;
+           margin: 0 5px;
+           padding: 5px 10px;
+           border-radius: 10px;
+
+           /* 鼠标指针的样式 */
+           cursor: pointer;
+
+           /********* 使用浮动布局，必须在最后一个浮动元素结束的地方清除浮动，否则会影响浮动页面，也会导致父元素不能根据内容显示高度 */
+       }
+       #web-list li:hover{
+           background-color: gold;
+       }
+       .clear{
+           /* 最基本的清除浮动的方法，是在最后一个浮动元素的后面添加一个元素，设置这个元素的clear样式为both */
+           clear: both;
+       }
+
+       /* 在不添加新元素的情况下清除浮动： */
+       /* 浮动的元素，都会有一个共同的父元素，可以为这个父元素添加一个后缀伪元素，在后缀中消除浮动。 */
+       /* 一般地情况下都会将清除浮动的样式写成一个class（clear-fix），哪个元素需要清除子元素的浮动，就为哪个元素添加这个class */
+       .clear-fix:after{
+           content: "";
+           display: block;
+           clear: both;
+       }
+    </style>
+</head>
+<body>
+    <ul id="web-list" class="clear-fix">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>havascript</li>
+        <li>vue</li>
+    </ul>
+
+    <h1>你好</h1>
+    
+</body>
+</html>

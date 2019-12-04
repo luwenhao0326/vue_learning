@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // Date是一个类(构造函数),它本身是一个函数对象，这个函数可以用于创建一个Date类型的对象，所以也叫构造函数。
+
+        // 构造函数通过 new 调用时，表示创建一个这个类型的对象。
+        // 通过 new 调用Date构造函数，不传参数时表示获取当前时间的日期对象。
+        var now = new Date();
+        
+        // .getFullYear()获得日期中对象中的年份
+        var year = now.getFullYear();
+        console.log(year);
+
+
+        // .getMonth获得日期对象中的月份，从0开始算,一月是0
+        var month = now.getMonth();
+        console.log(month);
+        
+        // .getDate()获得日期对象中的日子
+        var date = now.getDate();
+        console.log(date);
+
+        // getDay,获得星期，星期日是0
+        var day = now.getDay();
+        console.log(day);
+        
+        // 获得日期中的小时数，24小时制
+        var hour = now.getHours();
+        console.log(hour);
+
+        // 获取分钟数
+        var minute = now.getMinutes();
+        console.log(minute);
+        
+        // 获取秒数
+        var second = now.getSeconds();
+        console.log(second);
+        
+        minute = minute<10?"0"+minute:minute;
+        console.log(year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second);
+
+        // ---------------------------------------
+
+        // .getTime()获得日期对象的时间戳。
+        // 时间戳：从1970年1月1日00:00:00 到这个时刻所经过的毫秒数
+        var time = now.getTime();
+        console.log(time);
+        
+    </script>
+
+</body>
+</html>

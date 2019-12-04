@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // prompt用于弹出一个输入框，用户输入的内容会作为返回值，这个值是字符串类型。
+        // var age = prompt("请输入您的年龄");
+        var age = 20;
+        
+        // 把一个字符串转为数字，可以用字符串*1。
+        age = age*1;
+
+
+        // if 语句，用于生成分支结构代码。
+        // if(布尔值或布尔表达式){代码块1}else{代码块2}}
+        // 执行规则：当布尔值为真时，执行代码块1，为假时，执行代码块2
+        // else是可选的
+        // if(age<=1){
+        //     console.log("婴儿");
+        // }else{
+        //     console.log("幼儿");
+        // }
+
+        // if-else，可以连续使用。
+            
+        if(age<=1){
+            console.log("婴儿");
+        }else if(age<=6){
+            console.log("幼儿");
+        }else if(age<=12){
+            console.log("儿童");
+        }else if(age<=18){
+            console.log("少年");
+        }else if(age<=40){
+            console.log("青年");
+        }else if(age<=60){
+            console.log("中年");
+        }else{
+            console.log("老年");
+        }
+
+
+        // if-else可以嵌套使用；
+        
+        var sex = "男";
+        var height = 175;
+        var income = 10000;
+
+
+
+        if(sex!="男"){
+            console.log("我们性别不合适");
+        }else{
+            if(height<170){
+                console.log("你还没我高呢");
+            }else{
+                if(income<7000){
+                    console.log("你是个好人");
+                }else{
+                    console.log(我觉得我们很合适);
+                }
+            }
+        }
+
+
+        var num = prompt("请输入一个整数");
+
+        // null表示空。
+        var result =  null;
+
+        // if(num%2==0){
+        //     result = "偶数";
+        // }else{
+        //     result = "奇数";
+        // }
+        
+        // 条件运算符，由于它是唯一的一个三目运算符，所以也直接叫三目运算符。
+        // 当通过不同的条件给一个变量赋不同的值时使用。
+        // 布尔表达式?表达式1:表达式2
+        // 当布尔表达式为真时，取表达式1的值，为假时取表达式2的值
+        result = num%2==0?"偶数":"奇数";
+
+        console.log(result);
+
+       
+    </script>
+</body>
+</html>

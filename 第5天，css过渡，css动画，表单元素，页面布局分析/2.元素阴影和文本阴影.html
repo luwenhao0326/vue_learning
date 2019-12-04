@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 100px auto;
+
+            /* box-shadow,设置元素阴影，5个参数分别是：横向偏移量，纵向偏移量，模糊程度，阴影大小，阴影颜色 */
+            box-shadow: 0px 0px 40px 0px black;
+        }
+
+        #dot{
+            border: solid 1px black;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+
+            /* inset,设置阴影在元素内 */
+            box-shadow: 10px -10px 15px 0 black inset;
+        }
+
+        #txt{
+            background-color: yellow;
+            color: white;
+
+            /* text-shadow设置文本阴影，4个参数分别是：横向偏移量，纵向偏移量，模糊程度，阴影颜色 */
+            text-shadow: 2px 2px 5px black;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+
+    <div id="dot"></div>
+
+    <p id="txt">文本阴影主要用于当文本颜色和背景颜色相似时突出文本显示</p>
+</body>
+</html>

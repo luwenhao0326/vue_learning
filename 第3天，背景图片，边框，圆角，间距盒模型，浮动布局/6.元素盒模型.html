@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>元素盒模型</title>
+    <!-- 一个html元素，从里到外分为4个部分，内容盒（content），内间距（padding），边框（border），外间距（margin）。 -->
+    <style>
+        #d1{
+            /* 默认情况下，给元素设置宽高，设置的是内容盒的宽高，不包含边框和内间距 */
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+            border: solid 10px black;
+        }
+        #d2{
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+            border: solid 10px red;
+            /* box-sizing,尺寸的计算方式，默认为content-box，计算宽高时按照内容盒进行计算，还可以设置为border-box，表示计算宽高时，以边框盒进行计算 */
+            box-sizing:border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+
+    <div id="d2"></div>
+</body>
+</html>

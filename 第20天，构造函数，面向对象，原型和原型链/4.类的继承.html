@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+         // function Dog(age,color,weight,tail,eye){
+        //     this.age = age;
+        //     this.color = color;
+        //     this.weight = weight;
+        //     this.tail = tail;
+        //     this.eye = eye;
+        // }
+
+
+        // 在面向对象编程中，类是某一些具有相同特性的对象的集合，例如，猫，狗，鱼都可以抽象为动物，手机，电脑可以抽象为电子产品
+
+        // 根据某个类所实例化的个体叫做这个类的对象。（类是模子，对象是产品）
+
+        // 如果A类中的所有属性和方法B类中都包含,那么B类就是A类的父类,A是B的子类。
+
+        // 如果A类是B类的子类 ，那么在设置这两个类的构造函数时，可以选择让A继承于B。
+
+        //--------------------------------------------
+
+         function Animal(age,color,weight){
+            this.age = age;
+            this.color = color;
+            this.weight = weight;
+
+            this.breathe = function(){
+                console.log("进行呼吸");
+            }
+        }
+
+        // 子类可以在父类的基础上扩展新的属性和方法
+        function Dog(age,color,weight,tail,eye){
+            // 子类继承父类，需要在子类的构造函数中调用父类的构造函数。
+            // 但是不能直接调用，因为直接调用时父类的构造函数中this是全局对象。
+
+            // 子类调用父类构造函数时，需要指定函数执行时的this是当前函数中的this。
+            // 通过call或apply指定this为当前函数中的this。
+            // Animal.call(this,age,color,weight);
+            Animal.apply(this,[age,color,weight]);
+            this.tail = tail;
+            this.eye = eye;
+        }
+        
+        var d1 = new Dog(3,"yellow",10,"长尾巴","蓝眼睛");
+        // console.log(d1);
+       d1.breathe();
+        
+        // 子类可以在作为父类被其他类继承
+        function Husky(age,color,weight,tail,eye){
+            Dog.apply(this,arguments);
+
+            this.maimeng = function(){
+                console.log("卖萌");
+                
+            }
+        }
+        
+        var h1 = new Husky(3,"yellow",10,"长尾巴","蓝眼睛");
+       
+       h1.breathe();
+        
+    </script>
+</body>
+</html>

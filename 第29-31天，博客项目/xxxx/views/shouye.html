@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        {{include "./header.html"}}
+
+        <main>
+                {{each data d}}
+                <div id="qq">
+                        <p ><a href="/page/xiangqing?_id={{d._id}}"class="title">{{d.title}}</a></p>
+                        <span>用户：<a href="/user/count?_id={{d.author.name}}" class="author">{{d.author.name}}</a></span>  |
+                        <span>{{d.time}}</span>  |
+                        <span ><a href="" class="biaoqian">
+                            {{each d.biaoqian a}}
+                                <a href="" style="text-decoration: none ;padding: 3px 4px;background-color: palegreen">{{a}}</a>
+                            {{/each}}
+                        </a></span>  
+                        
+                        <br>
+                        <span>浏览次数：{{d.count}}</span> |
+                        <span>回复：{{d.count}}</span>
+                </div>
+                
+                    
+                {{/each}}
+            </main>
+</body>
+</html>

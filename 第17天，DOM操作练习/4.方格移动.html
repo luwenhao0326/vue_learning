@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+
+            border: solid 1px black;
+            margin: 20px auto;
+        }
+
+        .td {
+            width: 50px;
+            height: 50px;
+            border: solid 1px rebeccapurple;
+        }
+
+        .cla {
+            background-color: red;
+        }
+
+        .cla1 {
+            background-color: aqua;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <script>
+        var table = document.createElement("table");
+        document.body.appendChild(table);
+
+        table.id = "tab";
+        var allarr = [];
+
+        for (var i = 0; i < 10; i++) {
+            var tr = document.createElement("tr");
+            tab.appendChild(tr);
+            var all = [];
+            for (var j = 0; j < 10; j++) {
+                var td = document.createElement("td");
+                td.classList.add("td");
+                tr.appendChild(td);
+                all.push(td);
+            }
+            allarr.push(all);
+        }
+        console.log(allarr);
+
+        var count = allarr[0][0];
+        // for (var i = 0; i < allarr.length; i++) {
+        //     for (var j = 0; j < allarr[i].length; j++) {
+        //         allarr[i][j].onclick = function (e) {
+        //             count.classList.remove("cla");
+        //             e.target.classList.add("cla");
+        //             count = e.target;
+        //         }
+        //     }
+        // }
+
+        var num = 0;
+        var num2 = 0;
+        allarr[num][num2].classList.add("cla");
+        var x = Math.floor(Math.random() * 10);
+        var y = Math.floor(Math.random() * 10);
+        allarr[x][y].classList.add("cla1");
+        document.body.onkeydown = function (e) {
+
+            
+            if (e.keyCode == 37) {
+                if (num2 > 0) {
+                    allarr[num][num2].classList.remove("cla");
+                    num2--;
+                    allarr[num][num2].classList.add("cla");
+                }
+            }
+            if (e.keyCode == 39) {
+                if (num2 < 9) {
+                    allarr[num][num2].classList.remove("cla");
+                    num2++;
+                    allarr[num][num2].classList.add("cla");
+                }
+            }
+            if (e.keyCode == 38) {
+                if (num > 0) {
+                    allarr[num][num2].classList.remove("cla");
+                    num--;
+                    allarr[num][num2].classList.add("cla");
+                }
+            }
+            if (e.keyCode == 40) {
+                if (num < 9) {
+                    allarr[num][num2].classList.remove("cla");
+                    num++;
+                    allarr[num][num2].classList.add("cla");
+                }
+            }
+           
+            if ((x - 1 == num && y == num2) || (x + 1 == num && y == num2) || (x == num && y - 1 == num2) || (x == num && y + 1 == num2)) {
+                allarr[x][y].classList.remove("cla1");
+                allarr[x][y].classList.add("cla");
+                console.log(123);
+                
+            }
+            
+        }
+
+
+
+    </script>
+</body>
+
+</html>

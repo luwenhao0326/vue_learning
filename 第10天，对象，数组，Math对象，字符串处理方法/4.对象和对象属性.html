@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 对于简单的数据，可以使用基本数据类型记录，而对于一个复杂的数据，例如一个人的信息，就必须使用对象进行记录。
+
+        // 在js中，可以使用字面量（直接量）创建对象，格式为：
+        // {属性名1:属性值1,属性名2:属性值2,.......}
+        // 属性名的命名规则和变量名相同
+        var p1 = {
+            name:"张雪峰",
+            age:20,
+        };
+
+        // console.log(p1);
+
+        // 可以使用 打点 的方式访问对象的属性。
+
+        console.log(p1.name);
+        // 为对象的属性赋值
+        p1.age = 31;
+
+        console.log(p1.age);
+
+        // ------------------------------------
+
+        // 对象在创建之后，可以添加新的属性
+        p1.sex = "男";
+        console.log(p1.sex);
+
+        // ------------------------------------
+
+        // 对象的属性值也可以是对象类型
+        var p2 = {
+            name:"小明",
+            age:12,
+            father:{
+                name:"老王",
+                age:40
+            }
+        }
+        
+        console.log(p2.father.name);
+        // -------------------------------------
+        
+        // 对象的属性除了可以打点访问，还可以通过[]访问，通过[]访问时，[]写的是属性名的字符串。
+        var p3 = {
+            name:"韩梅梅",
+            age:"18",
+        }
+
+        var n = "name"
+        console.log(p3["name"]);
+        console.log(p3[n]);
+
+        // ---------------------------------------
+
+        // for-in,用于遍历对象中的所有属性名，
+        for(var k in p3){
+            console.log(p3[k]);
+        }
+        
+
+    </script>
+</body>
+</html>

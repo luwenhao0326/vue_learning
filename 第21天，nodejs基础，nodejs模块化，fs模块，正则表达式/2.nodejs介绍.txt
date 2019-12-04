@@ -1,0 +1,6 @@
+node  节点
+nodejs是谷歌公司于2009年发布的javascript运行环境，提供了大部分操作系统API（包括网络功能API），主要用于服务端开发。
+
+使用nodejs运行js文件：
+1，打开命令行，并进入要运行的js文件所在的目录
+2，执行 node xxxx.js 命令。

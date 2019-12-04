@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table{
+            border: solid 1px black;
+            border-collapse: collapse;
+        }
+        td{
+            border: solid 1px black; 
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>班级</h1>
+    <table>
+        <tr>
+            <td>班级</td>
+            <td>教师</td>
+            <td>课程</td>
+        </tr>
+        {{each data n}}
+            <tr>
+                <td><a href="/stu/list?grade={{n._id}}">{{n.name}}</a></td>
+                <td>{{n.teacher}}</td>
+                <td>{{n.major}}</td>
+            </tr>
+        {{/each}}
+    </table>
+</body>
+</html>

@@ -1,0 +1,11 @@
+npm ：nodejs package manager，nodejs包管理器
+
+npm可以用于下载nodejs程序或者第三方模块。
+
+
+使用npm下载一个模块或程序
+npm install xxxxx
+
+在安装命令后添加 -g 表示全局安装(安装到roming/npm中，这个目录是设置过环境变量的)。
+下载第三方模块不需要加-g，而下载nodejs程序需要加-g
+npm install xxx -g

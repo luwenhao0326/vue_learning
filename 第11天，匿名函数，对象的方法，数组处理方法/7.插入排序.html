@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   
+
+    <script>
+        var arr = [5,8,9,7,3,4,2];
+        var str1 = [];
+        // 遍历待排序的数组，依次处理其中的每一个数字
+        for(var i = 0;i<arr.length;i++){
+            // 找出要插入的数字
+            var n = arr[i];
+            // 使用一个布尔变量记录这个数字是否被插入在了结果数组中的某个数字之前
+            var flag = false;
+            // 遍历结果数组，寻找比这个数字大的数
+            for(var j = 0;j<str1.length;j++){
+                if(str1[j]>n){
+                    // 如果找到了比这个数组大的数，就把这个数字放在str1中比他大的数字之前
+                    str1.splice(j,0,n);
+                    // 记录数字已经被插入
+                    flag = true;
+                    //退出里层循环(不需要再查找比它大的数字了)
+                    break;
+                }
+            }if(!flag){
+                str1.push(n);
+        }  
+        }   
+        console.log(str1);
+        
+        // -------------------------------------
+
+        // 随机从数组中选取一个元素
+        var arr2 = [4,5,3,6,2,8];
+        var index = Math.floor(Math.random()*arr2.length);
+
+        console.log(arr2[index]);
+
+        // -------------------------------------
+
+        // 生成三个0-9的随机数（可以相等）
+        var rnds = [];
+        for(var i = 0;i<3;i++){
+            var rnd = Math.floor(Math.random()*10);
+                rnds.push(rnd);           
+        }
+        console.log(rnds);
+        
+        // -------------------------------------
+
+        // 生成3个0-9的随机整数（不相等）
+        var source = [0,1,2,3,4,5,6,7,8,9];
+        
+        var res3 = [];
+
+        for(var i = 0;i<3;i++){
+            var index = Math.floor(Math.random()*source.length);
+            res3.push(source[index]);
+            source.splice(index,1);
+        }
+
+        console.log(res3);
+        
+    
+    </script>
+
+</body>
+</html>

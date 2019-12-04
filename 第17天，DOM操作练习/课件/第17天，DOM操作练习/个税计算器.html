@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 8px;
+        }
+        .field{
+            width: 100%;
+            box-sizing: border-box;
+            height: 30px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: solid 1px #888888;
+            padding-left: 8px;
+        }
+        .field:hover{
+            border-color:cyan; 
+        }
+        .field:focus{
+            box-shadow: 0 0 10px -5px cyan inset;
+        }
+        #calc-btn{
+            width: 100%;
+            box-sizing: border-box;
+            height: 30px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: none;
+            background-color: cyan;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #tb{
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #tb td:nth-of-type(2){
+            text-align: right;
+            color: red;
+        }
+
+        #tb td:nth-of-type(2):before{
+            content: "￥";
+        }
+        
+        #tb td.minus:before{
+            content: "-￥";
+        }
+
+        .bottom-border td{
+            border-bottom: solid 1px #999999;
+        }
+
+        #calc-btn:disabled{
+            background-color: #cccccc;
+        }
+
+        #tips{
+            color: red;
+            display: none;
+        }
+
+        #result{
+            height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <input id="jibengongzi" class="field" type="text" placeholder="基本工资">
+        <input id="jiangjin" class="field" type="text" placeholder="奖金">
+        <input id="jixiao" class="field" type="text" placeholder="绩效">
+        <button disabled id="calc-btn">计&emsp;算</button>
+        <p id="tips">最低工资标准为1500</p>
+    </div>
+
+    <div id="result">
+        <table id="tb">
+            <tr class="bottom-border">
+                <td>总工资</td>
+                <td id="zonggongziTD">0</td>
+            </tr>
+            <tr>
+                <td>养老保险8%</td>
+                <td class="minus" id="yanglaoTD">0</td>
+            </tr>
+            <tr>
+                <td>医疗保险2%</td>
+                <td class="minus" id="yiliaoTD">0</td>
+            </tr>
+            <tr>
+                <td>工伤保险0%</td>
+                <td class="minus" id="gongshangTD">0</td>
+            </tr>
+            <tr>
+                <td>失业保险0.2%</td>
+                <td class="minus" id="shiyeTD">0</td>
+            </tr>
+            <tr>
+                <td>生育险0%</td>
+                <td class="minus" id="shengyuTD">0</td>
+            </tr>
+            <tr class="bottom-border">
+                <td>住房公积金8%</td>
+                <td class="minus" id="gongjijinTD">0</td>
+            </tr>
+            <tr>
+                <td>税前工资</td>
+                <td id="shuiqiangongziTD">0</td>
+            </tr>
+            <tr class="bottom-border">
+                <td>所得税</td>
+                <td class="minus" id="suodeshuiTD">0</td>
+            </tr>
+            <tr>
+                <td>税后工资</td>
+                <td id="shuihougongziTD">0</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+<script>
+    var jibengongziField = document.getElementById("jibengongzi");
+    var jiangjinField = document.getElementById("jiangjin");
+    var jixiaoField = document.getElementById("jixiao");
+
+    var calcBtn = document.getElementById("calc-btn");
+    var tips = document.getElementById("tips");
+
+    jibengongziField.oninput = gongziChange;
+    jiangjinField.oninput = gongziChange;
+    jixiaoField.oninput = gongziChange;
+
+    function gongziChange(){
+        if(jibengongziField.value*1+jiangjinField.value*1+jixiaoField.value*1>1500){
+            calcBtn.disabled = false;
+            tips.style.display = "none";
+        }else{
+            calcBtn.disabled = true;
+            tips.style.display = "block";
+        }
+
+        result.style.height = 0;
+        // result.style.opacity = 0;
+
+        
+    }
+
+    //----------------------------------------------------------------
+
+    var result = document.getElementById("result");
+
+    calcBtn.onclick = function(){
+        result.style.height = "242px";
+
+
+        var zonggongzi = jibengongziField.value*1+jiangjinField.value*1+jixiaoField.value*1;
+        var wuxianyijin = calcWuxianyijin(zonggongzi);
+        // console.log(wuxianyijin);
+        var tax = calcTax(wuxianyijin.shuiqiangongzi);
+        var shuihougongzi = wuxianyijin.shuiqiangongzi - tax;
+        
+        // 数字类型的对象的tofixed方法，四舍五入保留n位小数,返回值是字符串。
+        document.getElementById("zonggongziTD").textContent = zonggongzi.toFixed(2);
+        document.getElementById("yanglaoTD").textContent = wuxianyijin.yanglao.toFixed(2);
+        document.getElementById("yiliaoTD").textContent = wuxianyijin.yiliao.toFixed(2);
+        document.getElementById("gongshangTD").textContent = wuxianyijin.gongshang.toFixed(2);
+        document.getElementById("shiyeTD").textContent = wuxianyijin.shiye.toFixed(2);
+        document.getElementById("shengyuTD").textContent = wuxianyijin.shengyu.toFixed(2);
+        document.getElementById("gongjijinTD").textContent = wuxianyijin.gongjijin.toFixed(2);
+        document.getElementById("shuiqiangongziTD").textContent = wuxianyijin.shuiqiangongzi.toFixed(2);
+        document.getElementById("suodeshuiTD").textContent = tax.toFixed(2);
+        document.getElementById("shuihougongziTD").textContent = shuihougongzi.toFixed(2);
+
+    }
+
+    // 计算五险一金
+    function calcWuxianyijin(zgz){
+        var yanglao = zgz*0.08;
+        var yiliao = zgz*0.02;
+        var gongshang = zgz*0;
+        var shiye = zgz*0.002;
+        var shengyu = zgz*0;
+        var gongjijin = zgz*0.08;
+        var shuiqiangongzi = zgz - yiliao - yanglao - gongshang - shiye - shengyu - gongjijin;
+
+        return {
+            yanglao:yanglao,
+            yiliao:yiliao,
+            gongshang:gongshang,
+            shiye:shiye,
+            shengyu:shengyu,
+            gongjijin:gongjijin,
+            shuiqiangongzi:shuiqiangongzi
+        }
+    }
+
+
+    //计算个税
+    function calcTax(sqgz){
+        if(sqgz<=3500){
+            return 0;
+        }else{
+            var jsgz = sqgz - 3500;
+            if(jsgz<=1500){
+                return jsgz*0.03;
+            }else if(jsgz<=4500){
+                return jsgz*0.1-105;
+            }else if(jsgz<=9000){
+                return jsgz*0.2-555;
+            }else if(jsgz<=35000){
+                return jsgz*0.25-1005;
+            }else if(jsgz<=55000){
+                return jsgz*0.3-2755;
+            }else if(jsgz<=80000){
+                return jsgz*0.35-5505;
+            }else{
+                return jsgz*0.45-13505;
+            }
+        }
+    }
+
+
+
+</script>
+
+
+</html>

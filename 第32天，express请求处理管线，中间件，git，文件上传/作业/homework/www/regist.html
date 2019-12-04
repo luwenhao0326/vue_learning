@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>注册页面</h1>
+    <form action="/user/regist" method="POST">
+        <table>
+            <tr>
+                <td>昵称：</td>
+                <td><input type="text" name="username" required></td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><input type="password" id="pswone" name="psw" required></td>
+            </tr>
+            <tr>
+                <td>确认密码：</td>
+                <td><input type="password" id="pswtwo" required ></td>
+            </tr>
+        </table>
+        
+        <button id="btn">注册</button>
+
+    </form>
+
+    <script>
+        var pswone = document.getElementById("pswone");
+        var pswtwo = document.getElementById("pswtwo");
+        var btn = document.getElementById("btn");
+
+        btn.onclick = function(e){
+            if(pswone.value!=pswtwo.value){
+                e.preventDefault();
+                alert("两次密码不相同");
+            }
+        }
+    </script>
+</body>
+</html>

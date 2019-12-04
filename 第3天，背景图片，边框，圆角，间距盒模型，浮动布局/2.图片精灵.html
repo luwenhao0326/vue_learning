@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片精灵</title>
+
+    <!-- link标签，可以引入外部的css文件，href属性表示要引入的css文件的地址 -->
+    <!-- css的引入要在head标签中，引入的css样式会对当前html页面生效 -->
+    <link rel="stylesheet" href="sprite.css">
+
+
+    <style>
+        #d1{
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            background-image: url(xxx.jpg);
+
+            /* 让背景图片的尺寸是元素尺寸的7倍 */
+            background-size: 700% 700%;
+
+            /* 让背景图片向左移动2个元素宽度距离，向上移动一个元素高度的距离 */
+            background-position: -200% -100%;
+        }
+        #d2{
+            width: 40px;
+            height: 40px;
+        }
+
+        /* 可以将某个图片的css样式写成一个class，页面中哪个元素需要显示这个图片，就添加这个class */
+        .bell{
+            background-image: url(xxx.jpg);
+            background-size: 700% 700%;
+            background-position: -100% -200%;
+        }
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <div id="d2" class="clock"></div>
+
+
+    <!-- 图片精灵：将多张小图片整合成一张大图片，然后通过css样式在页面中只显示某个小图片，这种技术叫做图片精灵 -->
+
+    <!-- 采用图片精灵技术可以减少页面资源的请求次数，提高页面的加载速度 -->
+</body>
+</html>

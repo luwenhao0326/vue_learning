@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input id="m" type="text">米
+    <br>
+    <input id="cm" type="text">厘米
+    <br>
+    <input id="mm" type="text">毫米
+
+    <script>
+        var m = document.getElementById("m");
+        var cm = document.getElementById("cm");
+        var mm = document.getElementById("mm");
+
+        m.oninput =  function(){
+            var mv = m.value*1;
+            refresh(mv);
+        }
+        cm.oninput =  function(){
+            var mv = cm.value/100;
+            refresh(mv);
+        }
+        mm.oninput =  function(){
+            var mv = mm.value/1000;
+            refresh(mv);
+        }
+
+        function refresh(v){
+            m.value = v;
+            cm.value = v*100;
+            mm.value = v*1000;
+        }
+
+    </script>
+    
+
+</body>
+</html>

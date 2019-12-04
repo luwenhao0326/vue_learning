@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>注册页面</h1>
+
+    <form action="/user/regist" method="POST">
+        <label>&emsp;用户名</label>
+        <!-- input标签的required属性，表示这个字段是必填的，否则表单不能提交 -->
+        <!-- inout的pattern属性表示这个字段的格式要求，值是一个正则表达式，符合这个正则表达式的内容表单才能提交 -->
+        <input type="text" name = "username"required pattern="^[a-zA-Z0-9_]{3,12}$">
+        <br>
+        <label>&emsp;密&emsp;码</label>
+        <input id="psw" type="password" name="psw"required>
+        <br>
+        <label>确认密码</label>
+        <input id="confirm" type="password" >
+        <br>
+
+        <label>&emsp;性&emsp;别</label>
+        <span>男</span>
+        <!-- input,type=radio时，表单提交会将这个input的value提交 -->
+        <input type="radio" name="sex" value="male">
+        <span>女</span>
+        <input type="radio" name="sex" value="female">
+
+        <br>
+        
+        <label for="">&emsp;专&emsp;业</label>
+        <select name="major">
+            <option value="1">web前端</option>
+            <option value="2">JAVA</option>
+            <option value="3">VR</option>
+        </select>
+        <br>
+
+        <button onclick="registBtnClick(event)">提交</button>
+
+    </form>
+
+    <script src="/libs/jquery.js"></script>
+
+    <script>
+        function registBtnClick(e){
+            if($("#psw").val() != $("#confirm").val()){
+                e.preventDefault();
+                alert("两次密码输入不一致");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        #nav-bar{
+            background-color: aqua;
+        }
+        #nav-list{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+
+        }
+
+        #nav-list li{
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #nav-list li:hover{
+            background-color: yellow;
+        }
+
+
+        #phone{
+            background-color: chartreuse;
+            width: 160px;
+            /* display: none; */
+            height: 0;
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            top: 42px;
+            transition: all 0.3s;
+        }
+
+        .second-list{
+            background-color: chartreuse;
+            width: 160px;
+            position: absolute;
+            top: 42px;
+        }
+        .item-list{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .item-list li{
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .item-list li:hover{
+            background-color: violet;
+        }
+    </style>
+</head>
+<body>
+    <nav id="nav-bar">
+        <ul id="nav-list">
+            <li onmouseleave="leavePhone()" onmouseenter="enterPhone()">手机</li>
+            <li 
+                onmouseleave="leavePc(event)" onmouseenter="enterPc(event)"
+            >电脑</li>
+            <li>家用电器</li>
+        </ul>
+    </nav>
+
+    <div id="phone" onmouseenter="enterPhone()" onmouseleave="leavePhone()">
+        <ul class="item-list">
+            <li>小米</li>
+            <li>红米</li>
+        </ul>
+    </div>
+
+    <main>
+        <h1>这是网页正文</h1>
+    </main>
+
+    <script>
+
+        var phone = document.getElementById("phone");
+
+        function enterPhone(){
+            // phone.style.display = "block";
+            phone.style.height = "84px";
+
+        }
+
+        function leavePhone(){
+            // phone.style.display = "none";
+            phone.style.height = "0";
+        }
+
+        //-----------------------------------
+        
+        var cates = ["游戏本","pro","air"];
+        var div;
+        function enterPc(e){
+            div = document.createElement("div");
+            div.classList.add("second-list");
+            div.style.left = e.target.offsetLeft+"px";
+            document.body.appendChild(div);
+            var ul = document.createElement("ul");
+            ul.classList.add("item-list");
+            div.appendChild(ul);
+            for(var i = 0;i<cates.length;i++){
+                var li = document.createElement("li");
+                li.textContent = cates[i];
+                ul.appendChild(li);
+            }
+            div.onmouseenter = function(){
+                document.body.appendChild(div);
+            }
+            div.onmouseleave = function(){
+                div.remove();
+            }
+        }
+
+        function leavePc(){
+            div.remove();
+        }
+
+    </script>
+
+</body>
+</html>

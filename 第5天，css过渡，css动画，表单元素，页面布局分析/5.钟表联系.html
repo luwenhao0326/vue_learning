@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        @keyframes spin{
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        .spin{
+            animation-name: spin;
+            animation-timing-function: linear;
+        }
+        #panel{
+            width: 600px;
+            height: 600px;
+            border: solid 1px black;
+            margin: 40px auto;
+            background-image: url(clock.jpg);
+            background-position: 50% 50%;
+            position: relative; 
+        }
+        .point{
+            position: absolute;
+            animation-iteration-count: infinite;
+           
+        }
+        #second-point{
+            width: 4px;
+            height: 230px;
+            background-color: red;
+            left: 298px;
+            top: 100px;
+            animation-duration: 60s;
+            transform-origin: 50% 87%;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+        }
+        #minute-point{
+            width: 6px;
+            height: 180px;
+            background-color: black;
+            left: 297px;
+            top: 152px;
+            animation-duration: 3600s;
+            transform-origin: 50% 81%;
+            border-top-left-radius: 40%;
+            border-top-right-radius: 40%;
+        }
+        
+        #hour-point{
+            width: 8px;
+            height: 150px;
+            background-color: black;
+            left: 296px;
+            top: 181px;
+            animation-duration: 43200s;
+            transform-origin: 50% 79%;
+            border-top-left-radius: 30%;
+            border-top-right-radius: 30%;
+            
+        }
+        #dot{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: black;
+            border:  solid 5px red;
+            position: absolute;
+            left: 291px;
+            top: 291px;
+        }
+    </style>
+</head>
+<body>
+    <div id="panel">
+        <div id="hour-point"class="spin point"></div>
+        <div id="minute-point"class="spin point"></div>
+        <div id="second-point"class="spin point"></div>
+        <div id="dot"></div>
+    </div>
+
+<script>
+    var now = new Date();
+    var h= now.getHours();
+    var m = now.getMinutes();
+    var s = now.getSeconds();
+    var delay = h*60*60+m*60+s;
+    var sp = document.getElementById("second-point");
+    var mp = document.getElementById("minute-point");
+    var hp = document.getElementById("hour-point");
+    sp.style.animationDelay = -delay+"s";
+    mp.style.animationDelay = -delay+"s";
+    hp.style.animationDelay = -delay+"s";
+</script>
+</body>
+
+</html>

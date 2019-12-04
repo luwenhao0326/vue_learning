@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 在js中有一些内置对象可以直接使用
+
+        // Math对象是js的内置对象，这个对象中存储了一些常用的数学常量和数学计算方法。
+
+        // Math.PI： 圆周率
+        console.log(Math.PI);
+
+        // E：自然对数
+        console.log(Math.E);
+
+        // ---------------------------
+
+        // pow:次方运算
+        console.log(Math.pow(2,3));
+
+        // sqrt:开方计算
+        console.log(Math.sqrt(9));
+        
+        // 开方也可以用pow
+        console.log(Math.pow(27,1/3));
+        
+        // abs：绝对值计算
+        console.log(Math.abs(-99));
+        
+        // max：找出最大数字
+        console.log(Math.max(5,7));
+
+        // floor ：向下取整：取刚刚小于等于这个数字的整数
+        console.log(Math.floor(3.6));
+        
+        // ceil:向上取整
+        console.log(Math.ceil(3.6));
+        
+        // round：四舍五入取整
+        console.log(Math.round(3.4));
+        
+        // 3.14弧度 = 180角度
+        // sin，正弦函数，参数是弧度制的数据
+        console.log(Math.sin(30/180*Math.PI));
+        
+        //--------------------------------------
+
+        // Math.random方法，生成一个[0,1)的随机数
+        var num = Math.random();
+
+        console.log(num);
+
+        // 生成一个1-100的随机数
+        var n2 = Math.random()*100+1;
+  
+        n2 = Math.floor(n2);
+        console.log(n2);
+
+        // 生成50-100的随机整数
+        var n3 = Math.random()*50+50;
+        n3 = Math.floor(n3);
+        console.log(n3);
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #swiper{
+            width: 800px;
+            height: 500px;
+            margin: 40px auto;
+            border: 1px solid #000;
+            position: relative;
+            overflow: hidden;
+        }
+        #swiper:hover #left,#swiper:hover #right{
+            display: block;
+        }
+        #container{
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0px;
+            /* transition: all 0.3s; */
+        }
+        .ani{
+            transition: all 0.3s;
+        }
+        #container img{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+        }
+        #ctrl{
+            /* border: 1px solid #000; */
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+        .dot{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin: 0 5px;
+            box-shadow: 0 0 5px 0 black;
+            cursor: pointer;
+        }
+        .highlighted{
+            background-color: red;
+        }
+        #left,#right{
+            cursor: pointer;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 80px;
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            font-size: 40px;
+            top: 50%;
+            transform: translate(0,-50%);
+            font-weight: bold;
+            color: #fff;
+            display: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+        }
+        #left{
+            left: 0;
+        }
+        #right{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="swiper">
+        <div id="container" class="ani"></div>
+        <div id="ctrl"></div>
+        <div id="left">《</div>
+        <div id="right">》</div>
+    </div>
+
+<script src="jquery.js"></script>
+<script>
+    var swiperWidth = 800;
+    var imgs = ["1.jpg","2.jpg","3.jpg","4.jpg","1.jpg"];
+    for(var i = 0;i<imgs.length;i++){
+        $("<img>")
+        .attr("src",imgs[i])
+        .css("left",i*800+"px")
+        .appendTo($("#container"));
+    }
+
+    for(var i = 0;i<imgs.length-1;i++){
+        $("<div></div>")
+        .addClass("dot")
+        .attr("index",i)
+        .appendTo($("#ctrl"));
+    }
+  
+    // jq对象的.eq方法，取出jq对象中的第n个元素对象并封装为一个jq对象
+    $(".dot").eq(0).addClass("highlighted");
+
+
+    // -------------------------------------------------------------
+    // 使用一个变量记录当前显示第几张图片
+    var currentIndex = 0;
+
+    // 下一页
+    function nextPage(){
+        $(".dot").eq(currentIndex).removeClass("highlighted");
+        currentIndex++;
+        if(currentIndex>=imgs.length){
+            currentIndex = 0;
+        }
+        $(".dot").eq(currentIndex%(imgs.length-1)).addClass("highlighted");
+        // 避免超出，两个方法，但是有了下面的transitionend，所以不需要了
+        // currentIndex%=imgs.length;
+        // if(currentIndex>=imgs.length){
+        //     currentIndex = 0;
+        // }
+        var left = -swiperWidth*currentIndex;
+        $("#container").css("left",left+"px");
+    }
+    // 上一页
+    function prevPage(){
+        $(".dot").eq(currentIndex).removeClass("highlighted");
+        currentIndex--;
+        if(currentIndex<0){
+            currentIndex = imgs.length-2;
+        }
+        $(".dot").eq(currentIndex%(imgs.length-1)).addClass("highlighted");
+        var left = -swiperWidth*currentIndex;
+        $("#container").css("left",left+"px");
+    }
+    // 轮播图定时器
+    var timer;
+    function startRunning(){
+        timer = setInterval(function(){
+            if(isAnimating){
+                return;
+            }
+            isAnimating = true;
+            setTimeout(function(){
+                isAnimating = false;
+            },750);
+            nextPage();
+        },2000);
+    }
+    startRunning();
+    
+    // transitionstart，过渡动画开始时触发
+    $("#container").on("transitionstart",function(){
+        // console.log("过渡开始")
+        // $("#right").off("click",nextPage);
+        // $("#left").off("click",prevPage);
+    })
+    // transitionend事件,当元素过渡动画结束时触发
+    $("#container").on("transitionend",function(){
+        // $("#right").on("click",nextPage);
+        // $("#left").on("click",prevPage);
+
+        // console.log("过渡结束了")
+        if(currentIndex >= imgs.length-1){
+            // console.log("最后一张");
+            // 先关闭动画
+            $("#container").removeClass("ani");
+            // 回到第0张
+            $("#container").css("left",0+"px");
+            currentIndex = 0;
+
+            // 开启动画
+            setTimeout(() => {
+                $("#container").addClass("ani");
+            }, 200);
+        }
+    });
+
+
+
+
+
+    
+    // 鼠标指针进入轮播图，停止自动播放
+    $("#swiper").on("mouseenter",function(){
+        if(timer){
+            clearInterval(timer);
+            timer = null;
+        }
+    });
+    $("#swiper").on("mouseleave",function(){
+        if(!timer){
+            startRunning();
+        }
+    });
+    // 点击索引点
+    $(".dot").on("click",function(e){
+        $(".dot").eq(currentIndex).removeClass("highlighted");
+        currentIndex = $(this).attr("index")*1;
+        $(".dot").eq(currentIndex%(imgs.length-1)).addClass("highlighted");
+        $("#container").css("left",-swiperWidth*currentIndex+"px");
+    });
+
+    var isAnimating = false;
+
+
+    $("#right").on("click",function(){
+        if(isAnimating){
+            return;
+        }
+        isAnimating = true;
+        setTimeout(function(){
+            isAnimating = false;
+        },750);
+        nextPage();
+    });
+    $("#left").on("click",function(){
+        if(isAnimating){
+            return;
+        }
+        isAnimating = true;
+        setTimeout(function(){
+            isAnimating = false;
+        },750);
+        prevPage();
+    });
+    
+
+
+</script>
+</body>
+</html>   

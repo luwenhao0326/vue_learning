@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // DOM:document object model,文档对象模型。
+        // 通过DOM可以实现对页面的修改和操作。
+
+        // 在开发过程中，有时也需要对浏览器本身进行一些设置，例如刷新页面，页面后退，前进等。这些操作是针对浏览器的，所以不能通过document进行。
+
+
+        // BOM: browser object model,浏览器对象模型。通过BOM可以实现对浏览器的操作。
+
+        // BOM 的根对象是 window
+    
+
+        console.log(window);
+
+
+        // ------------------------------------
+
+        // 在js运行环境中，全局作用域本质就是全局对象的属性（在浏览器环境中，全局对象就是window）
+        // 所以，在全局作用域声明的变量就相当于为全局对象添加的属性，在全局域声明的函数相当于为全局对象添加的方法。
+        // 为全局对象添加属性，相当于在全局作用域声明了一个变量，为全局对象添加方法，相当于在全局作用域声明一个函数。
+
+        // var abc = 123;
+        // console.log(window.abc);
+        
+        // function f1(){
+        //     console.log("f1执行了");
+        // }
+
+        // window.f1();
+
+        // window.alert("通过window调用alert函数");
+
+        // --------------------------------------
+
+        // 由于全局对象对应全局域，所以平时在使用window的属性和方法时，window.可以省略
+    </script>
+</body>
+</html>

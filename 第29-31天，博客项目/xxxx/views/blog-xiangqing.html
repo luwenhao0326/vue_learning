@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        textarea{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    {{include "./header.html"}}
+    <main>
+        <h1>{{blog.title}}</h1>
+        <p>发布时间：{{blog.time}}</p>
+        <p>作者：{{blog.author.name}}</p>
+        <p>{{blog.main}}</p>
+        <hr>
+        <hr>
+        <p>写评论</p>
+        <form action="/huifu/blogs" method="POST">
+        <input type="text" value="{{blog._id}}" name="_id" style="display: none">
+        {{if !user}}
+        <input type="text" placeholder="昵称" name="username">
+        <br>
+        {{/if}}
+        <textarea  style="resize: none" name="main"></textarea>
+        <button>提交</button>
+        </form>
+
+        {{each data b}}
+            <p>{{data.name}}</p>
+        {{/each}}
+    </main>
+    
+    
+
+</body>
+</html>

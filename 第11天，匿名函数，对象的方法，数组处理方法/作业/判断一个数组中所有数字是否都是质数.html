@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [1,2,5,7,6];
+        
+        function str(n){
+            if(n<2){
+                return false;
+            }
+            for(var i = 2 ;i<n;i++){
+                if(n%i==0){
+                    return false;
+                }
+            }
+            return true;
+        }
+        // console.log(str(1));
+        for(var i = 0;i<arr.length;i++){
+            if(!str(arr[i])){
+                console.log("此数组中不是全质数");
+                break;
+            }
+        }
+        if(str(arr[i])){
+            console.log("此数组中是全质数");
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="/css/header.css">
+<script src="/libs/jquery.js"></script>
+<header>
+    <nav class="header-nav">
+        <p><a href="/"{{gaoliang=="shouye"?'class=gaoliang':''}}>首页</a></p>
+        <p><a href="/biaoqian/list">标签</a></p>
+        {{if !user}}
+        
+        <p><a href="/page/login"{{gaoliang=="login"?'class=gaoliang':''}}>登录</a></p>
+        <p><a href="/page/regist" {{gaoliang=="zhuce"?'class=gaoliang':''}}>注册</a></p>
+        {{else}}
+        <p><a href="/page/blogs"{{gaoliang=="send-blog"?'class=gaoliang':''}}>发帖</a></p>
+        <p><a href="/remove/login" >退出登录</a></p>
+        <span style="padding: 13px 10px">{{user.name}}</span>
+        {{/if}}
+    </nav>
+
+    
+</header>

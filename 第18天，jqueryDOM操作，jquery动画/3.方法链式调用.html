@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .switch {
+            width: 100px;
+            height: 50px;
+            border-radius: 25px;
+            border: solid 1px black;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .outer {
+            width: 150px;
+            height: 50px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            /* border:  solid 1px black; */
+
+            transition: all 0.3s;
+            
+        }
+
+        .on {
+            left: -50px;
+            /* border:  solid 2px greenyellow; */
+        }
+
+        .s-left {
+            width: 100px;
+            height: 50px;
+            background-color: #999999;
+            border-radius: 25px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .s-mid {
+            position: absolute;
+            top: 0px;
+            left: 50px;
+            background-color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border:solid 2px #999999;
+            box-sizing: border-box;
+        }
+
+        .on .s-mid{
+            border: solid 2px greenyellow;
+        }
+        .s-right {
+            width: 100px;
+            height: 50px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: greenyellow;
+            border-radius: 25px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <div class="switch">
+        <div class="outer">
+            <div class="s-left"></div>
+            <div class="s-right"></div>
+            <div class="s-mid"></div>
+        </div>
+    </div>
+    <div class="switch">
+        <div class="outer">
+            <div class="s-left"></div>
+            <div class="s-right"></div>
+            <div class="s-mid"></div>
+        </div>
+    </div>
+    <div class="switch">
+        <div class="outer">
+            <div class="s-left"></div>
+            <div class="s-right"></div>
+            <div class="s-mid"></div>
+        </div>
+    </div>
+
+    <script src="jquery.js"></script>
+
+    <script>
+        // var res = $("#box").text("文本内容");
+
+        // jq对象调用修改元素的方法之后，返回值还是对象本身
+        // console.log($("#box"));
+        // console.log(res);
+
+
+        // jq对象元素修改方法的返回值还是jq对象本身，所以可以继续调用修改方法。
+        // 如果一个对象的方法返回值还是这个对象本身，那么就可以继续调用他的方法，这种调用方式叫做链式调用。
+        $("#box")
+            .text("文本内容")
+            .css("color", "red")
+
+
+        $("<div></div>")
+            .css("width", "100px")
+            .css("height", "100px")
+            .css("background-color", "red")
+            .css("border-radius", "50%")
+            .attr("id", "d2")
+            .appendTo(document.body);
+
+
+        $(".switch").on("click", function () {
+            // jq对象的.children方法，查找元素中符合参数选择器的所有子元素，返回值还是一个jq对象
+            $(this).children(".outer").toggleClass("on");
+        })
+    </script>
+</body>
+
+</html>

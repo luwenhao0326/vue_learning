@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // function isNarcissus(n){
+        //     var gewei = n%10;
+        //     var shiwei = Math.floor(n/10)%10;
+        //     var baiwei = Math.floor(n/100);
+        //     return gewei**3+shiwei**3+baiwei**3==n;
+        // }
+        // for (var i = 100;i<1000;i++){
+        //     if(isNarcissus(i)){
+        //         console.log(i);
+        //     }
+        // }
+
+
+        // 寻找两数的最大公约数
+        // 第一种
+        // function GCD(n, m) {
+        //     var flag = true;
+        //     var n1 = n;
+        //     var m1 = m;
+        //     first:
+        //     while (flag) {
+        //         if (n1 % m1 != 0) {
+        //             var z = n1 % m1;
+        //             n1 = m1;
+        //             m1 = z;
+        //             continue first;
+        //         }
+        //         else {
+        //             console.log(m1);
+        //             break;
+        //         }
+        //     }
+        // }
+        // GCD(319, 377);
+        // // 第二种
+        // function GCD(n, m) {
+        //     while (true) {
+        //         var yu = n % m;
+        //         if (yu == 0) {
+        //             return m;
+        //         } else {
+        //             n = m;
+        //             m = yu;
+        //         }
+        //     }
+        // }
+        // console.log(GCD(319, 377));
+
+
+        // 2, 22, 222, 2222
+        var a = 2;
+        var n = 8;
+        var sum = 0;
+        for(var i = 0;i<=n;i++){
+            var temp = 0;
+            for(var j = 0;j<i;j++){
+                temp += a*(10**j);   
+            }
+            sum =sum+temp;
+        }console.log(sum);
+    </script>
+
+</body>
+
+</html>

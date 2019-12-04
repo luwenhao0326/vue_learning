@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- emmet输入法可以快速输入批量的html和css -->
+
+
+    <!-- 标签名+tab -->
+    <!-- 快速输入一个标签 -->
+    
+    <!-- 标签名.xxx  输入一个class包含xxx的标签 -->
+    <!-- 如果标签名省略则默认为div -->
+    p.c1.c2
+
+    <!-- 标签名#xxx 输入一个id为xxx的标签 -->
+    div#box.c3
+
+    <!-- 标签名[xx=yy] 输入包含xx属性且值为yy的元素 -->
+    img[src=bg.jpg]
+    
+    <!-- 标签名{xxxx} 输入一个内容为xxxx的标签 -->
+    p{这是标签内容}
+
+    <!-- 标签a>标签b，输入一个a标签中包含一个子标签b -->
+    ul>li
+
+    <!-- 标签名*n，连续输入n个标签 -->
+    <!-- 输入多行时,$可以表示序号 -->
+    ul>li{第$行}*4
+
+
+    <ul id="nav">
+        <li class="item1"><a href="">item 1</a></li>
+        <li class="item2"><a href="">item 2</a></li>
+        <li class="item3"><a href="">item 3</a></li>
+        <li class="item4"><a href="">item 4</a></li>
+    </ul>
+
+    teble>tr*3>td{第$列}*4
+</body>
+</html>

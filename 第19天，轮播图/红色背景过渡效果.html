@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 50px;
+            border: solid 1px black;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        #div2{
+            width: 100px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            left: -100px;
+            top: 0px;
+            transition: all 0.3s;
+            z-index: -1;
+        }
+        .class{
+            cursor: pointer;
+            left: 0px !important;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="div1">
+        <div id="div2"></div>
+        222
+    </div>
+    <script src="jquery.js"></script>
+    <script>
+        $("#div1").on("mouseenter",function(){
+            $("#div2")
+            .addClass("class")
+            ;
+            $("#div1").css("color","white");
+        })
+        $("#div1").on("mouseleave",function(){
+            $("#div2")
+            .removeClass("class");
+            $("#div1").css("color","black");
+        })
+    </script>
+</body>
+</html>

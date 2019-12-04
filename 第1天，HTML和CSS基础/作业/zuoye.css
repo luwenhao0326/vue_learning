@@ -1,0 +1,56 @@
+.tupian1{
+    background-image: url(tpjingling.jpg);
+    background-size:500% 300%;
+    background-position: 1% 0%;
+    width: 44px;
+    height: 41px;
+    display: inline-block;
+}
+.tupian2{
+    background-image: url(tpjingling.jpg);
+    background-size:500% 300%;
+    background-position: -99% 0%;
+    width: 44px;
+    height: 41px;
+    display: inline-block;
+}
+.tupian3{
+    background-image: url(tpjingling.jpg);
+    background-size:500% 300%;
+    background-position: -200% 1%;
+    width: 44px;
+    height: 41px;
+    display: inline-block;
+    margin-top:10px;
+    
+}
+.tupian4{
+    background-image: url(tpjingling.jpg);
+    background-size:500% 300%;
+    background-position: -300% 1%;
+    width: 44px;
+    height: 41px;
+    display: inline-block;
+    margin-top:10px;
+   
+}
+.tupian5{
+    background-image: url(tpjingling.jpg);
+    background-size:500% 300%;
+    background-position: -401% 1%;
+    width: 44px;
+    height: 41px;
+    display: inline-block;
+    margin-left: 2em;
+    margin-top: 10px;  
+}
+.tupian6{
+    background-image: url(tpjingling.jpg);
+    background-size:500% 300%;
+    background-position: 1% -101%;
+    width: 44px;
+    height: 41px;
+    display: inline-block;
+    margin-left: 32px;
+    margin-top: 30px;
+}

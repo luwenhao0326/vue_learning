@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- less是一种第三方技术，并不是w3c的标准，所以任何浏览器都不直接支持less，所以不能直接在html中导入less，需要先将less转为css，然后使用 -->
+    <!-- <link rel="stylesheet" href="index.less"> -->
+
+    <!-- <link rel="stylesheet" href="index.css"> -->
+
+    <link rel="stylesheet/less" href="index.less">
+</head>
+<body>
+    <div id="box">
+        123
+    </div>
+
+    <ul id="list">
+        <li>第1行</li>
+        <li>第2行</li>
+        <li>第3行</li>
+    </ul>
+
+    <div class="rect"></div>
+    <div class="rect"></div>
+
+    <div class="bg">qwe</div>
+
+    <!-- less.js负责将页面中的less代码转为css -->
+    <script src="less.min.js"></script>
+</body>
+</html>

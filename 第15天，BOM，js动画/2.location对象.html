@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="reload-btn">刷新</button>
+
+    <button id="link-btn">前往百度</button>
+
+    <script>
+        // location是window的一个属性，类型是对象。
+
+        // location对象，记录了当前页面的地址。
+        console.log(location);
+        
+        // location.href属性，记录当前页面的url地址。
+
+
+        document.getElementById("reload-btn").onclick = function(){
+            // location对象的reload方法，用于刷新当前页面
+            location.reload();
+        }
+
+        document.getElementById("link-btn").onclick = function(){
+            // 可以通过修改location.href属性实现页面跳转
+            // location.href = "http://www.baidu.com";
+            
+            // 在新页面打开一个网址。
+            window.open("http://www.baidu.com");
+        }
+
+
+    </script>
+</body>
+</html>

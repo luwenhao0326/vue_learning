@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var s1 = "aaabbc";
+        var count=1;
+        for( var i = 0;i<s1.length;i++){
+            for(var j = 0;j<s1.length;j++){
+            var ch = s1[i];
+            var ch2 = s1[j+1];
+            if(ch==ch2){
+                count++;
+            }else{
+                ch2 = s1[j+1];
+            }
+        }
+        }
+    </script>
+</body>
+</html>

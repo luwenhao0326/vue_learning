@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script>
+            let obj = {};
+            // 1.可以通过打点直接给一个对象添加属性
+            obj.k1 = "v1";
+        
+            // 通过delete可以删除(通过打点添加的)对象的某个属性
+            delete obj.k1;
+        
+            // -------------------------------------------
+        
+            // 给对象添加属性有一个专门的方法,这个方法功能更强大。
+            let o1 = {};
+            // Object.defineProperty方法,用于为一个对象添加属性。
+            // 第一个参数是要添加属性的对象,第二个参数是添加的属性名,第三个参数是属性的配置对象,其中通过键值对设置这个属性的详细配置。
+            Object.defineProperty(o1,"k1",{
+                // 设置本属性的值
+                value:"oldvalue",
+                // 通过defineProperty添加的属性,默认是只读的,如果需要设置为读写属性,则需要设置writable。
+                writable:true,
+                // 通过defineProperty添加的属性,默认是不可配置（修改）的,可以通过configable设置为可以配置的
+                configurable:true,
+                // 默认是不可枚举的,设置设为可枚举的
+                enumerable:true
+            });
+            o1.k1 = "newValue";
+            // console.log(o1);
+        
+            for(let k in o1){
+                console.log(k);
+            }
+            
+            // -----------------------------------------------------------------
+        
+            // Object.defineProperty除了可以添加普通的属性之外,还可以添加set,get属性。
+        
+            let p1 = {};
+            Object.defineProperty(p1,"age",{
+                // 通过set,get添加的属性,当访问这个属性的值时,会得到get方法的返回值,
+                // 当给这个属性赋值时,会调用set方法,并将赋的值作为参数传入。
+                get(){
+                    return 100;
+                },
+                set(v){
+                    console.log(v);
+                }
+            });
+            p1.age = 50;
+            console.log(p1.age);
+
+            // -------------------------------------------------------------------------
+
+            // *****通过set,get方法属性和闭包,可以实现对象属性的条件赋值。****
+
+            // 创建people对象的工厂函数。
+            function makePeople(){
+               let person = {};
+               let age = 0;
+               Object.defineProperty(person,"age",{
+                   set(v){
+                       if(v>=0){
+                         age = v;
+                       }else{
+                        //进行异常处理
+
+                       }
+                   },
+                   get(){
+                      return age;
+                   }
+               });
+               return person;
+            }
+            let p2 = makePeople();
+            console.log(p2.age);
+            p2.age = 20;
+            console.log(p2.age);
+
+            // --------------------------------------------------------------
+
+            // 对象合并
+            let o2 = {name:"王",age:"12"};
+            let o3 = {age:"100",gender:"男"};
+            let o4 = {};
+            // Object,assign,将第二个参数开始的对象的属性合并到第一个参数对象上。
+            Object.assign(o4,o2,o3);
+            console.log(o4);
+
+            // -----------------------------------------------------------------
+
+            let condition ={
+                page:1,
+                name:"王",
+                gender:"男"
+            }
+            let param = {
+                sort:1,
+                // ... 对象展开运算符,将一个对象分解为键值对,用在对象字面量中。
+                ...condition,
+            }
+            console.log(param);
+        </script>
+</body>
+</html>

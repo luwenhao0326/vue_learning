@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>今日书籍</h1>
+
+    <%-include("zimoban")%>
+
+    <table>
+        <tr>
+            <td>书名：</td>
+            <td>价钱：</td>
+            <td>状态：</td>
+        </tr>
+
+        <!-- ejs的模板语法完全使用js语法，js代码需要写在尖括号百分号标签对中 -->
+        <% for(var i = 0;i<books.length;i++){  %>
+            <tr>
+            <% var b = books[i]%>
+                <!-- 如果需要将表达式的值渲染到页面上，需要在表达式前添加= -->
+                <td><%=b.name%></td>
+                <td><%=b.price%></td>
+                <%if(b.sellout){%>
+                <td>售罄</td>
+                <%}else{%>
+                <td>有货</td>
+                <%}%>
+            </tr>
+        <% } %>
+    </table>
+</body>
+</html>

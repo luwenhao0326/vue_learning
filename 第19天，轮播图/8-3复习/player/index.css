@@ -1,0 +1,51 @@
+
+body{
+    background-image: radial-gradient(white,black);
+}
+
+#main{
+    width: 600px;
+    height: 600px;
+    margin: 20px auto;
+    /* border: solid 1px black; */
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+
+#lyric-box{
+    height: 60%;
+    border-bottom: solid 1px grey;
+    background-image: linear-gradient(white,lightgreen);
+}
+
+#progress-box{
+    height: 20%;
+    border-top: solid 1px #eeeeee;
+    border-bottom: solid 1px grey;
+    background-color: lightgreen;
+    text-align: center;
+}
+
+#progress-bar{
+    margin-top: 30px;
+    width: 90%;
+}
+
+#control-box{
+    height: 20%;
+    border-top: solid 1px #eeeeee;
+    background-color: #68CE6B;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ctrl{
+    font-size: 80px;
+    cursor: pointer;
+}
+
+.ctrl:hover{
+    text-shadow: 0 0 40px white;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        #d2{
+            width: 100px;
+            height: 100px;
+            background-color: cyan;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <button id="hide">隐藏</button>
+    <button id="show">出现</button>
+
+    <div id="box">可以隐藏的div</div>
+
+    <hr>
+
+    <button id="ani-btn">开始动画</button>
+
+    <div id="d2">11111</div>
+
+</body>
+
+<script src="jquery.js"></script>
+
+<script>
+    $("#hide").on("click",function(){
+        // jq对象的hide方法，用于隐藏元素(display:none)
+        // $("#box").hide();
+        
+        // jquery动画的本质是js动画，是通过requestAnimationFrame实现的动画。
+
+        // jq对象的fadeout方法，用于动画(淡入淡出)隐藏一个元素，参数为动画时间，不写默认300毫秒。
+        $("#box").fadeOut(300);
+
+        // jq对象的.slideUp方法，用于上拉隐藏元素。
+        // $("#box").slideUp(2000);
+    });
+
+
+    $("#show").on("click",function(){
+        // jq对象的hide方法，用于显示元素(删除display:none)
+        // $("#box").show();
+
+        // 动画出现（淡入淡出）
+        // $("#box").fadeIn(300);
+
+
+        // jq对象的.slideDown方法，用于下拉显示元素。
+        $("#box").slideDown(2000);
+    });
+
+
+
+
+
+    $("#ani-btn").on("click",function(){
+
+        // jq对象的.animate方法，用于让元素执行动画(本质是js动画)。第一个参数是动画目标样式，是一个对象。第二个参数是动画时间，单位毫秒。第三个参数是动画结束时的回调函数。
+        ////////// 回调函数：一般是作为一个参数传递给一个任务，这个任务在触发某个条件时会调用回调函数。
+        
+
+        // .animate可以链式调用，生成一个连续执行的动画队列。
+        $("#d2").animate({
+            height:"200px",
+            left:"100px",
+        },1000,function(){
+            console.log(123);
+        })
+        .animate({
+            height:"100px",
+            left:"50px",
+        },1000);
+    });
+
+
+</script>
+
+</html>
+
+
+
+
+
+
+
+

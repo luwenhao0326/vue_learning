@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>div和定宽居中</title>
+        <meta charset="utf-8">
+        <style>
+            #main{
+                background-color: greenyellow;
+                /* width，设置元素宽度*/
+                width: 1000px;
+                /* height，设置元素高度*/
+                height: 400px;
+                
+                /* margin,表示元素外间距，表示这个元素和相邻的元素或边界的距离 */
+                /* 只设置一个值时，表示4个方向的间距 */
+                /* 设置两个值时，表示上下间距和左右间距 */
+                /* 设置4个值时分别表示上右下左 */
+                /* margin: 10px 20px 30px 40px; */
+
+                /* 外间距除了可以设定固定值，还可以设置为auto，表示间距平分 */
+                /* 左右间距设置为auto，可以使div在父元素中水平居中 */
+                margin: 0 auto;
+            }
+
+            /* body有一个自带的8像素的外间距 */
+            body{
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- div标签是division 的缩写，表示划分，分割，作用是将页面划分为不同的区域  -->
+
+        <!-- div元素不设置宽高时，高度取决于自身内容，宽度和父元素等宽 -->
+        <!-- div可以主动设置宽高 -->
+        <div id="main">div元素</div>
+        
+    </body>
+</html>

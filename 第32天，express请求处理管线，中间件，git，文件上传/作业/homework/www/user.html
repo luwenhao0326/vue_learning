@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>登陆成功界面</h1>
+    <form action="/user/tupian" method="POST"  enctype="multipart/form-data">
+        <p>选择你的照片来当头像</p>
+        
+        <input type="file" name="tupian" accept="image/*">
+        <br>
+        <br>
+        <button>提交</button>
+
+        <a href="/user/xiangqing">已有头像，点击登录</a>
+    </form>
+</body>
+</html>

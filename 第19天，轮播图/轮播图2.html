@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #swiper {
+            width: 800px;
+            height: 500px;
+            margin: 30px auto;
+            border: solid 1px black;
+            position: relative;
+        }
+        .item{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: all 0.7s;
+        }
+
+        .hide{
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="swiper">
+
+    </div>
+
+
+    <script src="jquery.js"></script>
+
+    <script>
+        var imgs = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"];
+
+        for (var i = 0; i < imgs.length; i++) {
+            $("<img>")
+            .attr("src", imgs[i])
+            .addClass("item")
+            .addClass("hide")
+            .appendTo($("#swiper"));
+        }
+
+        var currentIndex = 0;
+
+        $(".item").eq(0).removeClass("hide");
+
+        setInterval(function(){
+            $(".item").eq(currentIndex).addClass("hide");
+            currentIndex++;
+            if(currentIndex>imgs.length-1){
+                currentIndex = 0;
+            }
+            $(".item").eq(currentIndex).removeClass("hide");
+        },2000);
+
+    </script>
+</body>
+
+</html>

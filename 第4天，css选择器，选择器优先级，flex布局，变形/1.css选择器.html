@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 标签名选择器，选择页面中所有的h1标签 */
+        h1{
+            color: red;
+        }
+        /* id选择器，使用#开头，选择页面中id值为p1的元素 */
+        #p1{
+            background-color: yellow;
+        }
+        /* class选择器使用.开头，选择页面中class值包含c1的元素 */
+        .c1{
+            color: green;
+        }
+
+
+
+
+
+
+        /* 两个选择器A和B使用,连写时，表示选择满足A或满足B的元素 */
+        #p2,#p3{
+            color: blue;
+        }
+
+        /* 两个选择器A和B使用空格x连写时，表示选择满足A选择器的元素内部的满足B选择器的元素 */
+        #list a{
+        text-decoration: none;
+        }
+
+        /* 选择器A和B使用>连写时，表示选择满足A选择器元素的子元素中满足B的元素 */
+        #list>li{}
+
+        /* 选择器A和B直接连写，表示满足选择器A且满足选择器B的元素 */
+        #p4.c2{
+
+        }
+
+        /* 在一个父元素中，满足冒号前选择器的元素中的第n个元素 */
+        #list li:nth-of-type(1){
+            font-size: 20px;
+        }
+
+        /* 倒数第n个 */
+        #list li:nth-last-of-type(1)>a{
+            color: chartreuse;
+        }
+
+        /* 偶数个和奇数个 */
+        #list li:nth-of-type(2n+1){
+            font-weight: bold;
+        }
+
+        /* 属性选择器 */
+        /* 选择页面中包含zhangxvefeng属性的元素 */
+        [zhangxvefeng]{
+            color: orange;
+        }
+
+        /* 选择页面中att属性值为val的元素 */
+        [att=val]{
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS选择器大全</h1>
+    <p id="p1">id选择器用#表示</p>
+    <p class="c1">class选择器使用.表示</p>
+    <p class="c1">class选择器使用.表示</p>
+
+    <p id="p2">两个选择器使用,连写</p>
+    <p id="p3">两个选择器使用,连写</p>
+
+    <ul id="list">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+    </ul>
+
+    <p id="p4" class="c2">两个选择器直接联写</p>
+
+
+    <p zhangxvefeng>html的标签属性可以使html属性也可以是自定义属性</p>
+
+    <p att="val">属性选择器</p>
+</body>
+</html>

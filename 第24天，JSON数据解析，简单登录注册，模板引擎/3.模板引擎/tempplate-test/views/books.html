@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>今日书籍</h1>
+    <!-- artTemplate中使用{{}}表示模板语法， -->
+
+    <!-- 使用 if 进行条件渲染 -->
+    {{if books.length>0}}
+    <table>
+        <!-- each列表渲染 -->
+        
+        {{each books  b,i}}
+        <tr>
+            <!-- {{}}中可以直接写表达式，渲染为这个表达式的值 -->
+            <td>{{i+1}}</td>
+            <td>{{b.name}}</td>
+            <td>{{b.price}}元</td>
+            <td>{{b.sellout?"售罄":"未售罄"}}</td>
+        </tr>
+        {{/each}}
+    </table>
+    
+    {{else}}
+    <p>今日没有书籍</p>
+    {{/if}}
+
+
+   
+</body>
+</html>

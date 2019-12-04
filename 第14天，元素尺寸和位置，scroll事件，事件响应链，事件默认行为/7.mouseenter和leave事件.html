@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            margin: 50px auto;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <p>第1行</p>
+        <p>第2行</p>
+        <p>第3行</p>
+        <p>第4行</p>
+        <p>第5行</p>
+        <p>第6行</p>
+        <p>第7行</p>
+        <p>第8行</p>
+        <p>第9行</p>
+        <p>第10行</p>
+        <p>第11行</p>
+        <p>第12行</p>
+        <p>第13行</p>
+        <p>第14行</p>
+        <p>第15行</p>
+        <p>第16行</p>
+        <p>第17行</p>
+        <p>第18行</p>
+        <p>第19行</p>
+        <p>第20行</p>
+        <p>第21行</p>
+        <p>第22行</p>
+        <p>第23行</p>
+        <p>第24行</p>
+        <p>第25行</p>
+        <p>第26行</p>
+        <p>第27行</p>
+        <p>第28行</p>
+        <p>第29行</p>
+        <p>第30行</p>
+
+    </div>
+
+
+    <script>
+        var box = document.getElementById("box");
+
+        // 当鼠标指针进入元素时触发
+        box.onmouseenter = function(){
+            console.log("鼠标进入了"); 
+        }
+
+        // 当鼠标指针离开元素时触发
+        box.onmouseleave = function(){
+        console.log("鼠标离开了");
+        }
+
+        // 当鼠标指针在元素中移动时触发，属于频繁出发的事件。
+        box.onmousemove = function(){
+            console.log("鼠标移动了");
+        }
+
+        // 在鼠标按键被按下时发生
+        box.onmousedown = function(e){
+            console.log(e);
+        }
+        
+        // 在滚轮滚动时发生
+        box.onmousewheel = function () {
+            console.log("滚轮滚动了");
+        }
+    </script>
+</body>
+</html>

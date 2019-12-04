@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <style>
+        
+        header{
+            height: 80px;
+            background-color: aqua;
+        }
+        #fluid{
+            height: 80px;
+            background-color: yellowgreen;
+        }
+        main{
+            background-color: blue;
+        }
+        .item{
+            height: 40px;
+            background-color: red;
+            border: solid 1px black;
+            font-size: 18px;
+            color: white;
+            text-align: center;
+        }
+        .item:nth-of-type(2n){
+            background-color: chartreuse;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- container类，让一个块元素实现定宽居中，而且定宽能够根据不同尺寸屏幕定不同的宽度 -->
+    <header class="container">
+
+    </header>
+
+    <div id="fluid" class="container-fluid"></div>
+
+    <!-- 在container或container-fulid的容器中，可以使用栅格系统 -->
+    <!-- boorstrap的栅格系统将一个容器横向分为12列，又将不同的屏幕尺寸分为4个档次，分别是lg，md，sm，xs，容器中的子元素可以通过设置class来决定本元素在不同尺寸时所占用的列数，例如col-lg-3表示本元素在大号尺寸是占用三列。 -->
+    <main class="container">
+        <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12">1</div>
+        <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12">2</div>
+        <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12">3</div>
+        <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12">4</div>
+        <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12">5</div>
+        <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12">6</div>
+        <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12">7</div>
+        <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12">8</div>
+        <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12">9</div>
+        <!-- 每个格子内部可以继续使用栅格系统 -->
+        <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12">10</div>
+    </main>
+
+    <script src="jquery.js"></script>
+
+    <script src="bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

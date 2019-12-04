@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    
+        // 生成一个1~100的随机整数
+        var num = Math.floor(Math.random()*100)+1;
+
+        var guessNum = prompt("请输入您猜测的数据(0-100)");
+
+       
+       for(var i = 0;i<7;i++){
+           if(num==guessNum){
+               alert("猜对了,结果是"+num);
+           }
+           if(guessNum>num){
+                alert("猜大了");
+            }else{
+                alert("猜小了");
+            }
+            guessNum = prompt("请再猜测一次");
+            
+       }alert("game over");
+          
+             
+           
+        
+        
+        
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 对于单个数据，可以使用一个变量记录，而对于同一类型的多个数据，可以记录在一个数组中，数组类型类似一个容器，容器中可以添加多条数据。
+        var myIdols = ["周杰伦","林俊杰","高圆圆","汤唯"];
+
+        // console.log(myIdols);
+
+        // 使用索引(下标)访问数组中的元素，索引从0开始。
+        console.log(myIdols[0]);
+
+        myIdols[1] = "梁朝伟";
+
+        console.log(myIdols);
+        
+
+        // 数组本身也是对象。
+        // 数组的length属性，表示数组中元素的个数
+        // console.log(myIdols.length);
+
+        // ---------------------------------------
+
+        // 使用for循环可以遍历数组。
+        var array = [5,4,3,2,1,0,6,7];
+        for(var i = 0;i<array.length;i++){
+            console.log(array[i]);
+        }
+
+    </script>
+
+</body>
+</html>

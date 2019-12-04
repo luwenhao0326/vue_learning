@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #label-file {
+            display: inline-block;
+            border: dashed 2px black;
+            width: 200px;
+            height: 200px;
+        }
+
+        #send-blog {
+            padding: 0;
+            margin: 0;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            background-color: aqua;
+            cursor: pointer;
+            text-align: center;
+            line-height: 50px;
+            
+        }
+        .tupian{
+            width: 200px;
+            height: 200px;
+            background-size: 100% 100%;
+            /* border: solid 1px red; */
+        }
+        #box{
+            padding-left: 20px;
+            width: 610px;
+            display: flex;
+            flex-wrap: wrap;
+            
+        }
+        .img{
+            width: 200px;
+            height: 200px;
+        }
+        .box3{
+            border: solid 1px black;
+            width: 620px;
+            margin: 0 auto;
+        }
+        main{
+            width: 620px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+            <h1 >首页</h1>
+            <p id="send-blog">发表博客</p>
+            
+    </main>
+    
+    <div id="box2">
+        
+    </div>
+
+    <script type="text/html" id="t1">
+        <% for (var j = 0;j<data.length;j++){%>
+            <div class="box3">
+        <p> 标题：<%=data[j].title%></p>
+        <p> 内容：<%=data[j].content%></p>
+        <% for (var i = 0;i<data[j].avatar.length;i++){%>
+            <img class="img" src="/avatars/<%=data[j].avatar[i]%>">
+        <%}%>
+    </div>
+        <%}%>
+    </script>
+
+    <script src="/libs/jquery.js"></script>
+    <script src="/libs/layer/layer.js"></script>
+    <script src="/libs/ejs.js"></script>
+    <script>
+        $("body").delegate("#send-blog", "click", function (e) {
+            e.preventDefault();
+            layerid = layer.open({
+                title: "发表博客",
+                type: 1,
+                area: ['800px', '600px'], //宽高
+                content: `<form id="blog-form">
+                    <label for="">标题</label>
+                    <br>
+                    <input type="text" id="title" name="title">
+                    <br>
+                    <label for="">内容</label>
+                    <br>
+                    <input type="text" id="content" name="content">
+                    <br>
+                    <div id="box">
+                    <label for="file" id="label-file"></label>
+                    </div>
+                    <input style="display:none" type="file" id="file" accept="image/*" multiple>
+                    
+                    <br>
+                    <button id="send-btn">发表</button>
+                    </form>`
+            });
+        });
+
+        let arr = [];
+        let arr2 =[];
+        // 点击提交照片时
+        $("body").delegate("#file", "change", function (e) {
+            if(e.target.files.length>8){
+                layer.alert("最多能提交9张照片")
+            }else{
+                
+                for (var i = 0; i < e.target.files.length; i++) {
+                file = e.target.files[i]
+                var url = URL.createObjectURL(file);
+                arr.push(url);
+                arr2.push(file)
+                
+                // $("#label-file").text("")
+                //     .css("background-image", `url(${url})`)
+            }
+                for(var i = 0;i<arr.length;i++){
+                    $(`<div class='tupian' style='background-image: url(${arr[i]})'></div>`)
+                    .appendTo($("#box"))
+                }
+            }
+            
+        })
+
+        $("body").delegate("#label-file","drop",function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if(e.originalEvent.dataTransfer.files.length<9){
+                for (var i = 0; i < e.originalEvent.dataTransfer.files.length; i++) {
+                file = e.originalEvent.dataTransfer.files[i]
+                var url = URL.createObjectURL(file);
+                arr.push(url);
+                arr2.push(file)
+                }
+                for(var i = 0;i<arr.length;i++){
+                    $(`<div class='tupian' style='background-image: url(${arr[i]})'></div>`)
+                    .appendTo($("#box"))
+                }
+            }else{
+                layer.alert("最多能提交9张照片")
+            }
+            
+        });
+
+
+
+        // 发表按钮
+        $("body").delegate("#send-btn", "click", function (e) {
+            e.preventDefault();
+
+            // jquery的serialize，不能收集表单中的数据。
+            if(arr.length<1){
+                layer.alert("请先选择一张图片")
+            }else{
+                // 上传文件，不能使用urlencode格式的数据，必须使用multipart/form-data格式的数据。
+                // 使用ajax请求上传文件，必须先创建一个form-data格式的数据。
+                let data = new FormData();
+                // // 表单数据对象的.append方法，用于向表单数据中添加一条数据，第一个参数是数据的键，第二个参数是数据的值，值可以是字符串也可以是一个文件对象。
+                let title = $("#title").val();
+                let content = $("#content").val();
+                for(var i=0;i<arr2.length;i++){
+                    data.append("avatar",arr2[i]);
+                }
+                data.append("avatar",title);
+                data.append("avatar",content);
+                $.ajax({
+                    url:`/users/blog`,
+                    method:"POST",
+                    data:data,
+                    processData:false,
+                    cache:false,
+                    contentType:false
+                }).then(res=>{
+                    let htmlStr = ejs.render($("#t1").text(), res); 
+                    $("#box2").html(htmlStr);
+                    layer.close(layerid);
+                })
+                
+            }
+        })
+
+        $.get("/users/find")
+        .then(res=>{
+            let htmlStr = ejs.render($("#t1").text(), res); 
+                $("#box2").html(htmlStr);
+                layer.close(layerid);
+        })
+    </script>
+</body>
+
+</html>

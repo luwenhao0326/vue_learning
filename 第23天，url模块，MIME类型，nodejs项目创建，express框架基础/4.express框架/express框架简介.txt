@@ -1,0 +1,15 @@
+express,是一款nodejs的服务器框架，其中集成了路由，静态文件夹，请求响应处理等功能，使用express能够快速搭建一个http服务器。
+
+
+express在nodejs中是一个第三方模块，使用前要先下载
+
+
+
+下载express：
+1.先使用命令行CD到项目目录下。
+2.执行 npm install express --save
+(--save 或 -S表示下载模块并将模块作为本项目的依赖项记录在pakeage.json中)
+
+
+
+下载的模块都会存在项目目录下的node_modules文件夹中。

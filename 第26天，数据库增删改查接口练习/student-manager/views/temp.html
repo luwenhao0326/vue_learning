@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        {{data}}，
+        <span id="tip">3</span>秒后跳转查看信息页面
+    </h1>
+    <ul>
+        <li>
+            <a href="/stu-add.html">继续添加</a>
+        </li>
+        <li>
+            <a href="/">前往首页</a>
+        </li>
+    </ul>
+
+    <script>
+        var count = 3;
+        var tip = document.getElementById("tip");
+        setInterval(function () {
+
+            count--;
+            tip.textContent = count;
+            if (count == 0) {
+                location.href = "/page/stu-list";
+            }
+
+        }, 1000)
+    </script>
+</body>
+
+</html>

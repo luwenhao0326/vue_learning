@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>编辑学生信息</h1>
+    <form action="/stu/edit" method="POST">
+
+        <input style="display: none" type="text" name="_id" value="{{_id}}">
+
+        <label for="">姓名：</label>
+        <input type="text" name="name" required pattern="^[\u4e00-\u9fa5]{2,7}$" autocomplete="off" value="{{name}}">
+        <br>
+        
+        <label for="">年龄：</label>
+        <input type="text" name = "age" required pattern="^\d{1,2}$"autocomplete="off" value="{{age}}">
+        <br>
+
+        <span>性别：</span>
+        <label for="male">男</label>
+        <input 
+            id="male" 
+            type="radio"
+            name="gender"
+            value="male"
+            disabled
+            {{gender=='male'?'checked':''}}
+        >
+        <label for="famale">女</label>
+        <input 
+            id="female"
+            type="radio"
+            name="gender"
+            value="female"
+            disabled
+            {{gender=='female'?'checked':''}}
+        >
+        <br>
+
+        <span>选修：</span>
+        <label for="web">web前端</label>
+        <input
+            type="checkbox"
+            id="web"
+            value="web前端"
+            name = "course"
+            {{course.indexOf('web前端')>=0?'checked':''}}
+        >
+        <label for="java">JAVA</label>
+        <input
+            type="checkbox" 
+            id="jave"
+            value="java" 
+            name = "course"
+            {{course.indexOf('java')>=0?'checked':''}}
+         >
+        <label for="vr">VR</label>
+        <input
+            type="checkbox"
+            id="vr" 
+            value="vr" 
+            name = "course"
+            {{course.indexOf('vr')>=0?'checked':''}}
+        >
+        <br>
+
+        <button>修改</button>
+
+    </form>
+</body>
+</html>

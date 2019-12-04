@@ -1,0 +1,84 @@
+mysql是一款免费的关系型数据库，和其他关系型数据库一样使用SQL语句进行数据库操作
+
+SQL:structure query language（结构化查询语言）
+
+
+---------------------------------------------------
+
+
+show databases;
+查询mysql中的所有数据库
+
+CREATE DATABASE my_data;
+创建数据库(sql数据库中命名使用_分割单词)
+
+USE xxxxx;
+切换到某个数据库下
+
+-----------------------------------------------
+
+CREATE TABLE user (id INTEGER PRIMARY KEY AUTO_INCREMENT,username VARCHAR(32) NOT NULL UNIQUE,psw VARCHAR(32) NOT NULL,age INTEGER)
+
+// 创建表，PRIMARY KEY 表示这一列是主键，AUTOINCREMENT表示自增列，NOT NULL表示非空列，UNIQUE表示唯一列（表中所有数据这一列不能相同）
+INTEGER表示整形，TINYINT,短整型，BIGINT，长整型，FLOAT，单精度浮点型（小数）。
+TEXT，CHAR，VARCHAR字符串类型
+
+---------------------------------------------------
+
+INSERT INTO user (username,psw,age) VALUES ("张雪峰","123",20);
+
+插入语句
+
+--------------------------------------------------
+
+SELECT * FROM user;
+查询表中所有数据
+
+SELECT * FROM user WHERE id=3;
+查询表中id为3的数据
+
+SELECT * FROM user WHERE age<20;
+查询表中年龄小于50的数据
+
+SELECT * FROM user WHERE age<21 AND age>18;
+查询年龄在18到21之间的数据
+
+SELECT * FROM user WHERE age<20 OR age>50;
+查询年龄20以下或50以上的数据
+
+
+SELECT * FROM user WHERE username LIKE "张%";
+查询名字姓孙的数据(%匹配多个字符，_匹配一个字符)
+
+SELECT * FROM user WHERE username REGEXP "^孙";
+使用正则表达式进行字符串条件查询
+
+SELECT username,age FROM user;
+查询所有数据的username列和age列
+
+SELECT * FROM user ORDER BY age DESC;
+查询所有数据并按年龄排序(ASC升序，DESC降序)
+
+SELECT * FROM user LIMIT 2,3;
+分页查询，从查询结果中跳过2条，然后查出3条
+
+SELECT max(age) FROM user;
+查询表中最大年龄
+
+SELECT * FROM user WHERE age=(SELECT max(age) FROM user);
+查询表中年龄最大的数据的所有信息
+
+SELECT count(*) FROM user;
+查询表中所有数据的条数
+
+-------------------------------------------------
+
+UPDATE user SET age=99,psw="99" WHERE id=2;
+将表中id值为2的那条数据的age列的值改为99
+
+-------------------------------------------------
+
+DELETE FROM user WHERE id=3;
+删除表中id值为3的那条数据
+
+-------------------------------------------------

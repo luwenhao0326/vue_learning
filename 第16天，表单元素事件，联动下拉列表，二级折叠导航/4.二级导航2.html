@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #nav-bar {
+            background-color: aqua;
+        }
+
+        #nav-list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+
+        }
+
+        #nav-list li {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #nav-list li:hover {
+            background-color: yellow;
+        }
+
+        #second-nav {
+            /* height: 100px; */
+            width: 100%;
+            border-top: solid 1px #666666;
+            position: absolute;
+            left: 0;
+            top: 42px;
+            background-color: white;
+            /* box-sizing: border-box; */
+            height: 0;
+            transition: all 0.7s;
+            /* transition-delay: 100ms; */
+            overflow: hidden;
+            box-shadow: 0 10px 20px -10px #cccccc;
+        }
+
+        #second-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cate-item {
+            height: 200px;
+            /* border: solid 1px red; */
+            display: none;
+        }
+
+        .goods-list {
+            display: flex;
+        }
+
+        .goods-list li {
+            width: 200px;
+            /* border: solid 1px green; */
+            height: 160px;
+            text-align: center;
+        }
+        .goods-list li:nth-last-of-type(1) div{
+            border-right: none;
+        }
+
+        .goods-list li span {
+            font-size: 10px;
+            color: #ff6700;
+            border: solid 1px #ff6700;
+            padding: 2px 16px;
+            margin-top: -2px;
+            display: inline-block;
+            margin-bottom: 10px;
+            position: relative;
+            top: -2px;
+        }
+
+        .goods-list li img {
+            width: 70%;
+        }
+
+        .goods-list li div {
+            width: 100%;
+            border-right: solid 1px #cccccc;
+        }
+
+        .goods-name {
+            margin: 0;
+            margin-top: 8px;
+            font-size: 10px;
+        }
+
+        .goods-price {
+            margin: 0;
+            font-size: 10px;
+            margin-top: 8px;
+            color: #ff6700;
+        }
+
+        .yincang {
+            visibility: hidden;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav id="nav-bar">
+        <ul id="nav-list">
+            <li>手机</li>
+            <li>电脑</li>
+            <li>家用电器</li>
+        </ul>
+    </nav>
+
+    <div id="second-nav">
+        <ul>
+            <li class="cate-item">
+                <ul class="goods-list">
+                    <li>
+                        <span>新品</span>
+                        <br>
+                        <div>
+                            <img src="pic.png">
+                        </div>
+                        <p class="goods-name">小米8</p>
+                        <p class="goods-price">2699元起</p>
+                    </li>
+                    <li>
+                        <span class="yincang">新品</span>
+                        <br>
+                        <div>
+                            <img src="pic.png">
+                        </div>
+                        <p class="goods-name">小米8</p>
+                        <p class="goods-price">2699元起</p>
+                    </li>
+                    <li>
+                        <span>新品</span>
+                        <br>
+                        <div>
+                            <img src="pic.png">
+                        </div>
+                        <p class="goods-name">小米8</p>
+                        <p class="goods-price">2699元起</p>
+                    </li>
+                </ul>
+            </li>
+            <li class="cate-item">
+                <ul class="goods-list">
+                    <li>
+                        <span>新品</span>
+                        <br>
+                        <div>
+                            <img src="pic2.png">
+                        </div>
+                        <p class="goods-name">小米8</p>
+                        <p class="goods-price">2699元起</p>
+                    </li>
+                    <li>
+                        <span class="yincang">新品</span>
+                        <br>
+                        <div>
+                            <img src="pic2.png">
+                        </div>
+                        <p class="goods-name">小米8</p>
+                        <p class="goods-price">2699元起</p>
+                    </li>
+                    <li>
+                        <span>新品</span>
+                        <br>
+                        <div>
+                            <img src="pic2.png">
+                        </div>
+                        <p class="goods-name">小米8</p>
+                        <p class="goods-price">2699元起</p>
+                    </li>
+                </ul>
+            </li>
+            <li class="cate-item">
+                <ul class="goods-list">
+                    <li>
+                        <span>新品</span>
+                        <br>
+                        <div>
+                            <img src="pic3.png">
+                        </div>
+                        <p class="goods-name">小米8</p>
+                        <p class="goods-price">2699元起</p>
+                    </li>
+                    <li>
+                        <span>新品</span>
+                        <br>
+                        <div>
+                            <img src="pic3.png">
+                        </div>
+                        <p class="goods-name">小米8</p>
+                        <p class="goods-price">2699元起</p>
+                    </li>
+                    <li>
+                        <span class="yincang">新品</span>
+                        <br>
+                        <div>
+                            <img src="pic3.png">
+                        </div>
+                        <p class="goods-name">小米8</p>
+                        <p class="goods-price">2699元起</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <main>
+        <h1>这是页面内容</h1>
+    </main>
+
+    <script>
+        var firstNavItems = document.querySelectorAll("#nav-list li");
+        var secondNav = document.getElementById("second-nav");
+
+        secondNav.onmouseenter = function () {
+            secondNav.style.height = "200px";
+        }
+        secondNav.onmouseleave = function () {
+            secondNav.style.height = "0px";
+        }
+
+        var cateList = document.getElementsByClassName("cate-item");
+
+        var currentShow = 0;
+
+        function enterItem(e) {
+            secondNav.style.height = "200px";
+            cateList[currentShow].style.display = "none";
+            currentShow = e.target.index;
+            cateList[currentShow].style.display = "block";
+
+        }
+        function leaveItem(e) {
+            secondNav.style.height = "0px";
+
+        }
+
+        for (var i = 0; i < firstNavItems.length; i++) {
+            firstNavItems[i].onmouseenter = enterItem;
+            firstNavItems[i].onmouseleave = leaveItem;
+            // 让li记录自己的索引
+            firstNavItems[i].index = i;
+        }
+    </script>
+
+</body>
+
+</html>

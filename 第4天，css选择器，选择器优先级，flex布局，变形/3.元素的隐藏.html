@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url(zhuanqiang.jpg);
+            color: coral;
+        }
+        .hide{
+            /* display:none,设置元素为隐藏，而且文档流中没有元素位置 */
+            /* display: none; */
+
+            /* visibility: hidden;隐藏元素，但是文档流中位置还在 */
+            /* visibility: hidden; */
+
+            /* opacity，设置元素的透明度，范围0-1,0表示完全透明，1表示不透明 */
+            /* opacity: 0; */
+
+
+            /* rgba可以设置透明色 */
+            background-color: rgba(0, 255, 255, 0);
+        }
+    </style>
+</head>
+<body>
+    <p>第一行</p>
+    <div class="hide">
+        第二行
+    </div>
+    <p>第三行</p>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="stop">停止</button>
+
+    <script>
+        
+        // 使用setTomeout也可以实现setInterval的效果
+        // function f1(){
+        //     console.log(123);
+        //     timer =  setTimeout(f1,1000);
+            
+        // }
+
+        // var timer =  setTimeout(f1,1000);
+        // var stop = document.getElementById("stop");
+        // stop.onclick = function(){
+        //     clearTimeout(timer);
+        // }
+
+        // --------------------------------------
+
+        // requestAnimationFrame函数，参数是一个函数，效果是在浏览器下一次刷新帧时调用这个函数
+
+        // 浏览器对于页面的刷新频率是 每秒60次，相当于大约17毫秒一次。（当计算机资源不足时，可能会导致刷新率降低）
+            
+        function f2(){
+            console.log("帧刷新了");
+            timer = requestAnimationFrame(f2);
+        }
+
+        var timer = requestAnimationFrame(f2);
+
+        setTimeout(function(){
+            cancelAnimationFrame(timer);
+        },1000)
+        
+        // var stop = document.getElementById("stop");
+        // stop.onclick = function(){
+        //     // 浏览器帧刷新请求可以取消/
+        //     cancelAnimationFrame(timer);
+        // }
+
+        // ------------------------------------
+
+        // requestAnimationFrame,是H5中新增的webApi，专门用于实现Js 动画。
+        // 相比使用setInterval，requestAnimationFrame实现的动画更加流畅，而且系统资源不足时，不会出现丢帧。
+    </script>
+</body>
+</html>

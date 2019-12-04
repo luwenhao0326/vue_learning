@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .tb{
+            border: solid 1px black;
+        }
+
+        .tb td{
+            border: solid 1px black;
+            width: 50px;
+            height: 50px;
+        }
+
+        .red-bg{
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+    
+</body>
+
+
+<script>
+    var table = document.createElement("table");
+    table.classList.add("tb");
+    document.body.appendChild(table);
+
+    var tr = document.createElement("tr");
+    table.appendChild(tr);
+
+    var alltds = [];
+
+    for(var i = 0;i<10;i++){
+        var td = document.createElement("td");
+        tr.appendChild(td);
+        alltds.push(td);
+        td.index = i;
+
+        td.onclick = function(e){
+            alltds[currentRedIndex].classList.remove("red-bg");
+            this.classList.add("red-bg");
+            currentRedIndex = this.index;
+            
+        }
+    }
+
+    // 使用一个变量记录当前显示为红色的td的索引
+    var currentRedIndex = 0;
+    alltds[currentRedIndex].classList.add("red-bg");
+
+
+    document.body.onkeydown = function(e){
+        alltds[currentRedIndex].classList.remove("red-bg");
+        if(e.keyCode==37){
+            if(currentRedIndex>0){
+                currentRedIndex--;
+            }
+        }else if(e.keyCode==39){
+            if(currentRedIndex<alltds.length-1){
+                currentRedIndex++;
+            }
+        }
+        alltds[currentRedIndex].classList.add("red-bg");
+    }
+    
+
+
+</script>
+
+
+</html>

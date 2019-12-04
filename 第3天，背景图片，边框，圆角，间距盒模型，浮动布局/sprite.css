@@ -1,0 +1,10 @@
+/* css样式表可以写在单独的文件中，文件的后缀（扩展名）为css */
+
+/* css文件可以被html文件引入，页面引入css文件之后，css文件中的样式就会对这个页面生效 */
+
+
+.clock{
+    background-image: url(xxx.jpg);
+    background-size: 700% 700%;
+    background-position: -400% 0;
+}

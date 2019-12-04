@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #msg-field{
+            width: 100%;
+            height: 100px;
+            resize: none;
+        }
+
+        .msg-item{
+            border: solid 1px black;
+            margin: 10px;
+        }
+        .div2{
+            border: solid 1px red;
+            margin: 10px;
+            text-align: right;
+            padding-right: 15px;
+            color: red;
+            
+        }
+        #shuru{
+            width: 80%;
+            margin: 0 10%;
+        }
+        #tijiao{
+            margin: 0 0 0 87.8%;
+        }
+    </style>
+</head>
+<body>
+    <h1>留言板</h1>
+    <form action="/msg/commit" method="POST">
+        <p id="letters">还能输入140个字</p>
+        <textarea name="msg" id="msg-field"></textarea>
+        <button onclick="sendBtnClick(event)">提交</button>
+    </form>
+
+    <hr>
+
+    {{each messages m,i}}
+    <div class="msg-item">
+        <h5>{{m.ip}}</h5>
+        <p>{{m.time}}</p>
+        <p>{{m.main}}</p>
+    </div>
+    {{each m.reply n,i}}
+    <div class="div2">
+        <h5>{{n.ip}}</h5>
+        <p>{{n.time}}</p>
+        <p>{{n.content}}</p>
+    </div>
+    {{/each}}
+    <form action="/huifu">
+        <span style="margin-left: 10%">评论：</span>
+        <input style="display: none" type="text" name="_id" value="{{m._id}}">
+        <textarea name="huida" id="shuru" ></textarea>
+        <br>
+        <button id="tijiao">提交</button>
+    </form>
+
+    {{/each}}
+    
+    
+</body>
+
+<script>
+    var msgField = document.getElementById("msg-field");
+    var letters = document.getElementById("letters");
+
+    msgField.oninput = function(){
+        
+        if(msgField.value.length>140){
+            msgField.value = msgField.value.substr(0,140);
+        }
+        letters.textContent = "还能输入"+(140-msgField.value.length)+"个字";
+    }
+
+    function sendBtnClick(e){
+        if(msgField.value.length>140){
+            alert("不能超过140个字");
+            e.preventDefault();
+        }
+        
+        // 字符串的trim方法，取出字符串两端的空格。
+        if(msgField.value.trim().length<=0){
+            alert("内容不能为空");
+            e.preventDefault();
+        }
+    }
+
+</script>
+
+</html>

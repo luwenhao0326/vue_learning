@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+
+        // 逢七过
+        for (var i = 1; i < 100; i++) {
+            var iStr = i + "";
+            if (iStr.indexOf("7") != -1) {
+                // continue，立刻结束循环体，执行循环控制变量修改，再次判断循环条件。（结束本次循环，执行下次循环）
+                continue;
+            }
+            if (i % 7 == 0) {
+                continue;
+            }
+            console.log(i);
+        }
+
+        // continiue也可用于while循环，效果是立刻结束循环，执行循环条件判断。
+
+
+
+        var n1 = 300;
+        var n2 = 45;
+
+        if (n1 < n2) {
+            var t = n1;
+            n1 = n2;
+            n2 = t;
+        }
+
+        // 查找最大公约数
+        for (var i = n2; i >= 1; i--) {
+            if (n1 % i == 0 && n2 % i == 0) {
+                console.log(i);
+                // break,立刻结束当前循环。
+                break;
+            }
+        }
+
+        // ******************
+        for (var i = 0; i < 10; i++) {
+            for (var j = 0; j < 10; j++) {
+                console.log(i + "," + j);
+
+            }
+            if (j > 5) {
+                // break退出的是所在的循环
+                // 如果break需要退出外层循环，则需要为外层循环添加一个名字，break 后面添加这个名字
+
+                break first;
+            }
+
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

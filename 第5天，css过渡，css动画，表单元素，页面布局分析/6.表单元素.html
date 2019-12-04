@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- input,输入框，是行内块元素 -->
+    <input type="text" placeholder="请输入账号">
+
+    <!-- button,按钮，行内块元素 -->
+    <button>按钮</button>
+
+    <br>
+
+    <!-- label,标签，用于关联一个其他表单元素，for属性需要写要关联的元素的id，点击label就相当于点击了相关联的元素 -->
+    <label for="psw">密码:</label>
+    <!-- input,type设置为password，表示密码输入框 -->
+    <input id="psw"type="password">
+
+    <hr>
+    <p>请选择你认为夺冠的队伍</p>
+    <!-- input，type=radio，表示单选框，处于同一组的单选框只能选中一个值，将多个radio设置相同的内容属性，可以成为同一组 -->
+    <label for="">法国</label>
+    <input type="radio" name="team">
+    <label for="">比利时</label>
+    <input type="radio" name="team">
+    <label for="">英格兰</label>
+    <input type="radio" name="team">
+    <label for="">克罗地亚</label>
+    <input type="radio" name="team">
+    <hr>
+
+    <!-- input，type=checkbox 表示多选框 -->
+    <label for="">白菜</label>
+    <input type="checkbox">
+    <label for="">苹果</label>
+    <input type="checkbox">
+    <label for="">香蕉</label>
+    <input type="checkbox">
+    <label for="">橘子</label>
+    <input type="checkbox">
+
+    <hr>
+
+    <!-- select，下拉列表，行内块 -->
+    <label for="">请选择你的学校</label>
+    <select id="school">
+        <!-- option，下拉列表项 -->
+        <option>清华</option>
+        <option>北大</option>
+        <option>郑大</option>
+    </select>
+</body>
+</html>

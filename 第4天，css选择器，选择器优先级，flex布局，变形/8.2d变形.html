@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #d1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+            
+        }
+        #d1:hover{
+            /* taransform,变形样式。 */
+            /* rotate表示旋转变形，正值是顺时针， */
+            transform: rotate(30deg);
+
+            /* transform-origin，设置变形原点，默认为50% 50% */
+            transform-origin: 100% 100%;
+        }
+        #d2{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+        #d2:hover{
+            /* tranlate:平移变形，两个参数分别是横向偏移量和纵向偏移量 */
+            transform: translate(50px,30px);
+            
+        }
+        #d3{
+            width: 100px;
+            height: 100px;
+            background-color: greenyellow;
+        }
+        #d3:hover{
+            transform-origin: 0 0;
+            /* scale:缩放变形，两个参数分别是横向放大倍数和纵向放大倍数 */
+            transform: scale(2,2);
+        }
+
+        /* 多种变形效果可以共同使用 */
+        #d4{
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            transform: translate(100px,0) rotate(45deg) scale(0.5,0.5);
+        }
+
+
+        #d5{
+            width: 400px;
+            height: 400px;
+            border: solid 1px black;
+            position: relative;
+        }
+        #d6{
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            position: absolute;
+            
+            /* 设置宽度，高度，left等样式时百分比相对于父元素 */
+            left: 50%;
+            top: 50%;
+            
+            /* 设置变形时百分比相对于自身 */
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <br>
+    <div id="d2"></div>
+    <br>
+    <div id="d3"></div>
+    <br>
+    <div id="d4"></div>
+
+    <div id="d5">
+        <div id="d6"></div>
+    </div>
+</body>
+</html>

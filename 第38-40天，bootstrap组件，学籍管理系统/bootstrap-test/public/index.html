@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学籍管理</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.css">
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">学籍管理系统</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">学生管理</a></li>
+                <li><a href="/grade.html">班级管理</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+
+    <div>
+        <button class="btn btn-warning" data-toggle="modal" data-target="#addModal">添加</button>
+        &emsp;
+        <button class="btn btn-primary" data-toggle="modal" data-target="#queryModal">查询</button>
+    </div>
+
+
+    <div id="condition-box">
+
+    </div>
+
+
+    <div id="table-box">
+
+    </div>
+
+    <div id="page-box">
+        
+    </div>
+    
+</main>
+
+
+<!-- 添加学生模态框 -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">添加新同学</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="add-form">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" name="name" required pattern="^[\u4e00-\u9fa5]{2,10}$">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="age" class="col-sm-2 control-label">年龄</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="age" name="age">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tel" class="col-sm-2 control-label">手机号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="tel" name="tel">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10" data-toggle="buttons">
+                            <label for="male" class="btn btn-primary active">
+                                <input type="radio" value="男" id="male" name="gender" checked>
+                                男
+                            </label>
+                            <label for="female" class="btn btn-primary">
+                                <input type="radio" value="女" id="female" name="gender">
+                                女
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="save-btn" type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 编辑模态框 -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title">添加新同学</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="edit-form">
+                    <div class="form-group">
+                        <label for="editname" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input disabled type="text" class="form-control" id="editname" required pattern="^[\u4e00-\u9fa5]{2,10}$">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editage" class="col-sm-2 control-label">年龄</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="editage" name="age">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edittel" class="col-sm-2 control-label">手机号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="edittel" name="tel">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10" data-toggle="buttons">
+                            <label disabled for="editmale" class="btn btn-primary active">
+                                <input disabled type="radio" value="男" id="editmale" checked>
+                                男
+                            </label>
+                            <label disabled for="editfemale" class="btn btn-primary">
+                                <input disabled type="radio" value="女" id="editfemale">
+                                女
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="edit-btn" type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 查询模态框 -->
+<div class="modal fade" id="queryModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title">查询</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="query-form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">年龄</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="age" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">手机号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="tel" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10" data-toggle="buttons">
+                            <label for="unlimited" class="btn btn-primary active">
+                                <input type="radio" value="" id="unlimited" name="gender" checked>
+                                不限
+                            </label>
+                            <label for="male" class="btn btn-primary">
+                                <input type="radio" value="男" id="male" name="gender">
+                                男
+                            </label>
+                            <label for="female" class="btn btn-primary">
+                                <input type="radio" value="女" id="female" name="gender">
+                                女
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="query-btn" type="button" class="btn btn-primary">查询</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!-- 条件框 模板 -->
+<script type="text/html" id="condition-temp">
+    <%if(name){%>
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger">姓名:<%=name%></button>
+        <button type="button" class="btn btn-danger dropdown-toggle" onclick="deleteCondition('name')">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+    <%}%>
+    <%if(age){%>
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger">年龄:<%=age%></button>
+        <button type="button" class="btn btn-danger dropdown-toggle" onclick="deleteCondition('age')">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+    <%}%>
+    <%if(tel){%>
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger">电话:<%=tel%></button>
+        <button type="button" class="btn btn-danger dropdown-toggle" onclick="deleteCondition('tel')">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+    <%}%>
+    <%if(gender){%>
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger">性别:<%=gender%></button>
+        <button type="button" class="btn btn-danger dropdown-toggle" onclick="deleteCondition('gender')">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+    <%}%>
+    <%if(sort){%>
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger">排序:年龄</button>
+        <button type="button" class="btn btn-danger dropdown-toggle" onclick="deleteCondition('sort')">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+    <%}%>
+    
+</script>
+
+<script src="/libs/jquery.js"></script>
+<script src="/libs/layer/layer.js"></script>
+<script src="/libs/bootstrap/js/bootstrap.js"></script>
+<script src="/libs/ejs.js"></script>
+
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

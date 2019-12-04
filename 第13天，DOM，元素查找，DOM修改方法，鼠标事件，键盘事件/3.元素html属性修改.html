@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .c1{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title" class="c3 c4">使用js代码可以修改页面中的元素对象</h1>
+
+    <a id="link" href="http://www.baidu.com">百度一下</a>
+
+    <script>
+        // 元素对象：
+        var title = document.getElementById("title");
+
+        // 通过style属性修改样式。
+        title.style.color = "red";
+        // 在css中样式名通过-分割，在js中，样式名要用驼峰命名法。
+        title.style.fontSize = "20px";
+        // 通过js修改的样式实际上是修改了元素的行内样式。
+
+
+        // -----------------------------------------
+
+        // textContent和innerHTML属性都用于修改元素的内容，区别是：textContent设置的内容中标签会显示为标签，而innnerHTML中的标签会被解析为元素对象
+        title.textContent = "<i>js还可以修改元素的内容</i>";
+
+        title.innerHTML = "<i>js还可以修改元素的内容</i>";
+
+        //-------------------------------------------
+
+        var link = document.getElementById("link");
+
+        // 大部分的html属性都可以在js中通过元素对象的同名属性进行修改，例如a标签的href，img的src属性，input的placeholder属性等
+        link.href = "http://mail.163.com";
+
+        // ------------------------------------------
+
+        // 对于元素的class属性，它可以设置多个值，它是一个列表形式的数据，修改时不会直接修改全部，而是添加一个class值或者删除一个已有的class值，所以class的修改不能直接改元素对象的class属性
+        
+        // 元素对象的classList表示元素的class列表，.add方法用于添加一个class值。 
+        title.classList.add("c1");
+
+        // .remove,删除一个class值
+        title.classList.remove("c3");
+
+        // toggle,切换一个class值(无则添加，有则删除)
+        title.classList.toggle("c1");
+
+        // 判断某个元素的class中是否包含某个值
+        console.log(title.classList.contains("c4"));
+        
+        
+
+    </script>
+</body>
+</html>

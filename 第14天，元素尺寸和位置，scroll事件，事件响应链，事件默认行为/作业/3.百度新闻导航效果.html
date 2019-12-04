@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+
+        }
+        #title{
+            width: 100%;
+            height: 50px;
+            background-color: aqua;
+        }
+        #header {
+            width: 1000px;
+            height: 50px;
+            display: flex;
+            margin: 0 auto;
+            position: relative;
+        }
+        #header p{
+            display: inline-block;
+            padding:0px 10px;
+            line-height: 50px;
+            margin: 0;
+            /* background-color: yellow; */
+            /* border:  solid 1px black; */
+            border-collapse: collapse;
+            z-index: 2;
+        }
+        #header p:hover{
+            cursor: pointer;
+        }
+        #null{
+            width: 54px;
+            height: 50px;
+            position: absolute;
+            background-color: red;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            transition:all 0.7s;
+        }
+        #p1{
+            background-color: red;
+        }
+        .move{
+            left: 0px !important;
+        }
+        .move1{
+            left: 52px !important;
+        }
+        .move2{
+            left: 105px !important;
+        }
+        .move3{
+            left: 156px !important;
+        }
+        .move4{
+            left: 208px !important;
+        }
+        .move5{
+            left: 258px !important;
+        }
+        .move6{
+            left: 310px !important;
+        }
+        .move7{
+            left: 363px !important;
+            width: 70px !important;
+        }
+        .move8{
+            left: 430px !important;
+        }
+        .move9{
+            left: 482px !important;
+        }
+        .move10{
+            left: 534px !important;
+        }
+        .move11{
+            left: 586px !important;
+        }
+        .move12{
+            left: 638px !important;
+        }
+        .move13{
+            left: 690px !important;
+            width: 90px !important;
+        }
+        
+        
+
+        
+       
+         
+         
+    </style>
+</head>
+
+<body>
+    <div id="title">
+        <div id="header">
+
+            <div id="null"></div>
+            <p id="p1">首页</p>
+            <p id="p2">国内</p>
+            <p id="p3">国际</p>
+            <p id="p4">军事</p>
+            <p id="p5">财经</p>
+            <p id="p6">娱乐</p>
+            <p id="p7">体育</p>
+            <p id="p8">互联网</p>
+            <p id="p9">科技</p>
+            <p id="p10">游戏</p>
+            <p id="p11">女人</p>
+            <p id="p12">汽车</p>
+            <p id="p13">房产</p>
+            <p id="p14">个性推荐</p>
+        </div>
+    </div>
+
+    <script>
+        var null1 = document.getElementById("null");
+        var p2 = document.getElementById("p2");
+        p2.onmouseenter = function(){
+            null1.classList.add("move1");
+        }
+        p2.onmouseleave = function(){
+            null1.classList.remove("move1");
+            null1.classList.add("move");
+        }
+        p3.onmouseenter = function(){
+            null1.classList.add("move2");
+            
+        }
+        p3.onmouseleave = function(){
+            null1.classList.remove("move2");
+            null1.classList.add("move");
+        }
+        p4.onmouseenter = function(){
+            null1.classList.add("move3");
+        }
+        p4.onmouseleave = function(){
+            null1.classList.remove("move3");
+            null1.classList.add("move");
+        }
+        p5.onmouseenter = function(){
+            null1.classList.add("move4");
+        }
+        p5.onmouseleave = function(){
+            null1.classList.remove("move4");
+            null1.classList.add("move");
+        }
+        p6.onmouseenter = function(){
+            null1.classList.add("move5");
+        }
+        p6.onmouseleave = function(){
+            null1.classList.remove("move5");
+            null1.classList.add("move");
+        }
+        p7.onmouseenter = function(){
+            null1.classList.add("move6");
+        }
+        p7.onmouseleave = function(){
+            null1.classList.remove("move6");
+            null1.classList.add("move");
+        }
+        p8.onmouseenter = function(){
+            null1.classList.add("move7");
+        }
+        p8.onmouseleave = function(){
+            null1.classList.remove("move7");
+            null1.classList.add("move");
+        }
+        p9.onmouseenter = function(){
+            null1.classList.add("move8");
+        }
+        p9.onmouseleave = function(){
+            null1.classList.remove("move8");
+            null1.classList.add("move");
+        }
+        p10.onmouseenter = function(){
+            null1.classList.add("move9");
+        }
+        p10.onmouseleave = function(){
+            null1.classList.remove("move9");
+            null1.classList.add("move");
+        }
+        p11.onmouseenter = function(){
+            null1.classList.add("move10");
+        }
+        p11.onmouseleave = function(){
+            null1.classList.remove("move10");
+            null1.classList.add("move");
+        }
+        p12.onmouseenter = function(){
+            null1.classList.add("move11");
+        }
+        p12.onmouseleave = function(){
+            null1.classList.remove("move11");
+            null1.classList.add("move");
+        }
+        p13.onmouseenter = function(){
+            null1.classList.add("move12");
+        }
+        p13.onmouseleave = function(){
+            null1.classList.remove("move12");
+            null1.classList.add("move");
+        }
+        p14.onmouseenter = function(){
+            null1.classList.add("move13");
+        }
+        p14.onmouseleave = function(){
+            null1.classList.remove("move13");
+            null1.classList.add("move");
+        }
+        
+        
+       
+        
+    </script>
+</body>
+
+</html>

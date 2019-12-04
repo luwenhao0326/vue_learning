@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">点击</button>
+
+    <script>
+        let btn = document.getElementById("btn");
+
+        var flag = false;
+        function my() {
+            return new Promise(function (resolve, reject) {
+                setTimeout(() => {
+                    resolve();
+                }, 3000);
+            });
+        }
+        function mya() {
+            return new Promise(function (resolve, reject) {
+                btn.onclick = () => {
+                    flag = true;
+                }
+                resolve(flag);
+            });
+        }
+        function myb() {
+            return new Promise(function (resolve, reject) {
+                btn.onclick = () => {
+                    console.log("鼠标3秒后点击了");
+                    resolve();
+                }
+            });
+        }
+        let p2 = my();
+        let p3 = mya();
+        let total = Promise.all([p2, p3]);
+        total.then(function () {
+            if(flag){
+                console.log("鼠标3秒内点击了");
+                
+            }
+            return myb();
+        }).then(function () {
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+
+        header{
+            background-color: aqua;
+        }
+
+        #nav-bar{
+            width: 1024px;
+            margin: 0 auto;
+            /* background-color: green; */
+        }
+
+        #nav-list{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        .item{
+            padding: 10px 20px;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+        }
+        .item:hover{
+            background-color: red;
+        }
+
+        .second-list{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            position: absolute;
+            top: 52px;
+            background-color: brown;
+            transition: all 0.7s;
+            overflow: hidden;
+        }
+
+        .sec-item{
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            padding-right: 40px;
+        }
+
+        .sec-item:hover{
+            background-color: blue;
+        }
+
+        .sec-item:after{
+            content: ">";
+            position: absolute;
+            right: 6px;
+        }
+
+        #tv{
+            /* display: none; */
+            /* height: 0; */
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="nav-bar">
+            <ul id="nav-list">
+                <li class="item">手机</li>
+                <li class="item">电视</li>
+                <li class="item">平板电脑</li>
+            </ul>
+        </nav>
+    </header>
+
+    <ul id="tv" class="second-list">
+        <li class="sec-item">39寸液晶彩电</li>
+        <li class="sec-item">60寸曲面电视</li>
+        <li class="sec-item">70寸彩电</li>
+        <li class="sec-item">80寸彩电</li>
+    </ul>
+
+</body>
+
+<script src="jquery.js"></script>
+
+<script>
+    var data = [
+        {
+            name:"phone",
+            cate:[
+                {
+                    name:"小米小米小米",
+                    type:["小米1","小米2"]
+                },
+                {
+                    name:"红米",
+                    type:["红米1","红米2"]
+                }
+            ]
+        }
+    ];
+
+
+    $(".item").eq(0).on("mouseenter",function(e){
+        // 创建ul
+        var left = e.target.offsetLeft;
+        var $ul = $("<ul></ul>")
+        .addClass("second-list")
+        .css("left",left+"px")
+        .css("opacity","0")
+        .appendTo(document.body);
+        
+        //创建li
+        for(var i = 0;i<data[0].cate.length;i++){
+            $("<li></li>")
+            .addClass("sec-item")
+            .text(data[0].cate[i].name)
+            .attr("index",i)
+            .appendTo($ul)
+        }
+        
+        // 出现动画
+        requestAnimationFrame(function(){
+            requestAnimationFrame(function(){
+                $ul.css("opacity","1");
+            });
+        });
+        
+        var hide = false;
+        
+        // 当离开li时删除ul
+        $(".item").eq(0).on("mouseleave",function(){
+            $ul.css("opacity","0");
+            hide = true;
+            $ul.on("transitionend",function(){
+                if(hide){
+                    $ul.remove();
+                }
+            });
+        });
+
+        $ul.on("mouseenter",function(){
+            hide = false;
+            $ul.css("opacity","1");
+        });
+        $ul.on("mouseleave",function(){
+            $ul.css("opacity","0");
+            hide = true;
+            $ul.on("transitionend",function(){
+                if(hide){
+                    $ul.remove();
+                }
+            });
+        });
+    });
+
+    // 电视
+    $(".item").eq(1).on("mouseenter",function(e){
+        var left = e.target.offsetLeft;
+        $("#tv").css("left",left+"px")
+        // .slideDown();
+
+        .css("height",$("#tv").attr("h")+"px");
+        
+    });
+
+    $(".item").eq(1).on("mouseleave",function(e){
+        $("#tv").css("height","0px")
+    });
+
+    $("#tv").on("mouseenter",function(){
+        $("#tv").css("height",$("#tv").attr("h")+"px");
+    });
+
+    $("#tv").on("mouseleave",function(){
+        $("#tv").css("height","0px")
+    });
+
+
+    $(function(){
+        $("#tv").attr("h",$("#tv")[0].offsetHeight);
+        $("#tv").css("height","0");
+    });
+    
+
+
+</script>
+
+</html>

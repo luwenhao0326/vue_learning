@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input id ="inp1" type="text" placeholder="0">+
+    <input id ="inp2" type="text" placeholder="0">=
+    <span id="result">0</span>
+    <br>
+    
+
+
+    <script>
+    
+        var inp1 = document.getElementById("inp1");
+        var inp2 = document.getElementById("inp2");
+        var result = document.getElementById("result");
+        
+        inp1.oninput = result1;
+        inp2.oninput = result1;
+        
+
+        function result1(){
+            result.textContent = inp1.value*1+inp2.value*1;
+        }
+
+    </script>
+</body>
+</html>

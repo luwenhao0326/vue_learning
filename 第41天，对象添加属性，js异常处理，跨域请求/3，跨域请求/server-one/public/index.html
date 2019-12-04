@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>服务器一的首页</h1>
+    
+    
+    <a href="http://127.0.0.1:4000">前往服务器2</a>
+    <br>
+
+
+
+
+
+
+
+    <button id="btn">发起CORS跨域请求</button>
+    <br>
+    <button id="btn2">发起jsonp跨域请求</button>
+    <br>
+    <button id="btn3">使用代理进行跨域请求</button>
+
+    <script src="/libs/jquery.js"></script>
+    <script>
+        // 页面中的普通请求可以发往其他的服务器。（例如引入其他域名下的图片，js文件等）
+        // 对于ajax请求，浏览器只允许访问本域名下的地址，不允许跨域访问。（一个页面只能访问页面来源域名下的ajax接口
+        // 跨域，url中协议名，域名，端口号，三这只要有一个不同，就是跨域
+        // 浏览器禁止跨域ajax请求，但是不禁止跨域的非ajax请求
+
+        // 浏览器禁止ajax跨域请求的原因：cookie是按照域名分别存储的，如果允许ajax跨域请求，那么一个域名下的网页可以使用用户的cookie信息访问其他域名的服务器，会造成浏览器用户的数据泄露。
+
+        $("#btn").on("click",function(){
+            $.get("http://127.0.0.1:4000/api/test")
+            .then(res=>{
+                console.log(res)
+            })
+        });
+
+        // --------------------------------------
+        $("#btn2").on("click",function(){
+            // $(`<script src='http://127.0.0.1:4000/api/jsonp?callback=abc'>&lt;/script&gt;`)
+            // .appendTo($("body"));
+
+            $.getJSON("http://127.0.0.1:4000/api/jsonp?callback=?",function(res){
+                console.log(res)
+            })
+        });
+
+        // function abc(c){
+        //     console.log(c);
+        // }
+
+        // -------------------------------
+
+        $("#btn3").on("click",function(){
+            $.get("/api/proxy")
+            .then(res=>{
+                console.log(res);
+            })
+        });
+    </script>
+</body>
+</html>

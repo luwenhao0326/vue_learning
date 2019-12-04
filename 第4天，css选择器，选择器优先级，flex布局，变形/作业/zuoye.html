@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>卡斯迪烘焙创意蛋糕坊</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #zhengti {
+            margin-top: 30px;
+            /* border: solid 1px black; */
+            width: 100%;
+            /* height: 38vw; */
+            display: flex;
+            border-top: solid 1px rgb(238, 238, 238);
+            border-bottom: solid 1px rgb(238, 238, 238);
+            padding: 2vw 0 3vw 0;
+        }
+
+        #right {
+            flex-grow: 1;
+            /* border: solid 1px darkcyan; */
+        }
+
+        #img {
+            /* border: solid 1px red; */
+        }
+
+        img {
+            width: 20vw;
+            height: 20vw;
+            margin: 3vw;
+            margin-top: 5vw;
+        }
+
+        #line-1st {
+            width: 100%;
+            /* border: solid 1px fuchsia; */
+            margin-top: 4vw;
+            display: flex;
+        }
+
+        #line-1st span:nth-of-type(1) {
+            line-height: 8vw;
+            height: 8vw;
+            font-size: 4vw;
+            font-weight: 700;
+            width: 65vw;
+            color: rgb(51, 51, 51);
+            margin-left: 2vw;
+        }
+
+        #line-1st span:nth-of-type(2) {
+            margin-top: 2vw;
+            font-size: 2.5vw;
+            height: 3vw;
+            line-height: 3vw;
+            color: rgb(178, 173, 165);
+            padding: 0.3vw 0.3vw;
+            border: solid 1px rgb(238, 238, 238);
+        }
+
+        #line-2nd {
+            display: flex;
+            /* border: solid 1px forestgreen; */
+        }
+
+        #line-2nd p {
+            padding: 0;
+            margin: 0;
+            height: 6vw;
+            padding-left: 2vw;
+            line-height: 6vw;
+            color: rgb(102, 102, 102);
+        }
+
+        #p1 {
+            color: gold !important;
+            font-size: 3vw;
+        }
+
+        #p2 {
+            font-size: 3vw;
+        }
+
+        #p3 {
+            font-size: 3vw;
+        }
+
+        #line-3th {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            height: 6vw;
+            width: 70vw;
+            line-height: 6vw;
+            justify-content: space-between;
+            color: rgb(102, 102, 102);
+        }
+
+        #line-3th-left {
+            display: flex;
+            /* border: solid 1px blue; */
+            width: 75vw;
+
+        }
+
+        #line-3th-left p {
+            margin: 0;
+            font-size: 3vw;
+
+        }
+
+        #line-3th-left p:nth-of-type(1) {
+            margin-left: 2vw;
+        }
+
+        #line-3th-right {
+            flex-grow: 8;
+            color: rgb(178, 173, 165);
+            font-size: 3vw;
+            /* border: solid 1px salmon; */
+        }
+
+        .p4 {
+            flex-grow: 4;
+            /* border: solid 1px aqua; */
+            width: 1vw;
+            margin: 0;
+            padding: 0;
+            margin-top: -0.3vw;
+            color: rgb(223, 230, 242);
+            font-size: 3vw;
+        }
+
+        #line-4th {
+            display: flex;
+            /* border: solid 1px black; */
+            height: 6vw;
+            line-height: 6vw;
+        }
+
+        #line-4th p {
+            margin: 0;
+            padding: 0;
+        }
+
+        #line-4th p:nth-of-type(1) {
+            background-color: rgb(112, 180, 70);
+            border-radius: 0.8vw;
+            color: white;
+            margin-left: 2vw;
+            font-size: 2.5vw;
+            line-height: 3vw;
+            height: 3vw;
+            width: 3vw;
+            text-align: center;
+            margin-top: 1.5vw;
+        }
+
+        #line-4th p:nth-of-type(2) {
+
+            /* border: solid 1px red; */
+            margin-left: 2vw;
+            margin-top: 0.3vw;
+            font-size: 2.5vw;
+            color: rgb(102, 102, 102);
+
+        }
+
+        #line-5th {
+            display: flex;
+            /* border: solid 1px salmon; */
+            height: 6vw;
+            line-height: 3vw;
+            margin-top: -3vw;
+            margin-left: -0.1vw;
+        }
+
+        #line-5th p:nth-of-type(1) {
+            background-color: rgb(240, 115, 115);
+            border-radius: 0.8vw;
+            color: white;
+            margin-left: 2vw;
+            font-size: 2.5vw;
+            line-height: 3vw;
+            height: 3vw;
+            width: 3vw;
+            text-align: center;
+        }
+
+        #line-5th p:nth-of-type(2) {
+            margin-left: 2vw;
+            /* border: solid 1px red; */
+            margin-top: 2.3vw;
+            font-size: 2.5vw;
+            color: rgb(102, 102, 102);
+            height: 5vw;
+            width: 50vw;
+            
+            /* 三行代码缺一不可 */
+            /* 不自动换行 */
+            white-space: nowrap;
+            /* 溢出隐藏 */
+            overflow: hidden;
+            /* 多余的文本用...显示 */
+            text-overflow: ellipsis;
+            
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="zhengti">
+        <!-- 左侧logo -->
+        <div id="img">
+            <img src="logo.png" alt="">
+        </div>
+        <!-- 右侧内容 -->
+        <div id="right">
+            <!-- border上边 -->
+            <div>
+                <!-- 第一行 -->
+                <div id="line-1st">
+                    <span>卡斯迪烘焙创意蛋糕坊</span>
+                    <span>保</span>
+                </div>
+                <!-- 第二行 -->
+                <div id="line-2nd">
+                    <p id="p1">★★★★★</p>
+                    <p id="p2">5</p>
+                    <p id="p3">月售11单</p>
+                </div>
+                <!-- 第三行 -->
+                <div id="line-3th">
+                    <!-- 第三行左 -->
+                    <div id="line-3th-left">
+                        <p>￥80起送&nbsp&nbsp</p>
+                        <p>|</p>
+                        <p>&nbsp&nbsp配送费￥5</p>
+                    </div>
+                    <!-- 第三行右 -->
+                    <div id="line-3th-right">11.78km&nbsp&nbsp</div>
+                    <p class="p4">|</p>
+                </div>
+            </div>
+            <!-- border下边 -->
+            <!-- 第四行 -->
+            <div id="line-4th">
+                <p>首</p>
+                <p>新用户下单立减14元</p>
+            </div>
+            <!-- 第五行 -->
+            <div id="line-5th">
+                <p>减</p>
+                <p>满50减3，满100减6，满200减12，满300减20满100减6，满200减12，满300减20</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 8px;
+            
+        }
+        input{
+            width: 100%;
+            height: 40px;
+            padding-left: 10px;
+            box-sizing:border-box;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: solid 1px black;
+        }
+        input:hover{
+            border: solid 1px aqua;
+        }   
+        input:focus{
+            box-shadow: 0 0 5px 5px aquamarine inset;
+        }
+        #btn{
+            width: 100%;
+            height: 40px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        table{
+            width: 100%;
+        }
+        
+        td:nth-of-type(2):before{
+            content: "￥";
+            
+        }
+       
+        td:nth-of-type(2){
+            color: red;
+            float: right;
+            /* border: solid 1px aqua; */
+        }
+        .jian td:nth-of-type(2):before{
+            content: "-￥";
+            
+        }
+        #btn{
+            background-color: aqua;
+        }
+        #btn:disabled{
+            background-color: #999999;
+        }
+        #min{
+            display: none;
+            color: red;
+            font-size: 20px;
+        }
+        #flow{
+            height: 0;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+        .xiahuaxian{
+            border-bottom: solid 1px #999999;
+            
+        }
+        
+    </style>
+   
+</head>
+<body>
+    <input id="in1" type="text" placeholder="工资">
+    <input id="in2" type="text" placeholder="奖金">
+    <input id="in3" type="text" placeholder="绩效">
+    <button id= "btn" disabled >计&nbsp;&nbsp;算</button>
+    <p id="min">最低工资2000</p>
+    <div id="flow">
+    <table>
+        <tr>
+            <td>总工资</td>
+            <td id="zonggongzi">0</td>
+        </tr>
+        <tr class="jian">
+            <td>养老基金8%</td>
+            <td id="yanglao">0</td>
+        </tr>
+        <tr class="jian">
+            <td>公积金8%</td>
+            <td id="gongjijin">0</td>
+        </tr>
+        <tr class="jian">
+            <td>医疗保险2%</td>
+            <td id="yiliao">0</td>
+        </tr>
+        <tr class="jian">
+            <td>工伤保险2%</td>
+            <td id="gongshang">0</td>
+        </tr>
+        <tr class="jian">
+            <td>失业保险0.2%</td>
+            <td id="shiye">0</td>
+        </tr>
+        <tr class="jian">
+            <td>生育保险0%</td>
+            <td id="shengyu">0</td>
+        </tr>
+        <tr>
+            <td>税前工资(扣除五险一金后)</td>
+            <td id="shuiqian">0</td>
+        </tr>
+        <tr class="jian">
+            <td>所得税</td>
+            <td id="suodeshui">0</td>
+        </tr>
+        <tr>
+            <td>税后工资</td>
+            <td id="shuihou">0</td>
+        </tr>
+    </table>
+</div>
+
+    <script>
+        var in1 = document.getElementById("in1");
+        var in2 = document.getElementById("in2");
+        var in3 = document.getElementById("in3");
+        var btn = document.getElementById("btn");
+        var min = document.getElementById("min");
+
+        var zonggongzi = document.getElementById("zonggongzi");
+        var yanglao = document.getElementById("yanglao");
+        var gongjijin = document.getElementById("gongjijin");
+        var yiliao = document.getElementById("yiliao");
+        var gongshang = document.getElementById("gongshang");
+        var shiye = document.getElementById("shiye");
+        var shengyu = document.getElementById("shengyu");
+        var shuiqian = document.getElementById("shuiqian");
+        var suodeshui = document.getElementById("suodeshui");
+        var shuihou = document.getElementById("shuihou");
+
+         var flow = document.getElementById("flow");
+
+        in1.oninput = input;
+        in2.oninput = input;
+        in3.oninput = input;
+        
+        
+
+        function input(){
+            flow.style.height = "0px";
+            var sum = in1.value*1+in2.value*1+in3.value*1;
+            if(sum>2000){
+                btn.disabled = false;
+                min.style.display = "none";
+                
+            }else{
+                btn.disabled = true;
+                min.style.display = "block";
+
+            }
+
+        }
+
+        btn.onclick = function (){
+            var sum = in1.value*1+in2.value*1+in3.value*1;
+            zonggongzi.textContent  = (sum*1).toFixed(2);
+            yanglao.textContent = (sum*0.08).toFixed(2);
+            gongjijin.textContent = (sum*0.08).toFixed(2);
+            yiliao.textContent = (sum*0.02).toFixed(2);
+            gongshang.textContent = (sum*0.02).toFixed(2);
+            shiye.textContent = (sum*0.002).toFixed(2);
+            shengyu.textContent = (sum*0).toFixed(2);
+            var sumshuiqian = (sum*(1-0.08-0.08-0.02-0.02-0.002-0)).toFixed(2);
+            shuiqian.textContent = sumshuiqian;
+            var sumsuodeshui = 0;
+            var jiaoshui = sumshuiqian-3500;
+            if(jiaoshui<0){
+                sumsuodeshui = 0;
+            }else if(jiaoshui<1500){
+                sumsuodeshui = jiaoshui*0.03;
+            }else if(jiaoshui<4500){
+                sumsuodeshui = jiaoshui*0.1-105;
+            }else if(jiaoshui<9000){
+                sumsuodeshui = jiaoshui*0.2-555;
+            }else if(jiaoshui<35000){
+                sumsuodeshui = jiaoshui*0.25-1005;
+            }else if(jiaoshui<55000){
+                sumsuodeshui = jiaoshui*0.3-2755;
+            }else if(jiaoshui<80000){
+                sumsuodeshui = jiaoshui*0.35-5505;
+            }else if(jiaoshui>80000){
+                sumsuodeshui = jiaoshui*0.45-13505;
+            }
+            suodeshui.textContent = sumsuodeshui.toFixed(2);
+            shuihou.textContent = (sumshuiqian - sumsuodeshui).toFixed(2);
+            flow.style.height = "262px";
+        }
+
+       
+    </script>
+</body>
+</html>

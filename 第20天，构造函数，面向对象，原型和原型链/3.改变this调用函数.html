@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        
+        // 函数的参数可以设置为不定参数，调用时可以传递无限个
+
+        function multipleParam(){
+            // 在函数体中，arguments关键字表示本次函数调用所传递的参数列表，是一个类数组
+            var sum = 0;
+            for(var i = 0;i<arguments.length;i++){
+                sum+=arguments[i];
+            }
+            return sum;
+             
+        }
+        console.log(multipleParam(4,6,8));
+        
+        // ----------------------------------
+
+        // 在js中，函数也是对象。函数也有自己的属性和方法。
+
+        function test(a,b){
+            console.log(a+b);
+            console.log(this);
+            
+        }
+        
+        var obj = {name:"wang"};
+
+        // * 函数对象的call方法，用于指定this调用函数。第一个参数是指定的this对象，从第二个参数开始，是调用test函数所传递的参数。
+        // test.call(obj,1,3);
+        
+        // * 函数对象的apply方法，也用于指定this调用函数。第一个参数也是指定的this对象，和call的区别是:第二个参数是一个数组，数组中存放本次调用要传递的参数
+        // test.apply(obj,[1,3]);
+        
+        // * 函数对象的.bind方法，不会调用本函数。而是生成一个新的函数，这个函数的代码逻辑和原函数一样。但是this指向不一样。.bind用于指定this生成一个新的函数，新的函数在调用时其中的this总是指定的this。
+        var bindTest =  test.bind(obj);
+        // console.log(bindTest);
+        
+        bindTest(1,3);
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            perspective: 1000px;
+        }
+        #d1{
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+            margin: 30px auto;
+            transform-origin: -50% 50%;
+
+            transition: all 0.7s;
+        }
+        #d1:hover{
+            /* 沿Y轴旋转 */
+            transform: rotateY(360deg);
+        }
+
+        #container{
+            border: solid 1px red;
+            width: 600px;
+            position: relative;
+            height: 400px;
+            transition: all 0.7s;
+
+            /* 子元素保留父元素的3D变形效果 */
+            transform-style: preserve-3d;
+            margin: 0 auto;
+        }
+
+        #container:hover{
+            transform: rotateX(90deg);
+        }
+        #p1,#p2{
+            width: 600px;
+            height: 400px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #p1{
+            background-color: aquamarine;
+            transform: translateY(200px) rotateX(90deg);
+        }
+        #p2{
+            background-color: blueviolet;
+            transform: translateZ(200px);
+        }
+    </style>
+</head>
+<body>
+    <div id="d1">3D立体变形</div>
+
+
+    <div id="container">
+        <div id="p1"></div>
+        <div id="p2"></div>
+    </div>
+</body>
+</html>

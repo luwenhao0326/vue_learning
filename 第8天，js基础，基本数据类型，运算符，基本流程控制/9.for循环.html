@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // for语句，用于创建循环结构的代码。
+        // for循环格式：
+        // for(循环控制变量声明与赋值;循环条件;循环控制变量修改){循环体}
+        // for循环执行流程：
+        // 1.声明循环控制变量并赋初值。
+        // 2.判断循环条件是否满足，如果不满足则退出循环，如果满足则执行循环体
+        // 3.循环体执行完毕后，执行循环控制变量修改语句。
+        // 4.回到第二步。
+
+        for(var i = 0;i<3;i++){
+            console.log("你好");
+        }
+
+
+        // 循环体中可以使用循环控制变量
+        for(var i = 0;i<10;i++){
+            console.log(i);
+        }
+
+        // 循环控制变量的初值和修改语句不一定非要是0和i++
+        for(var i = 9;i>=0;i--){
+            console.log(i);
+            
+        }
+
+        // 循环条件和循环控制变量修改语句一定要保证循环时可以退出的，否则就是一个死循环
+        // for(var i = 0;i<6;i--){
+        //     console.log(i); 
+        // }
+
+        //------------------------------------
+
+        // for循环可以嵌套使用
+
+        for(var i = 0;i<10;i++){
+            for(var j = 0;j<10;j++){
+                // console.log(123);
+            }
+        }
+
+
+        // 打印金字塔
+        document.write("<pre>")
+        for(var i = 0;i<10;i++){
+            for(var j = 0;j<9-i;j++){
+                document.write(" ");
+            }
+            for(var j = 0;j<=2*i;j++){
+                document.write("*");
+            }
+            document.write("\n");
+            
+            
+        }
+
+        document.write("</pre>")
+
+
+        // 计算1+2+3+4+....+100
+        var sum=0;
+        for(var i=0;i<=100;i++){
+           sum+=i;
+        }
+        console.log(sum);
+    </script>
+</body>
+</html>

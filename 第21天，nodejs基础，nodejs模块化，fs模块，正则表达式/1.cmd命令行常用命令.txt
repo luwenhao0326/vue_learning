@@ -1,0 +1,19 @@
+GUI和CLI：
+GUI：graphics user interface 图形用户界面
+CLI：command line interface  命令行界面
+
+
+nodejs没有提供GUI，只能使用命令行运行。
+
+
+cmd常用命令：
+
+dir  列出当前目录中所有内容。
+
+cd..   回到上层目录。
+
+cd xxxxx   进入xxxxx目录，xxxxx可以是相对路径，也可以是绝对路径
+
+X:     切换盘符
+
+cls 清屏

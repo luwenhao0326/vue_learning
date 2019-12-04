@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // -------------------------------------
+        // 100米球落下每次落为一半第十次高度和总高度
+        // var sum = 0;
+        // var height = 100;
+        // for(var i = 0;i<10;i++){
+        //     sum+=height;
+        //     height/=2 ;
+        //     sum+=height;
+        // }
+        // console.log(sum);
+        // console.log(height);
+
+        // --------------------------------------
+        
+        // 从4个数字取出三个各不相同的，总共有多少个，并且输出每个数
+        // var arr = [1,2,3,4];
+        // var num1 = 0;
+        // for(var i = 0;i<arr.length;i++){
+        //     for(var j = 0;j<arr.length;j++){
+        //         for( var a = 0;a<arr.length;a++){
+        //             if(arr[i]!=arr[j]&&arr[a]!=arr[j]&&arr[i]!=arr[a]){
+        //                 var num = (arr[i]+""+arr[j]+""+arr[a])*1;
+        //                 console.log(num);
+        //                 num1++;
+        //             }
+                    
+        //         }
+        //     }
+        // }
+        // console.log("能组成"+num1+"个");
+
+        // -------------------------------------------------
+        
+        // 输出一个菱形
+        document.write("<pre>");
+        for(var i = 0;i<4;i++){
+            document.write("<br>");
+            for(var j = 0;j<3-i;j++){
+                document.write(" ");
+            }
+            for(var j = 0;j<=2*i;j++){
+                document.write("*");
+            } 
+        }
+        for(var i = 2;i>=0;i--){
+            document.write("<br>");
+            for(var j = 2-i;j>=0;j--){
+                document.write(" ");
+            }
+            for(var j =2*i;j>=0;j--){
+                document.write("*");
+            } 
+        }
+        
+        document.write("</pre>");
+    </script>
+
+</body>
+</html>

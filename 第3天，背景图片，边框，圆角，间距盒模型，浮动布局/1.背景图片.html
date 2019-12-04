@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>背景图片</title>
+        <meta charset="utf-8">
+        <style>
+            body{
+                /* background-image,设置元素的背景图片。 */
+                background-image: url(zhuanqiang.jpg);
+
+                /* background-repeat设置背景图片是否重复显示，默认为重复显示 */
+                /* 当背景图片的尺寸小于元素尺寸时，背景图会重复显示，直到铺满整个元素 */
+                /* background-repeat: no-repeat; */
+
+                /* background-attachment，不随元素内容滚动而滚动 */
+                background-attachment: fixed;
+            }
+            #box{
+                background-color: black;
+                width: 300px;
+                height: 300px;
+                /* 背景图片默认显示图片原始尺寸，如果背景图片大于元素尺寸，则只能显示图片一部分（左上角） */
+                background-image: url(zzz.jpg);
+
+                background-repeat: no-repeat;
+
+                /* 设置背景图片横向和纵向的位置，默认为0和0 */
+                /* background-position: -5px -3px; */
+                /* 可以使用百分比设置背景图片位置，设置为50%可以实现居中 */
+                background-position: 50% 50%;
+            }
+
+            #d2{
+                background-color: black;
+                width: 400px;
+                height: 400px;
+                background-repeat: no-repeat;
+                background-image: url(zzz.jpg);
+
+                /* background-size设置背景图片的尺寸分别表示宽和高 */
+                background-size: 200px 200px;
+
+                /* 背景图片尺寸可以通过100%，设置为和元素等宽等高 */
+                /* background-size: 100% 100%; */
+
+                /* 较短的一边平铺，另一边等比例缩放 */
+                /* background-size: cover; */
+
+                /* 较长的一边平铺，另一边等比例缩放 */
+                /* background-size: contain; */
+
+                /* 背景图片位置设置为100%可以实现右对齐和下对齐 */
+                background-position: 100% 100%; 
+            }
+        </style>
+    </head>
+    <body>
+        <h1>背景图片</h1>
+        <h1>背景图片</h1>
+        <div id="box"></div>
+        <br>
+        <div id="d2"></div>
+       
+    </body>
+</html>

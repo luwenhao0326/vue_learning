@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    var provinces = [
+        {
+            name:"河南省",
+            cities:[
+                {
+                    name:"郑州",
+                    county:["新郑","新密","登封"]
+                },
+                {
+                    name:"开封",
+                    county:["兰考","尉氏"]
+                },
+                {
+                    name:"洛阳",
+                    county:["汝阳","新安"]
+                }
+            ]
+        },
+        {
+            name:"山东",
+            cities:[
+                {
+                    name:"济南",
+                    county:["济南县1","济南县2"]
+                },
+                {
+                    name:"青岛",
+                    county:["青岛县1","青岛县2"]
+                }
+            ]
+        }
+    ];
+
+    
+    var proSel = document.createElement("select");
+    for(var i = 0;i<provinces.length;i++){
+        var opt = document.createElement("option");
+        opt.textContent = provinces[i].name;
+        proSel.appendChild(opt);
+    }
+    document.body.appendChild(proSel);
+
+
+    var citySel = document.createElement("select");
+    for(var i = 0;i<provinces[0].cities.length;i++){
+        var opt = document.createElement("option");
+        opt.textContent = provinces[0].cities[i].name;
+        citySel.appendChild(opt);
+    }
+    document.body.appendChild(citySel);
+
+
+    var countySel = document.createElement("select");
+    for(var i = 0;i<provinces[0].cities[0].county.length;i++){
+        var opt = document.createElement("option");
+        opt.textContent = provinces[0].cities[0].county[i];
+        countySel.appendChild(opt);
+    }
+    document.body.appendChild(countySel);
+
+    proSel.onchange = function(){
+        var p = provinces[proSel.selectedIndex];
+
+        // 改变市
+        citySel.innerHTML = "";
+        for(var i = 0;i<p.cities.length;i++){
+            var opt = document.createElement("option");
+            opt.textContent = p.cities[i].name;
+            citySel.appendChild(opt);
+        }
+
+        //改变县
+        var c = p.cities[citySel.selectedIndex];
+        countySel.innerHTML = "";
+        for(var i = 0;i<c.county.length;i++){
+            var opt = document.createElement("option");
+            opt.textContent = c.county[i];
+            countySel.appendChild(opt);
+        }
+    }
+    
+    citySel.onchange = function(){
+        var p = provinces[proSel.selectedIndex];
+        //改变县
+        var c = p.cities[citySel.selectedIndex];
+        countySel.innerHTML = "";
+        for(var i = 0;i<c.county.length;i++){
+            var opt = document.createElement("option");
+            opt.textContent = c.county[i];
+            countySel.appendChild(opt);
+        }
+    }
+
+    
+
+
+</script>
+
+</html>

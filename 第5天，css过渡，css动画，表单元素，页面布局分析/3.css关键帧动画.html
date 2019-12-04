@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css关键帧动画</title>
+    <style>
+
+        /* 让元素做关键帧动画： */
+        /* 第一步，创建动画 */
+
+        @keyframes move {
+            /* 0%表示动画开始的关键帧 */
+            0%{
+                transform: translate(0,0);
+            }
+            25%{
+                transform: translate(300px,0);
+            }
+            50%{
+                transform: translate(300px,300px);
+            }
+            75%{
+                transform: translate(0,300px);
+            }
+            /* 100%表示动画结束时的关键帧 */
+            100%{
+                transform: translate(0,0);
+            }
+        }
+
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            
+            /* 第二步，把动画添加到元素上 */
+            
+            /* animation-name:动画名字，设置本元素要执行哪个动画 */
+            animation-name: move;
+
+            /* 设置单次动画的执行时间 */
+            animation-duration: 4s;
+            /* 动画状态是否保留，设置为both可以保留动画结束时元素的样式 */
+            animation-fill-mode: both;
+            /* 设置动画执行速率，默认为ease-in-out，匀速使用linear */
+            animation-timing-function: linear;
+
+            /* 动画延迟时间 */
+            animation-delay: 0s;
+            /* 设置动画方向 */
+            /* animation-direction: reverse; */
+            /* animation-iteration-count:动画执行次数，默认为1 设置为infinite表示无限次*/
+            animation-iteration-count: infinite;
+        }
+        #d2{
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            margin: 50px auto;
+        }
+
+        @keyframes spin{
+            0%{
+                transform: rotate(0);
+                
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+        .spin{
+            animation-name: spin;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+
+        }
+        #d2:hover{
+            /* animation-play-state,设置动画执行状态，默认为running，设置为paused可以暂停动画 */
+            animation-play-state: paused;
+        }
+        #d2:active{
+            animation-play-state: running;
+            animation-direction: reverse;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+
+    <div id="d2" class="spin">旋转动画 </div>
+</body>
+</html>

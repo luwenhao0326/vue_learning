@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // for循环适用于循环次数已知的循环。
+
+        // 对于循环次数未知的循环，而是循环到某种条件为止，适合用while循环
+
+        // while循环语法：
+        // while(布尔值或者表达式){循环体}
+        // while循环执行流程：
+        // 1.判断循环条件，如果为假则退出循环，如果为真，则执行循环体
+        // 2.循环体执行结束后，回到第一步。
+        // while(true){
+        //     console.log("死循环"); 
+        // }
+
+
+        var sum = 0;
+        var temp = 0;
+
+        while(sum<=10000){
+            temp++;
+            sum+=temp;
+        }
+
+        console.log(temp);
+
+
+        // confirm,弹出一个带有“确定和“取消”按钮的对话框，用户选择确定会返回true,用户选择取消会返回false。
+        var flag = confirm("我长得帅吗？");
+
+        while(!flag){
+            flag = confirm("回答错误");
+        }
+
+        alert("回答正确");
+
+    </script>
+</body>
+</html>

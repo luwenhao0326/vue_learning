@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        function jiecheng(n) {
+            var res = 1;
+            for (var i = 1; i <= n; i++) {
+                res *= i;
+            }
+            return res;
+        }
+        function zuhe(n, m) {
+            return jiecheng(n) / (jiecheng(m) * jiecheng(n - m));
+        }
+        // function pailie(n, m) {
+        //     return jiecheng(n) / jiecheng(n - m);
+        // }
+        // console.log(zuhe(10, 5));
+
+        function printYanghui(n) {
+            document.write("<pre style='text-align:center;'>");
+            for (var i = 0; i < n; i++) {
+                for (var j = 0; j <= i; j++) {
+                    document.write(zuhe(i, j));
+                    document.write("   ");
+                }
+                document.write("\n");
+            }
+            document.write("</pre>");
+        }
+        printYanghui(15);
+
+
+    </script>
+
+
+
+</body>
+
+</html>

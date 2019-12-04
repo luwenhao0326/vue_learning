@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #change{
+            color: blue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>注册界面</h1>
+    <form action="/users/regist" method="POST">
+        <label for="">账号</label>
+        <input type="text" name="account" required>
+        <br>
+        <label for="">密码</label>
+        <input type="password" name="psw" required>
+        <br>
+        <label for="">确认密码</label>
+        <input type="password" >
+        <br>
+        <label for="">邮箱</label>
+        <input type="email" name="email" required>
+        <br>
+
+        <label for="">验证码</label>
+        <input type="text" name="cap" required>
+        <img id="captcha" src="/captcha">
+
+        <span id="change">换一张</span>
+        <br>
+
+        <button>注册</button>
+    </form>
+
+
+    <script src="/libs/jquery.js"></script>
+
+    <script>
+        $("#change").on("click",function(){
+            let rnd = Math.random();
+            $("#captcha").attr("src","/captcha?"+rnd);
+        })
+    </script>
+</body>
+</html>

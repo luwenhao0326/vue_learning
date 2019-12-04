@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #title {
+            width: 500px;
+            height: 250px;
+            border: solid 1px black;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .q1 {
+            width: 20px;
+            height: 20px;
+            background-color: aqua;
+            border-radius: 50%;
+            position: absolute;
+            background-color: hsl(hue, saturation, lightness)
+        }
+    </style>
+</head>
+
+<body>
+    <div id="title"></div>
+
+
+    <script>
+        var count = 60;
+        var divs = [];
+        var title = document.getElementById("title");
+
+        for (var i = 0; i < count; i++) {
+            var div = document.createElement("div");
+            div.classList.add("q1");
+            title.appendChild(div);
+
+            var angle = 360 / count * i;
+
+            var left1 = 230 * Math.cos(angle / 180 * Math.PI) + 240;
+            var top1 = 105 * Math.sin(angle / 180 * Math.PI) + 115;
+
+            div.style.left = left1 + "px";
+            div.style.top = top1 + "px";
+            div.style.backgroundColor = "hsl(" + angle + ",100%,50%)";
+
+            divs.push(div);
+
+        }
+
+        var ang = 0;
+
+        function update() {
+            ang += 1;
+            for (var i = 0; i < count; i++) {
+                var currentAng = 360 / count * i + ang;
+                var div = divs[i];
+                var left1 = 230 * Math.cos(currentAng / 180 * Math.PI) + 240;
+                var top1 = 105 * Math.sin(currentAng / 180 * Math.PI) + 115;
+                div.style.left = left1 + "px";
+                div.style.top = top1 + "px";
+                div.style.backgroundColor = "hsl(" + currentAng + ",100%,50%)";
+            }
+
+
+            requestAnimationFrame(update);
+        }
+
+        requestAnimationFrame(update);
+    </script>
+</body>
+
+</html>

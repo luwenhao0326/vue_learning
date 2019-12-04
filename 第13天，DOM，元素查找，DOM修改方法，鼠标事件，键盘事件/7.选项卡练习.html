@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        #tabbar{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #tabbar li{
+            float: left;
+            border: solid 1px black;
+            width: 100px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .clear-fix:after{
+            content: "";
+            clear: both;
+            display: block;
+        }
+
+        .item{
+            border: solid 1px black;
+            width: 300px;
+            height: 260px;
+            display: none;
+        }
+        .highlighted{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <ul id="tabbar" class="clear-fix">
+        <li>首页</li>
+        <li>新闻</li>
+        <li>图片</li>
+    </ul>
+
+    <div id="main">
+        <div class="item">
+            这是首页
+        </div>
+        <div class="item">
+            新闻页面
+        </div>
+        <div class="item">
+            图片列表
+        </div>
+    </div>
+
+
+
+    <script>
+        var lis = document.querySelectorAll("#tabbar li");
+        
+        var divs = document.getElementsByClassName("item");
+		console.log(lis)
+        // 设置初始状态为第0个被选中
+        divs[0].style.display = "block";
+        currentDiv = 0;
+        lis[0].classList.add("highlighted");
+
+        // 定义一个变量，记录当前哪个div正在显示
+        var currentDiv = 0;
+
+        for(var i = 0;i<lis.length;i++){
+            var li = lis[i];
+            // 将索引记录在每个li上。
+            li.index = i;
+            li.onclick = function(e){
+                // console.log(e.target.index);
+
+                // 先隐藏上一个
+                if(currentDiv!=null){
+                    divs[currentDiv].style.display = "none";
+                    lis[currentDiv].classList.remove("highlighted");
+                }
+                divs[e.target.index].style.display = "block";
+                currentDiv = e.target.index;
+                e.target.classList.add("highlighted");
+            }
+        }
+    </script>
+</body>
+</html>

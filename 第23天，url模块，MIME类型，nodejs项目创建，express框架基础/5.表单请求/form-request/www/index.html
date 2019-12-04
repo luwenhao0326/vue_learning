@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>表单元素的使用方法</h1>
+
+    <!-- form标签的action属性表示表单的提交地址，表单点击提交之后，浏览器会向这个地址发送表单请求，并将表单中输入的数据作为本次请求的参数 -->
+    <!-- action的值是一个url，一般都是相对url -->
+    <!-- 只有设置了name属性的表单元素的数据会被提交 -->
+
+    <!-- 表单支持两种请求方式，GET请求和POST请求，通过method属性可以设置请求方式，默认为GET -->
+
+    <!-- GET请求参数直接拼在url中，POST请求的参数在请求体中。 -->
+
+    <form action="/api" method="POST">
+        <label for="">姓名</label>
+        <input name="name" type="text">
+        <br>
+        <label for="">年龄</label>
+        <input name="age" type="text">
+        <br>
+        <label for="">密码</label>
+        <input name="psw" type="password">
+        <br>
+
+        <!-- input type="submit"时，显示为一个按钮，点击之后表单会提交 -->
+        <input type="submit" value="提交">
+
+
+        <!-- 在form中添加button，点击之后也会默认提交表单 -->
+        <!-- <button>提交</button> -->
+    </form>
+</body>
+</html>

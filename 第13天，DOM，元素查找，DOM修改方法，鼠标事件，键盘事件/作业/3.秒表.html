@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #a1 {
+            width: 340px;
+            /* height: 150px; */
+            border: solid 1px black;
+            margin: 0 auto;
+
+        }
+
+        .a2 {
+            width: 340px;
+            height: 100px;
+            /* border: solid 1px green; */
+            display: flex;
+
+        }
+
+        .a3 {
+            width: 340px;
+            height: 50px;
+            /* border: solid 1px red; */
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        .a4 {
+
+            width: 30%;
+            height: 100px;
+            line-height: 100px;
+            font-size: 60px;
+            text-align: center;
+        }
+
+        .a5 {
+            width: 5%;
+            height: 100px;
+            line-height: 100px;
+            font-size: 60px;
+            text-align: center;
+            margin-top: -5px;
+
+        }
+
+        .a3 button {
+            width: 33%;
+            height: 100%;
+            line-height: 50px;
+        }
+
+        #btn2 {
+            display: none;
+        }
+
+        .c1 {
+            width: 300px;
+            height: 50px;
+            /* border:  solid 1px blue; */
+            margin: 0 auto;
+            line-height: 50px;
+            font-size: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="a1">
+        <div class="a2">
+            <div id="a4" class="a4">00</div>
+            <div class="a5">:</div>
+            <div id="a5" class="a4">00</div>
+            <div class="a5">:</div>
+            <div id="a6" class="a4">00</div>
+        </div>
+
+
+        <div class="a3" id="q1">
+            <button id="btn1">开始</button>
+            <button id="btn2">暂停</button>
+            <button id="btn3">分割</button>
+            <button id="btn4">重置</button>
+        </div>
+    </div>
+
+    <script>
+
+        var t1 = document.getElementById("a6");
+        t1.textContent = "000";
+        var i = 0;
+
+        var t2 = document.getElementById("a5");
+        t2.textContent = "00";
+        var j = 0;
+
+        var t3 = document.getElementById("a4");
+        t3.textContent = "00";
+        var k = 0;
+
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+        var timer2 = null;
+        // 开始
+        document.getElementById("btn1").onclick = function () {
+
+            timer2 = setInterval(function () {
+                t1.textContent = i++;
+                t1.textContent = i < 10 ? "00" + i : i;
+                if (i > 10 && i < 100) {
+                    t1.textContent = "0" + i;
+                }
+                if (i == 99) {
+                    t2.textContent = j++;
+                    t2.textContent = j < 10 ? "0" + j : j;
+                    i = 0;
+                }
+                if (j == 59) {
+
+                    t3.textContent = k++;
+                    t3.textContent = k < 10 ? "0" + k : k;
+                    j = -1;
+                }
+            }, 1);
+
+            btn2.style.display = "block";
+            btn1.style.display = "none";
+
+        }
+
+        // 暂停
+        document.getElementById("btn2").onclick = function () {
+            clearInterval(timer2);
+            btn2.style.display = "none";
+            btn1.style.display = "inline-block";
+        }
+
+
+
+        // 分割
+        document.getElementById("btn3").onclick = function () {
+
+
+            var t4 = document.createElement("p");
+            t4.classList.add("c1");
+            t4.textContent = t3.textContent + ":" + t2.textContent + ":" + t1.textContent;
+            var t5 = document.getElementById("a1");
+            t5.appendChild(t4);
+
+        }
+
+        // 重置
+        document.getElementById("btn4").onclick = function () {
+            t1.textContent = "000";
+            t2.textContent = "00";
+            t3.textContent = "00";
+            i = 0;
+            j = 0;
+            k = 0;
+            clearInterval(timer2);
+            btn2.style.display = "none";
+            btn1.style.display = "inline-block";
+
+
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // var num = prompt("请输入一个整数");
+        // var cj = 1;
+        
+        // if (num == 0) {
+        //     alert(1);
+        // }
+        // else {
+        //     for (var i = num; i > 0; i--) {
+        //         cj *= i;
+        //     }
+        //     alert(cj);
+        // }
+
+        // 斐波那契数列
+        // 1,2,3,5,8,13,21,34,55,89
+
+        var num = prompt("请输入第几项")*1;
+        
+        var n1= 1;
+        var n2= 2;
+        if(num<4){
+            alert(num);
+        }
+        else{
+            for(var i = 2;i<num;i++){
+                var sum = n1 + n2;
+                n1 = n2;
+                n2 = sum;
+            }
+            alert(sum);
+        }
+    
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        h1 {
+            margin-left: 30%;
+        }
+
+        .box {
+            width: 800px;
+            height: 100px;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <h1>详情页</h1>
+    <nav id="nav"> </nav>
+
+
+
+    <script src="./libs/jquery.js"></script>
+    <script src="./libs/ejs.js"></script>
+    <script src="./libs/layer/layer.js"></script>
+
+    <script>
+
+        $.ajaxSetup({
+            beforeSend: function () {
+                this.index = layer.load(2, {
+                    shade: [0.3, '#000'] 
+                });
+            },
+            complete:function(){
+                layer.close(this.index);
+            }
+        })
+
+
+        function render(qqq) {
+            
+            // 使用前端模板引擎，需要先创建或导入模板
+            // let templateStr = ``;
+
+            // 请求模板
+            $.get("/templates/blog-list.ejs")
+                .then(res => {
+                    console.log(res);
+                    // 请求的数据是一个字符串，即res为你请求过来的字符串，渲染的数据是一个数组，即qqq为一个数组
+                    let htmlStr = ejs.render(res, {qqq});
+                    $("#nav").html(htmlStr)
+                })
+
+
+            // 使用模板和数据进行渲染，得到渲染之后的html字符串
+
+        }
+        var num = [];
+        var nav = document.getElementById("nav")
+        $.get("/user", { yeshu: num.length })
+            .then(res => {
+                num = num.concat(res.data)
+                render(res.data)
+            })
+        
+        $(window).on("scroll", () => {
+            if (($(window).scrollTop()) >= ($(document).height() - $(window).height())) {
+                $.get("/user", { yeshu: num.length })
+                .then(res => {
+                    num = num.concat(res.data)
+                    render(num)
+                })
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

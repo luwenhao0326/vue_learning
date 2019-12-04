@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>表格标签</title>
+        <meta charset="utf-8">
+        <style>
+            #t1{
+                width: 500px;
+                border: solid 1px black;
+            }
+            td{
+                border: solid 1px black;
+            }
+            th{
+                border: solid 1px black;
+            }
+            #t2{
+                border: solid 1px black;
+                width: 600px;
+                /* 元素的大部分文本相关的样式初始值都是inherit，表示继承自己父元素的值，td和tr的text-align属性默认值都是inherit，所以给table设置文本居中以后，table中所有td也能文本居中 */
+                text-align: center;
+
+                /* border-collapse设置边框折叠，使相邻边框折叠在一起 */
+                border-collapse: collapse;
+            }
+            /* id为t2的元素中所有的td元素 */
+            #t2 td{
+                height: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- table,表格标签，用于显示一个表格，默认为块元素 -->
+        <!-- table不设置宽度时，宽度被内容撑开。设置了宽度且内部td没有设置宽度时，td会按照内容长度的比例拉伸。 -->
+        <table id="t1">
+            <!-- thead，表头，用于显示这一列的名字。 -->
+            <thead>
+                <!-- tr表示一行 -->
+                <tr>
+                    <!-- th表示表头中的一个单元格 -->
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- td是表主体中的单元格 -->
+                    <td>张雪峰</td>
+                    <td>20</td>
+                    <td>男</td>
+                </tr>
+                <tr>
+                    <td>薛曜东</td>
+                    <td>20</td>
+                    <td>男</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <br>
+        <!-- tbody可以省略，浏览器在解析时会自动添加。thead也不是必须的。table最常用的方法就是直接在table中写tr，td -->
+        <table id="t2">
+            <tr>
+                <td>时间</td>
+                <td>星期一</td>
+                <td>星期二</td>
+                <td>星期三</td>
+            </tr>
+            <tr>
+                <!-- td的rowspan属性用于设置本单元格占几行 -->
+                <td rowspan="2">上午</td>
+                <td>语文</td>
+                <td>数学</td>
+                <td>英语</td>
+            </tr>
+            <tr>
+                <td>物理</td>
+                <td>化学</td>
+                <td>生物</td>
+            </tr>
+            <tr>
+                <td rowspan="2">下午</td>
+                <td>地理</td>
+                <td>历史</td>
+                <td>政治</td>
+            </tr>
+            <tr> 
+                <td>音乐</td>
+                <td>美术</td>
+                <td>体育</td>
+            </tr>
+            <tr>
+                <td>晚上</td>
+                <!-- td的colspan属性，设置单元格占几列 -->
+                <td colspan="3">自习</td>
+            </tr>
+        </table>
+    </body>
+</html>

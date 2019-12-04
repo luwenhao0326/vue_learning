@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // 如果某段代码是一个独立的整体，单独完成某种功能，这个功能在程序中其他地方需要多次使用，就可以吧这段代码封装为一段函数，在需要使用这段代码的地方直接调用这个函数。
+
+        // 函数的声明：
+        // 使用function关键字声明一个函数，格式为：
+        // function 函数名(形参列表){函数体}
+        // 函数名和变量名一样使用小驼峰命名法，函数名要和函数 的功能一致。
+        // 参数：函数的参数命名也遵循小驼峰
+        function ave(a,b){
+            var c = (a+b)/2;
+
+            // 使用teturn 设置函数的返回值。
+            return c;
+        }
+
+
+        // 函数的调用
+        // 格式：
+        // 函数名(实参列表);
+
+        // 调用一个函数，本质就是执行函数体中的代码，函数调用本身可以认为是一个表达式，表达式的值就是函数的返回值
+        var n = ave(4,7);
+        // console.log(n);
+
+        // -----------------------------------------
+
+        // 函数可以没有参数，也可以有n个参数
+        // 无参的函数，即使没有参数，声明和调用是()不能省略
+        function sayHello(){
+            return "hello";
+            
+        }
+
+        // console.log(sayHello());
+
+        // ----------------------------------
+
+        // 函数可以有返回值，也可以没有返回值
+        function add(a,b){
+            console.log(a+b);
+        }
+        
+        // 调用一个没有返回值的函数，会得到undefined，表示未定义的值。
+        var result = add(3,5);
+        // console.log(result);
+        
+        // -------------------------------------
+
+        function f1(a,b){
+            // console.log(a);
+            // console.log(b);
+           
+        }
+        // 如果声明的参数在调用时没有传递，函数执行时参数为undefined
+        f1();
+
+        // --------------------------------
+
+        // return 用于返回函数，return执行之后会立刻结束函数体(return之后的代码不会执行)。
+        function f2(n){
+            if(n%2==0){
+                return "偶数";
+            }
+            return "奇数";
+            // return 之后可以不跟值，这样的函数的return是undefined 
+        }
+        f2();
+        // ---------------------------------------
+        // 判断数字是否偶数，返回布尔值 
+        function isEven(n){
+            
+            return n%2==0;
+        }
+        
+
+        
+
+
+
+
+
+    </script>
+
+</body>
+</html>

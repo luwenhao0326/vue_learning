@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        // js中的三种基本数字类型，都有对应的对象类型。
+
+        // 基本类型是一个简单的数据，没有属性和方法，但是js中的基本数据类型可以当做对象使用。
+
+
+        // 当对一个基本数据类型打点访问属性或方法时，js会临时将这个数据的值封装成一个对应类型的对象，然后使用这个对象调属性或方法，这个过程叫做自动装箱。
+
+        var str = "hello";
+        // 字符串的length属性表示字符串中字符的个数。
+        console.log(str.length);
+
+        // ------------------------------------
+
+        // 使用[]可以获得字符串中的第n个字符，从0开始。
+        var ch = str[2];
+        console.log(ch);
+
+        // ---------------------------------------
+
+        var str2 = "abcdefgabcdefg";
+
+        // indexOf，查找一个字符串在另一个字符串中首次出现的位置。如果没有出现则返回-1.
+        var ind = str2.indexOf("c");
+        // str2.lastIndexOf();  最后一次出现的位置
+
+        console.log(ind);
+        
+        // ---------------------------------------
+
+        var str3 = "苹果|香蕉|榴莲|西瓜";
+        
+        // split,字符串分割，按照某个分割符分割字符串，分割的结果是一个数组。
+        var fruits = str3.split("|");
+
+        console.log(fruits);
+
+        // ----------------------------------------
+
+        var str4 = "abcdefghijklmn";
+
+        // substr,字符串截取，第一个参数表示从第几个开始截，第二个参数表示截多长，如果不写第二个参数，则截取到最后。
+        var s4 = str4.substr(4,3);
+        console.log(s4);
+
+        // substring,字符串截取，从哪截，截到哪（包含开头，不包含结尾）
+        var s5 = str4.substring(4,6);
+        console.log(s5);
+        
+        // ----------------------------------
+
+        var str5 = "abcdefg";
+
+        // 判断一个字符串是否以另一个字符串开头
+        var b1 = str5.startsWith("abc");
+        
+        // str5.endsWith() 判断结尾
+
+        console.log(b1);
+        
+        // ------------------------------------
+
+        var str6 = "aBcDe";
+        //  toUpperCase,将字符串中所有字母改成大写
+        var s6 = str6.toUpperCase();
+        // str6.toLowerCase(); 改成小写
+        console.log(s6);
+        
+
+       
+
+        // NaN不等于NaN，判断一个变量是否为NaN要用Number.isNaN方法。
+        Number.isNaN(x);
+
+    </script>
+
+
+</body>
+</html>

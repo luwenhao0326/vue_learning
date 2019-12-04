@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>添加班级</h1>
+    <form action="/grade/add" method="POST">
+        <label for="">姓名</label>
+        <input type="text" name="name">
+        <br>
+        <label for="">老师</label>
+        <input type="text"name="teacher">
+        <br>
+        <label for="">课程</label>
+        <select name="major">
+            <option>web</option>
+            <option>java</option>
+            <option>vr</option>
+        </select>
+        <br>
+        <button>提交</button>
+    </form>
+</body>
+</html>

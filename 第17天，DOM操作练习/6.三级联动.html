@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var china = [
+            // 河南
+            {
+                name: "河南省",
+                city: [
+                    {
+                        name: "郑州",
+                        county: ["新郑", "中原"]
+                    },
+                    {
+                        name: "郑州1",
+                        county: ["新郑1", "中原1"]
+                    },
+                    {
+                        name: "郑州2",
+                        county: ["新郑2", "中原2"]
+                    },
+                ]
+            },
+            // 河北
+            {
+                name: "河北省",
+                city: [
+                    {
+                        name: "河北",
+                        county: ["河北北1", "河河北1"]
+                    },
+                    {
+                        name: "河北1",
+                        county: ["河北北2", "河河北2"]
+                    },
+                    {
+                        name: "河北2",
+                        county: ["河北北3", "河河北3"]
+                    },
+                ]
+            }
+        ]
+
+        var china1 = document.createElement("select");
+        document.body.appendChild(china1);
+
+        for (var i = 0; i < china.length; i++) {
+            var first = document.createElement("option");
+            china1.appendChild(first);
+            first.textContent = china[i].name;
+
+        }
+
+        var city = document.createElement("select");
+        document.body.appendChild(city);
+
+        for (var i = 0; i < china[0].city.length; i++) {
+            var second = document.createElement("option");
+            city.appendChild(second);
+            second.textContent = china[0].city[i].name;
+
+        }
+
+        var county= document.createElement("select");
+        document.body.appendChild(county);
+
+        for (var i = 0; i < china[0].city[0].county.length; i++) {
+            var three = document.createElement("option");
+            county.appendChild(three);
+            three.textContent = china[0].city[0].county[i];
+
+        }
+
+        china1.onchange = function(){
+            
+        }
+
+    </script>
+
+</body>
+
+</html>

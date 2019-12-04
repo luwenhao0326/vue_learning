@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        var arr1 = [5,4,6,3];
+        
+        // .push,向数组的最后添加一个元素。
+
+        arr1.push(10);
+        console.log(arr1);
+
+        // .pop,从数组最后删除一个元素.返回值就是删除的元素
+        var n =  arr1.pop();
+        console.log(n);
+
+        // unshift,向数组最前边加一个元素。
+        arr1.unshift(99);
+        console.log(arr1);
+
+        // shift,a从数组前端删除一个元素。返回值就是删除的元素
+        var n2 = arr1.shift();
+        console.log(n2);
+
+        // 数组的push和pop可以形成一对栈操作。
+        // unshift和shift也是一对栈操作 
+        
+        // push和shift可以形成一对 队列操作。
+        // pop和unshift可以形成一对队列操作
+
+
+        // ---------------------------------------
+
+        var arr2 = [1,2,3,5,6];
+
+        // .splice方法，用于删除或插入元素，第一个参数表示从第几个元素开始删，第二个参数表示删几个，第三个参数开始表示删除之后替换的新元素,如果刪除0个则这这个数前面加一个数。
+        // arr2.splice(2,1);
+        arr2.splice(3,0,4,4.5);
+
+        console.log(arr2);
+        
+
+        // ---------------------------------------
+
+        var arr3 = [1,2,3,4,5,6,7];
+        // .slice，数组截取，第一个参数表示从哪个位置开始截（含），第二个元素表示截取到第几个（不含）。
+        var res1 = arr3.slice(2,5);
+        console.log(res1);
+
+        // ---------------------------------------
+
+        var arr4 = [5,4,3,6,5,8,7,4,1,2]
+        // .indexOf,返回某个元素首次在数组中出现的位置，如果没有则返回-1.
+        console.log(arr4.indexOf(4));
+
+        // ---------------------------------------
+
+        var arr5 = [1,2,3,4,5];
+        // .reverse,数组顺序取反
+        arr5.reverse();
+
+        console.log(arr5);
+
+        // ---------------------------------
+
+        var arr6 = [14,35,5,7,9];
+        // .join，将数组中的元素按照顺序拼接成一个字符串，可以通过参数指定分割符，如果不指定则默认为,
+        var str1 = arr6.join("");
+
+        console.log(str1);
+
+        // -------------------------------------
+
+        // 字符串反转
+        var str2 = "abcdefg";
+        var res4 = str2.split("").reverse.join("");
+        console.log(res4);
+
+        // --------------------------------------
+
+        var arr7 = [1,2];
+        var arr8 = [3,4];
+        // concat,拼接数组。
+        var arr9 = arr7.concat(arr8);
+        console.log(arr9);
+
+        // --------------------------------------
+        
+        
+
+    </script>
+
+</body>
+</html>

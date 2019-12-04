@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            margin: 200px auto;
+            background-color: red;
+            border: solid 0px white;
+
+            /* css样式在发生变化时默认为直接变化，没有过渡的动画效果 */
+            /* 将某个样式设置为过渡时，这个样式在发生变化时会执行过渡动画 */
+
+            /* 设置元素过渡的样式，设置为all表示过渡所有样式 */
+            /* transition-property: background-color; */
+            /* 设置过渡时间，s表示秒，ms表示毫秒 */
+            /* transition-duration:  0.7s; */
+            /* 动画执行速率，linear，匀速 */
+            /* transition-timing-function: linear; */
+
+            /* transition可以设置多个过渡样式 */
+            /* transition: all 0.7s linear; */
+
+            /* 动画速率，默认为ease-in-out，先加速后减速（开始慢中间快结束慢） */
+            /* ease-in 加速动画，（开始慢最后快） */
+            /* ease-out 减速动画，（开始快，结束慢） */
+            transition: all 2s ease-in-out;
+            
+            
+        }
+        #box:hover{
+            
+            background-color: yellow;
+
+            /* width: 300px; */
+            /* 要过渡的样式必须有初始值 */
+            /* height: 300px; */
+
+            /* 并非所有样式都能过渡，一般情况下，和元素外观有关的样式都能过渡，例如，color，width，right，border，transform,等 */
+            /* 和元素布局,定位有关的样式一般不能过渡 */
+
+            transform: scale(2,2) rotate(180deg);
+            
+            border: solid 10px red;
+
+            border-radius: 50%;
+        }
+
+        #box:active{
+            /* 设置元素阴影 */
+            /* 参数分别是横向偏移量，纵向偏移量，模糊程度，阴影大小，阴影颜色 */
+            box-shadow: 0 0  50px 0 red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">定宽居中</div>
+</body>
+</html>

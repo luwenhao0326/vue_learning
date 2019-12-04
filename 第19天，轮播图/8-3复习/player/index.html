@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- audio，音频播放标签 -->
+    <!-- controls，显示控制界面 -->
+    <!-- autoplay属性，设置为自动播放，（在ios手机浏览器中无效） -->
+    <!-- loop，循环播放 -->
+    <!-- preload，执行预加载，在点击播放按钮之前，提前下载音频数据。 -->
+    <audio id="player"></audio>
+
+    <div id="main">
+        <div id="lyric-box"></div>
+        <div id="progress-box">
+            <progress id="progress-bar" value="0.5"></progress>
+            <p id="time-label">00:00/00:00</p>
+        </div>
+        <div id="control-box">
+            <span id="prev" class="fa fa-backward ctrl"></span>
+            <span id="play" class="fa fa-play ctrl"></span>
+            <span id="next" class="fa fa-forward ctrl"></span>
+        </div>
+    </div>
+
+    
+</body>
+
+<script src="index.js"></script>
+
+
+</html>

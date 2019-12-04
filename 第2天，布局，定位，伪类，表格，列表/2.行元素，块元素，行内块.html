@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>行元素，块元素，行内块元素</title>
+        <meta charset="utf-8">
+        <style>
+            #d1{
+                background-color: red;
+                width: 100px;
+                height: 100px;
+               
+            }
+            #d2{
+                background-color: blue;
+                width: 50px;
+                height: 50px;
+            }
+            .bg{
+                background-color: yellow;
+            }
+            #btn{
+                width: 100px;
+                height: 30px;
+            }
+            #d3{
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+                background-color: cyan;
+            }
+            #container{
+                text-align: center;
+            }
+            #box{
+                /* 元素的布局方式 */
+                display: block;
+                /* display: inline;
+                display: inline-block; */
+                background-color: purple;
+                height: 50px;
+            }
+        </style>  
+    </head>
+    <body>
+        <!-- html标签按照布局方式可以分为行元素，块元素，行内块元素 -->
+
+        <!-- 块元素的特点：独占一行，可以设置宽高，如果不设置宽高，则显示默认宽高，如果也没有默认宽高，则显示为内容宽高。布局方式默认为块元素的有：p,h1-h6,div, -->
+
+        <!-- div宽度默认为父元素的100%，高度默认为空 -->
+        <div id="d1">assssssssafa</div>
+        <div id="d2"></div>
+
+
+        <!-- 行元素的特点，不能设置宽高，宽高只能取决于自身内容，不独占一行，多个行元素之间会左右排列，一行到最后显示不下是会自动换行。 默认为行元素的标签有：span,a,b等-->
+
+        <span class="bg">多个行元素之间会左右排列</span>
+        <span class="bg">多个行元素之间会左右排列</span>
+        <span class="bg">多个行元素之间会左右排列</span>
+        <span class="bg">多个行元素之间会左右排列</span>
+        <span class="bg">多个行元素之间会左右排列</span>
+        <span class="bg">多个行元素之间会左右排列</span>
+        <span class="bg">多个行元素之间会左右排列</span>
+        <span class="bg">多个行元素之间会左右排列</span>
+        <span class="bg">多个行元素之间会左右排列</span>
+        <span class="bg">多个行元素之间会左右排列</span>
+
+        <br>
+
+        <!-- 行内块元素特点：可以设置宽高，不独占一行，多个行内块左右排列并自动换行。默认为行内块的元素有：img，button，input -->
+
+        <button id="btn">确定</button>
+        <button>取消</button>
+
+        <!-- 块元素可以通过设置自身的margin 0 auto，实现在父元素中水平居中 -->
+        <div id="d3"></div>
+
+        <!-- 行元素通过设置其父元素的text—align,实现水平居中 -->
+
+        <p id="container">
+            <span class="bg">设置父元素的文本对齐方式</span>
+        </p>
+
+        <!-- 行元素和块元素不是绝对不变的，任何元素都可以通过改变display样式来改变布局方式类型，块元素为block，行元素为inline，行内块为inline—block -->
+        <span id="box">显示为块的元素span</span>
+
+        
+
+
+    </body>
+</html>

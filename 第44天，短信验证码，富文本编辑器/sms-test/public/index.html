@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        #logo{
+           
+            width: 60vw;
+            height: 60vw;
+            border-radius: 50%;
+            margin: 30px 0;
+            
+        }
+        .field{
+            border: solid 1px lightgray;
+            border-radius: 4px;
+            height: 44px;
+            font-size: 24px;
+            padding-left: 10px;
+            vertical-align: middle;
+            box-sizing: border-box;
+        }
+        .field:focus{
+            border: solid 1px orange;
+            outline: none;
+            border-radius: 4px;
+        }
+
+        #tel{
+            width: 80vw;
+            
+        }
+
+        #cap-box{
+            width: 80vw;
+            margin: 10px auto;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+        }
+        #cap{
+            width: 50%;
+           
+        }
+        #cap-btn{
+            width: 40%;
+            font-size: 18px;
+            padding: 1px 0;
+            background-color: yellow;
+        }
+        #cap-btn:disabled{
+            background-color: lightgray;
+        }
+        #login-btn{
+            width: 80vw;
+            background-color: #5cb85c;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <img id="logo" src="/images/1.jpg" alt="">
+    <div>
+        <input class="field" id="tel" type="text" placeholder="手机号">
+        <div id="cap-box">
+            <input id="cap" class="field" type="text">
+            <button id="cap-btn" class="field">发送验证码</button>
+        </div>
+        <button id="login-btn" class="field">登&emsp;录</button>
+    </div>
+
+    <script src="/libs/jquery.js"></script>
+    <script src="/libs/layer/layer.js"></script>
+
+    <script>
+        $("#cap-btn").on("click",function(){
+            let num = $("#tel").val();
+            let reg = /^1[356789]\d{9}$/;
+            if(!reg.test(num)){
+                layer.msg("请输入正确的手机号");
+                return;
+            }
+
+            $.post("/users/getcap",{
+                tel:num
+            }).then(res=>{
+                if(res.err){
+                    layer.msg("服务器繁忙，请稍后再试")
+                }else{
+                    $("#cap-btn").prop("disabled",true).text("已发送");
+
+                    let count = 60;
+                    let timer = setInterval(function(){
+                        count--;
+                        $("#cap-btn").text(`已发送(${count})`);
+                        if(count<=0){
+                            $("#cap-btn").prop("disabled",false).text("获取验证码");
+                            clearInterval(timer);
+                        }
+                    },1000)
+                }
+            })
+        });
+
+
+        $("#login-btn").on("click",function(){
+            let capCode = $("#cap").val();
+            $.post("/users/login",{cap:capCode})
+            .then(res=>{
+                if(res.err){
+                    layer.msg("验证码错误");
+                }else{
+                    location.href = "/home.html";
+                }
+            })
+        })
+    </script>
+</body>
+</html>

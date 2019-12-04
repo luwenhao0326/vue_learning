@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+    // var str = "sahdfauhfiqwueohrcqiwunrheca";
+    // console.log(str.split("a").length-1);
+    
+
+    var str = "sadshfioafhqwieucrnwqurcwervrvqwwdrwr";
+
+    var result = {};
+
+    for(var i = 0;i<str.length;i++){
+        var ch = str[i];
+        
+        if(result[ch]==undefined){
+            result[ch] = 1;
+        }else{
+            result[ch]++;
+        }
+    }
+
+    console.log(result);
+
+    var max = -1;
+    var char = null;
+
+    for(var k in result){
+        if(result[k]>max){
+            max = result[k];
+            char = k;
+        }
+    }
+
+    console.log("出现最多的字母是"+char+"，出现了"+max+"次");
+
+
+</script>
+
+</html>

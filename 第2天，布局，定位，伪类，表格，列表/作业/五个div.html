@@ -1,0 +1,53 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>五个div</title>
+    <style>
+        #a1{
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            position: relative;
+       
+        }
+        .class{
+            width: 80px;
+            height: 80px;
+            background-color: green;
+            display: inline-block;
+        }
+        #d2{
+            float: right;
+        }
+        #d4{
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+        }
+        #d5{
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            
+        }
+        /* 设置元素定位方式为absolute，上下左右坐标都为0，margin:auto,相对父元素定位，这个元素可以实现父元素居中 */
+        #d3{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom:0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="a1">
+        <div id="d1" class="class"></div>
+        <div id="d2" class="class"></div>
+        <div id="d3" class="class"></div>
+        <div id="d4" class="class"></div>
+        <div id="d5" class="class"></div>
+    </div>
+</body>
+</html>

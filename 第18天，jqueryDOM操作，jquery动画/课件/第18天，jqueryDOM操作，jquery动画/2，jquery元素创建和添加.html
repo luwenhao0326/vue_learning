@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script src="jquery.js"></script>
+
+<script>
+    
+    // $函数，参数如果是html字符串，用于创建元素，html字符串可以是嵌套复杂的html字符串，同时可以包含属性
+    var $div = $("<div id='box'><span>123</span></div>");
+
+    // console.log($div);
+
+    // jq对象的appendTo方法，用于将jq对象中的元素添加到某个父元素上，参数可以是原生元素，也可以是元素所在的jq对象。
+    // $div.appendTo(document.body);
+    // $div.appendTo($(document.body));
+
+    // jq对象的.append方法，用于添加子元素
+    $("body").append($div);
+
+    //-----------------------------------------------------------
+
+    // 使用jq创建的元素对象可以直接添加，不用变量记录。
+
+    $("<ul><li>第1行</li><li>第2行</li></ul>")
+    .appendTo(document.body);
+
+
+    //----------------------------------------------------------
+    
+
+
+
+</script>
+
+</html>

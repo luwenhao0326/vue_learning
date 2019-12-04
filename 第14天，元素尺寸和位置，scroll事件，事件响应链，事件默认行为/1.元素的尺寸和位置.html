@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        #box{
+            width: 100px;
+            height: 80px;
+            background-color: red;
+            color: yellow;
+            margin-left: 20px;
+            margin-top: 30px;
+            padding: 20px;
+            border: solid 10px  black;
+        }
+        #outer{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <div id="box">123456</div>
+    </div>
+    
+
+    <script>
+        var box = document.getElementById("box");
+        
+
+        // 通过元素对象的style属性设置的样式是行内样式，所以通过style获取也是获取的行内样式，并不能获取css设置的样式值。
+        // console.log(box.style.color);
+        
+        // ----------------------------------------
+
+        // 元素对象的clientWidth属性表示元素的宽度，
+        // console.log(box.clientWidth);
+        // clientHeight高度。
+        // console.log(box.clientHeight);
+        
+        // 带边框的宽高。
+        // console.log(box.offsetWidth);
+        // console.log(box.offsetHeight);
+        
+        
+        // 获得元素相对于浏览器窗口的坐标。
+        // console.log(box.offsetLeft);
+        // console.log(box.offsetTop);
+        
+        // 使用自身相对窗口的坐标减去父元素相对窗口的坐标可以得到自己相对于父元素的坐标。
+
+        // var outer = document.getElementById("outer");
+        // console.log(box.offsetLeft-outer.offsetLeft);
+        // console.log(box.offsetTop-outer.offsetTop);
+
+        // -------------------------------------
+
+        // 浏览器窗口的宽高（工作区域，显示页面的区域）
+        console.log(window.innerWidth);
+        console.log(window.innerHeight);
+
+        // 整个浏览器窗口的宽高
+        console.log(window.outerWidth);
+        console.log(window.outerHeight);
+        
+
+    </script>
+
+</body>
+</html>

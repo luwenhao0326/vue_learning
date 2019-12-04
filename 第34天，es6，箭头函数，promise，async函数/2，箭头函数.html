@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="btn">按钮</button>
+
+    <script>
+        // 箭头函数 是es6匿名函数的新写法。
+        let f1 = function (a, b) {
+            return a + b;
+        }
+        // 箭头函数语法：
+        // (参数列表)=>{函数体}
+        let f2 = (a, b) => {
+            return a + b;
+        }
+        //-------------------------------------------
+        let f3 = function (m) {
+            console.log(m);
+        }
+        // 箭头函数的参数如果只有一个，括号可以省略
+        let f4 = m => {
+            console.log(m);
+        }
+        //---------------------------------------------
+        let f5 = function () {
+            console.log("无参的函数");
+        }
+        // 箭头函数如果没有参数，括号不可省略
+        let f6 = () => {
+            console.log("无参的函数");
+        }
+        // -----------------------------------
+        // 箭头函数和普通的匿名函数，除了语法上的区别，函数中的this指向也有区别：
+        // 箭头函数中的this总是当前函数中的this。(箭头函数相当于普通匿名函数+bind(this));
+        var btn = document.getElementById("btn");
+        
+        btn.onclick = function(){
+            // console.log(this);
+            
+            setTimeout(()=>{
+                console.log(this);
+            }, 2000);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,562 @@
+body {
+    margin: 0;
+}
+
+#title {
+    background-color: rgb(34, 34, 34);
+    height: 108px;
+}
+
+#title1 {
+    width: 940px;
+    margin: 0 auto;
+    color: rgb(255, 255, 255);
+    display: flex;
+}
+
+#img1 {
+    width: 259px;
+    height: 64px;
+    margin-top: 22px;
+}
+
+#title1 span {
+    display: inline-block;
+    /* padding: 0 20px 0 30px; */
+    font-size: 14px;
+    width: 160px;
+    height: 64px;
+    line-height: 64px;
+    margin-top: 43px;
+    text-align: center;
+}
+
+#title1 span:nth-of-type(1) {
+    padding-left: 0px;
+}
+
+#title1 span:nth-of-type(6) {
+    font-size: 20px;
+    margin-top: 40px;
+    padding-right: 0px 20px 0 30px;
+}
+
+#title1 span:hover {
+    color: rgb(0, 173, 239);
+    cursor: pointer;
+}
+
+.lunbo {
+    width: 100%;
+    height: 798px;
+    background-image: url(lunbo.jpg);
+    background-size: 100% 100%;
+}
+
+.lunbo-main {
+    width: 640px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.lunbo-main p {
+    margin: 0;
+    text-align: center;
+    color: white;
+}
+
+.lunbo-main p:nth-of-type(1) {
+    padding-top: 40px;
+    font-size: 18px;
+}
+
+.lunbo-main p:nth-of-type(2) {
+    font-size: 30px;
+}
+
+.lunbo-main p:nth-of-type(4) {
+    font-size: 15px;
+    padding-top: 15px;
+}
+
+.lunbo-main p:nth-of-type(5) {
+    font-size: 15px;
+    background-color: rgb(0, 173, 239);
+    width: 100px;
+    height: 30px;
+    margin-left: 40%;
+    margin-top: 10px;
+    line-height: 30px;
+}
+
+.lunbo-main p:nth-of-type(5):hover {
+    cursor: pointer;
+}
+
+/* ------------------------------第二块------------------------------------------- */
+
+#two {
+    width: 940px;
+    margin: 0 auto;
+
+}
+
+.two-one {
+    display: flex;
+    height: 50px;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+.line {
+    width: 390px;
+    border-bottom: solid 1px #999;
+
+}
+
+.two-one-main {
+
+    color: rgb(102, 102, 102);
+    font-size: 30px;
+    padding: 25px 20px 0 20px;
+}
+
+#two-two {
+    background-image: url(beijing1.jpg);
+    width: 940px;
+    height: 400px;
+    display: flex;
+    overflow: hidden;
+}
+
+#two-two div {
+    width: 233px;
+    border: solid 1px white;
+    position: relative;
+
+}
+
+#two-two div:hover {
+    background-color: rgba(38, 38, 51, 0.3);
+    margin-top: -30px;
+    cursor: pointer;
+}
+
+#two-two div:hover .p1 {
+    background-color: white;
+    color: black;
+}
+
+#two-two div p {
+    text-align: center;
+    /* line-height: 50px; */
+    color: white;
+    margin-bottom: 0;
+}
+
+.p1 {
+    font-size: 25px;
+    position: absolute;
+    left: 48%;
+    top: 55%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: solid 1px white;
+    line-height: 30px;
+    text-align: center;
+}
+
+.p2 {
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    left: 45%;
+    top: 70%;
+}
+
+.q1 {
+    position: absolute;
+    left: 38%;
+    top: 70%;
+}
+
+.p3 {
+    margin-top: 0px;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    left: 37%;
+    top: 85%;
+}
+
+#two-four {
+    background-image: url(beijing2.jpg);
+    width: 940px;
+    height: 300px;
+    background-size: 100% 100%;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#two-four-one {
+    width: 100%;
+    height: 100%;
+    transition-duration: 1s;
+}
+
+#two-four-one:hover {
+    background-color: rgba(38, 38, 51, 0.3);
+
+}
+
+.two-four-one-1 {
+    font-size: 30px;
+    color: white;
+    height: 100%;
+    position: absolute;
+    left: 50px;
+    top: 40%;
+}
+
+#two-four p {
+    position: absolute;
+    left: -300px;
+    font-size: 18px;
+    color: white;
+}
+
+#two-four-one:hover .two-four-one-1 {
+    left: 50px;
+    top: 80px;
+}
+
+#two-four-one:hover .p4 {
+    left: 50px;
+    top: 120px;
+}
+
+#two-four-one:hover .p5 {
+    left: 50px;
+    top: 145px;
+}
+
+#two-four-one:hover .p6 {
+    left: 50px;
+    top: 190px;
+    font-size: 15px;
+}
+
+#two-four-one:hover .p6:hover {
+    color: rgb(0, 180, 243);
+    cursor: pointer;
+}
+
+#two-five {
+    width: 940px;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#two-five-one {
+    width: 620px;
+    background-image: url(beijing3.jpg);
+    background-size: 100% 100%;
+}
+
+#two-five-two {
+    width: 312px;
+    background-image: url(beijing4.jpg);
+    background-size: 100% 100%;
+}
+
+#two-five-one:hover .two-four-one-1 {
+    left: 50px;
+    top: 80px;
+}
+
+#two-five p {
+    position: absolute;
+    left: -300px;
+    font-size: 18px;
+    color: white;
+}
+
+#two-five-one:hover .p4 {
+    left: 50px;
+    top: 120px;
+}
+
+#two-five-one:hover .p6 {
+    left: 50px;
+    top: 175px;
+    font-size: 15px;
+}
+
+#two-five-one:hover .p6:hover {
+    color: rgb(0, 180, 243);
+    cursor: pointer;
+}
+
+.two-four-one-2 {
+    font-size: 30px;
+    color: white;
+    height: 100%;
+    position: absolute;
+    left: 650px;
+    top: 40%;
+}
+
+#two-five-two:hover .two-four-one-2 {
+    left: 650px;
+    top: 80px;
+}
+
+#two-five-two:hover .p4 {
+    left: 650px;
+    top: 120px;
+}
+
+#two-five-two:hover .p5 {
+    left: 650px;
+    top: 120px;
+}
+
+#two-five-two:hover .p6 {
+    left: 650px;
+    top: 175px;
+    font-size: 15px;
+
+}
+
+#two-five-two:hover .p6:hover {
+    color: rgb(0, 180, 243);
+    cursor: pointer;
+}
+
+/* ------------------------------第三块---------------------------------- */
+
+.lunbo2 {
+    width: 100%;
+    height: 530px;
+    background-image: url(beijing5.jpg);
+    background-size: 100% 100%;
+}
+
+.lunbo2-main {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    left: 500px;
+    top: 150px;
+    background-color: rgba(251, 251, 251, 0.8);
+}
+
+.lunbo2-main p {
+    text-shadow: 0 0 0.5px rgb(156, 156, 167);
+}
+
+.lunbo2-main p:nth-of-type(1) {
+    font-size: 30px;
+    position: absolute;
+    left: 50px;
+    top: 20px;
+}
+
+.lunbo2-main p:nth-of-type(2) {
+    font-size: 17px;
+    position: absolute;
+    left: 50px;
+    top: 90px;
+}
+
+.lunbo2-main p:nth-of-type(3) {
+    position: absolute;
+    left: 50px;
+    top: 130px;
+}
+
+.lunbo2-main p:nth-of-type(3):hover {
+    cursor: pointer;
+    color: rgb(0, 180, 243);
+}
+
+/* ----------------------------------第四块----------------------------------- */
+
+#four {
+    width: 1000px;
+    height: 150px;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row-reverse;
+}
+
+#four p {
+    padding-right: 20px;
+}
+
+#four img {
+    width: 117px;
+    height: 40px;
+    margin-top: 8px;
+}
+
+#four img:hover {
+    cursor: pointer;
+}
+
+/* -------------------------------第五块---------------------------------------------- */
+
+#five {
+    width: 100%;
+    background-color: rgb(241, 241, 241);
+}
+
+#five-one {
+    width: 940px;
+    height: 445px;
+    /* border: solid 1px red; */
+    margin: 0 auto;
+
+}
+
+table {
+    width: 940px;
+    height: 430px;
+    /* border: solid 1px blue; */
+    /* text-align: center; */
+    padding-top: 30px;
+}
+
+table tr {
+    font-size: 15px;
+    color: #666;
+}
+
+.t2 td:hover {
+    color: rgb(0, 173, 239);
+    cursor: pointer;
+}
+
+#t1 {
+    font-size: 20px;
+    color: black;
+}
+
+#five-two {
+    width: 940px;
+    height: 140px;
+    border-top: solid 1px #999;
+    border-bottom: solid 1px #999;
+    margin: 0 auto;
+}
+
+#five-two p {
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+}
+
+#five-two span {
+    display: inline-block;
+    width: 19%;
+    color: #666;
+}
+
+#five-two span:hover {
+    cursor: pointer;
+    color: rgb(0, 180, 243);
+}
+
+#five-three {
+    width: 940px;
+    height: 180px;
+    margin: 0 auto;
+
+}
+
+#five-three p {
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+}
+
+#five-three div {
+    display: inline-block;
+
+}
+
+#y1 {
+    width: 44px;
+    height: 44px;
+    background-image: url(logo4.png);
+    background-size: 100% 100%;
+    margin-right: 20px;
+}
+
+#y1:hover {
+    background-image: url(logo3.png);
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+#y2 {
+    width: 44px;
+    height: 44px;
+    background-image: url(logo5.png);
+    background-size: 100% 100%;
+    margin-right: 20px;
+}
+
+#y2:hover {
+    background-image: url(logo6.png);
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+#y3 {
+    width: 44px;
+    height: 44px;
+    background-image: url(logo7.png);
+    background-size: 100% 100%;
+}
+
+#y3:hover {
+    background-image: url(logo8.png);
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+#six {
+    height: 50px;
+    width: 100%;
+    background-color: rgb(34, 34, 34);
+}
+
+#six-div {
+    width: 940px;
+    margin: 0 auto;
+}
+
+#six span {
+    color: #999;
+    font-size: 12px;
+    margin-right: 40px;
+    line-height: 50px;
+}
+
+#six span:hover {
+    cursor: pointer;
+    color: rgb(0, 92, 239);
+}
+
+#six span:nth-of-type(6) {
+    margin-right: 0px;
+}

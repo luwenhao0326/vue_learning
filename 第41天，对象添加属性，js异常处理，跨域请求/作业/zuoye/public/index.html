@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form action="/api/test" method="POST"> -->
+        <label for="">请选择你的快递公司</label>
+        <br>
+        <select name="kuaidi" id="kuaidi">
+            <option  value="shunfeng">顺丰快递</option>
+            <option  value="EMS">EMS</option>
+            <option value="shentong">申通快递</option>
+            <option  value="yuantong">圆通快递</option>
+            <option value="zhongtong">中通快递</option>
+            <option  value="yunda">韵达快递</option>
+            <option value="tiantian">天天快递</option>
+            <option value="huitongkuaidi">汇通快递</option>
+            <option  value="quanfengkuaidi">全峰快递</option>
+            <option value="debangwuliu">德邦物流</option>
+            <option  value="zhaijisong">宅急送</option>
+            
+        </select>
+        <br>
+        
+        <label for="">请输入你的快递单号</label>
+        <br>
+        <input type="text" name="danhao" id="danhao">
+        <br>
+        <button id="chaxun">查询</button>
+    <!-- </form> -->
+
+    <div id="weather-box"></div>
+    
+    <script type="text/html" id="t1">
+    <%if(data.length>0){%>
+    <% for(var i =data.length-1;i>=0;i--){%>
+    <div>
+        <%var w = data[i]%>
+        <p>发出时间：<%=w.time%></p>
+        
+        <p>到达时间：<%=w.ftime%></p>
+        <p>到达信息：<%=w.context%></p>
+        
+    </div>
+    <hr>
+    <%}%>
+    <%}else{%>
+        <p>暂无此订单消息</p>
+    <%}%>  
+    </script>
+    <script src="/libs/jquery.js"></script>
+    <script src="/libs/ejs.js"></script>
+    <script>
+        $("#chaxun").on("click",function(){
+            var xxx = $("#kuaidi").val();
+            var yyy = $("#danhao").val();
+            var qqq = {};
+            qqq.kuaidi = xxx;
+            qqq.danhao = yyy;
+            $.post("/api/test",qqq)
+            .then(res=>{
+                var obj =  JSON.parse(res); 
+                console.log(obj)
+                let htmlStr = ejs.render($("#t1").text(), obj);
+                console.log(htmlStr)    
+                $("#weather-box").html(htmlStr);
+            })
+        })
+        
+    </script>
+</body>
+</html>

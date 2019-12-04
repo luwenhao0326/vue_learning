@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        function Animal(color,sex,subject,life){
+           this.color = color;
+           this.sex = sex;
+           this.subject = subject;
+           this.life = life; 
+        }
+        
+        function Bird(color,sex,subject,life,chibang){
+            Animal.call(this,color,sex,subject,life);
+            this.chibang = chibang;
+        }
+        function TuoNiao(color,sex,subject,life,chibang){
+            Bird.call(this,color,sex,subject,life,chibang);
+            this.benpao = function(){
+                console.log("我用两只腿奔跑");
+                
+            }
+        }
+        
+        var d1 = new TuoNiao("黑色","公","科目","18","翅膀短小");
+        console.log(d1);
+        d1.benpao();
+        
+        
+    </script>
+</body>
+</html>

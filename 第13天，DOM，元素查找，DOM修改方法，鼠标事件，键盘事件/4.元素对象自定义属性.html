@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- html标签的属性可分为html自带属性和自定义属性 -->
+    <!-- html自带的属性又分为通用属性和专用属性，例如id,class,itle是通用属性,src,href是专用属性 -->
+
+    <!-- html标签还可以添加自定义属性 -->
+    <!-- 对于自定义属性，浏览器在解析页面时会忽略这些属性 -->
+    <!-- 自定义属性一般用于自定义属性选择器 -->
+    <div zhangxvefeng="123"></div>
+
+    <div id="box">大部分的标签属性，都可以通过同名的对象属性来设置</div>
+    <script>
+
+        // 在html标签中添加的属性叫做标签属性
+        // 找到这个元素对象，通过打点访问的属性是这个对象的属性。
+        // 这两个属性有关联，但是不相等。
+
+
+        // 对于大部分的标签属性，都可以通过同名的对象属性来设置
+        var box = document.getElementById("box");
+
+        box.title = "悬停之后显示的提示内容";
+
+
+        // 除了这大部分属性之外，其他的属性(包括所有自定义属性)，都不能通过对象打点添加。
+        // 通过对象打点添加的属性，仅仅是这个元素对象的属性，并不能设置到标签上
+        box.first = "第一个属性";
+
+
+        // 通过js给标签添加自定义属性有专门的写法.
+
+        // setAttribute为元素添加标签属性，不管是自定义属性还是html自带的属性都可以通过这种方式设置。第一个参数是属性名，第二个参数是属性值(属性的值只能是字符串)
+        box.setAttribute("first","通过setAttribute添加的自定义属性");
+        
+        // getAttribute获得元素对象的某个标签属性(自定义和html自带属性都可以)，参数是要获取的属性的名字，返回值就是获得的属性值
+        var t1 =  box.getAttribute(title);
+        console.log(t1);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+
+HTTP：typer text transfer protocol ：超文本传输协议。
+
+http是一种基于 客户端/服务器(C/S) 的协议，它规定首先由客户端向服务器发送请求，然后服务器向客户端发送响应。
+
+http协议规定发送的数据以数据报文形式发送。
+
+客户端向服务器发送的数据叫做 请求报文。
+服务器向客户端做出的响应叫做 响应报文。
+
+
+请求报文格式：
+1，请求行：单独一行文本，其中记录了本次请求的请求方式，请求地址，以及使用的http的版本号(1.0 1.1)。
+2，请求头：若干行文本，其中记录了本次请求的附加参数，例如Accept，User-Agent，等。
+（空行）
+3，请求体：若干行文本，其中是本次请求需要发送给服务器的数据。
+
+
+响应报文格式：
+1，响应行：单独一行文本，响应状态码，响应状态，http版本号。
+2，响应头：若干行文本，本次响应的附带参数，例如Content-Type,Content-Length等。
+(空行)
+3，响应体：若干行文本，本次请求所得到的数据。
+
+
+
+ GET / HTTP/1.1
+ Connection:Keep-Alive
+ Content-Encoding:gzip
+ Content-Type:text/html; charset=utf-8
+ Accept:*/*
+
+ qweqweqwe
+

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var provinces = [
+            {
+                name: "河南省",
+                citys: [
+                    {
+                        city: "郑州",
+                        county: ["管城区", "金水区", "二七区", "中原区"]
+                    },
+                    {
+                        city: "开封",
+                        county: ["开封县", "兰考县", "通许县"]
+                    },
+                    {
+                        city: "洛阳",
+                        county: ["西工区", "老城区", "洛龙区", "偃师市"]
+                    },
+                ]
+            },
+
+
+            {
+                name: "山东省",
+                citys: [{
+                    city: "济南市",
+                    county: ["历下区", "市中区", "天桥区", "章丘区"]
+                },
+                {
+                    city: "青岛市",
+                    county: ["市南区", "市北区", "城阳区", "黄岛区"]
+                },
+                {
+                    city: "烟台市",
+                    county: ["莱山区", "福山区", "龙口市", "莱州市"]
+                }]
+            },
+            {
+                name: "湖北省",
+                citys: [
+                    {
+                        city: "武汉市",
+                        county: ["江岸区", "武昌区", "江汉区", "汉阳区"]
+                    },
+                    {
+                        city: "荆州市",
+                        county: ["沙市区", "荆州区", "洪湖市", "石首市"]
+                    },
+                    {
+                        city: "黄冈市",
+                        county: ["黄州区", "麻城市", "武穴市", "红安县"]
+                    }
+                ]
+            }
+        ];
+
+
+        var proSel = document.createElement("select");
+        document.body.appendChild(proSel);
+
+        for (var i = 0; i < provinces.length; i++) {
+            var p = provinces[i];
+            var opt = document.createElement("option");
+            opt.textContent = p.name;
+            proSel.appendChild(opt);
+        }
+
+
+        var citysSel = document.createElement("select");
+        document.body.appendChild(citysSel);
+
+        for (var i = 0; i < provinces[0].citys.length; i++) {
+            var c = provinces[0].citys[i].city;
+            var opt = document.createElement("option");
+            opt.textContent = c;
+            citysSel.appendChild(opt);
+        }
+
+
+        var citySel = document.createElement("select");
+        document.body.appendChild(citySel);
+        // console.log(provinces[0].citys[0].county);
+        for (var i = 0; i < provinces[0].citys[0].county.length; i++) {
+            var c = provinces[0].citys[0].county[i];
+            var opt = document.createElement("option");
+            opt.textContent = c;
+            citySel.appendChild(opt);
+        }
+
+
+        proSel.onchange = function(){
+            var p = provinces[proSel.selectedIndex];
+            citysSel.innerHTML = "";
+            for(var i = 0;i<p.citys.length;i++){
+                var c = p.citys[i].city;
+                var opt = document.createElement("option");
+                opt.textContent = c;
+                citysSel.appendChild(opt);
+            } 
+
+            citySel.innerHTML = "";
+            for (var j = 0; j < p.citys.length; j++) {
+            var d = p.citys[0].county[j];
+            var opt = document.createElement("option");
+            opt.textContent = d;
+            citySel.appendChild(opt);
+            
+        }
+
+            p1.textContent =proSel.value+ citysSel.value+citySel.value;
+            
+        }
+
+
+        citysSel.onchange = function(){
+            var p = provinces[proSel.selectedIndex].citys[citysSel.selectedIndex];
+            citySel.innerHTML = "";
+            for(var i = 0;i<p.county.length;i++){
+                var c = p.county[i];
+                var opt = document.createElement("option");
+                opt.textContent = c;
+                citySel.appendChild(opt);
+            } 
+
+            p1.textContent =proSel.value+ citysSel.value+citySel.value;
+            
+        }
+
+
+        var p1 = document.createElement("p");
+        p1.textContent = "请选择地址";
+        document.body.appendChild(p1);
+        
+        
+        function addChange(){
+            p1.textContent =proSel.value+ citysSel.value+citySel.value;
+            console.log(123);
+            
+            }
+        citySel.onchange = addChange;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>body中自带的div</div>    
+
+    <ul id="list"></ul>
+
+    <script>
+        // 对于body元素对象，可以不用查找，直接通过document.body调用。
+        console.log(document.body);
+
+        // createElement，创建一个元素对象，参数是要创建的元素名字，返回值是创建的元素对象。
+        var t1 = document.createElement("h1");
+        t1.textContent = "这是通过js创建的标题";
+
+        // 创建的元素必须添加到DOM中才能显示。
+        // 元素对象 .appendChild方法表示为这个元素添加一个子元素，参数是要添加的子元素对象，被添加的子元素会排列到最后。
+        document.body.appendChild(t1);
+
+        // ------------------------------------------
+
+        var ul = document.getElementById("list");
+        for(var i = 0;i<3;i++){
+            var li = document.createElement("li");
+            li.textContent = "这是li,第"+i+"个";
+            ul.appendChild(li);
+        }
+        
+        var li = document.createElement("li");
+        li.textContent = "这是li,第1.5个";
+
+        var li2 = document.getElementsByTagName("li")[2];
+
+        // 为元素对象添加一个子元素，插入到另一个子元素之前。第一个参数表示要添加的元素对象，第二个参数表示添加在谁之前。
+        ul.insertBefore(li,li2);
+
+        // -----------------------------------------
+
+        // 元素对象.remove方法，从DOM删除这个元素。
+        // ul.remove();
+
+        // 删除元素对象的某个子元素
+        // document.body.removeChild(ul);
+
+    </script>
+
+</body>
+</html>

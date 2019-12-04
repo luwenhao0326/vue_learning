@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title">想要通过js修改页面中的元素，首先要查找到这个元素对象</h1>
+
+    <p class="line">获取DOM中的元素有多种方法</p>
+    <p class="line">页面中多个元素的class可以相同</p>
+    <p>类似数组的对象可以称为类数组</p>
+
+    <script>
+        
+        // object的getElementById方法:获取DOM中id值为xxxx的元素对象。
+        var h1Obj = document.getElementById("title");
+
+        // console.log(h1Obj);
+         
+
+        // getElementsByClassName方法：获取DOM中class值包含xxxx的元素对象，返回值是一个类似数组的对象（类数组），这个对象可以像数组一样使用索引访问容器中的元素，也有length属性，但是没有数组其他方法。
+        var lines = document.getElementsByClassName("line");
+        // console.log(lines[0]);
+        // console.log(lines.length);
+
+
+        // getElementsByTagName方法：获取DOM中标签名为xxxx的元素对象，返回值是一个类数组。
+        var paragraph = document.getElementsByTagName("p");
+        // console.log(paragraph);
+        
+
+        // -------------------------------------------
+        // 以下是h5新增的元素查找方法
+
+        // querySelector方法:查询DOM中第一个符合选择器的元素对象
+        var title = document.querySelector("#title");
+        // console.log(title);
+        
+        // querySelectorAll方法:查询DOM中所有符合选择器的元素对象，返回值是一个类数组
+        var ps = document.querySelectorAll("p");
+        console.log(ps);
+
+        
+        
+
+    </script>
+</body>
+</html>

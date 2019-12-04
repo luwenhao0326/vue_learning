@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 只有能够成为焦点的元素才能监听键盘事件 -->
+    <!-- input，a，button，body， -->
+
+
+
+    <script>
+        
+        // onkeydown，键盘某个键被按下的事件
+        // onkeyup，某个键弹起时的事件
+        document.body.onkeydown = function(e){
+            // console.log("键盘上某个键被按下了");
+
+            // 通过事件对象的key或keyCode属性可以判断是哪个键被按下
+            if(e.keyCode==13){
+                alert("您按下了回车键");
+            }
+            
+        }
+
+    </script>
+
+</body>
+</html>

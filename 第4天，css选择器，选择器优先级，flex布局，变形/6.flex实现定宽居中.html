@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #c1{
+            background-color: yellow;
+        }
+        #b1{
+            background-color: red;
+            height: 50px;
+            width: 800px;
+            margin: 0 auto;
+        }
+        #c2{
+            background-color: yellow;
+            display: flex;
+        }
+        #b2,#b3,#b4{
+            border: solid 1px black;
+            height: 50px;
+        }
+        #b2{
+            background-color: aqua;
+
+            /* flex-grow当父元素在布局方向上有多余空间时，本元素占有这些空间的比例，（当父元素变大时，本元素是否随之变大） */
+            /* flex-grow的默认值为0； */
+            flex-grow: 1;
+            
+        }
+        #b3{
+            width: 800px;
+            background-color: blanchedalmond;
+
+            /* flex-shrink，当父元素缩小时，没有足够空间显示本元素时，本元素随之缩小的比例，默认为1，设置为0即可不随父元素缩小 */
+            flex-shrink: 0;
+        }
+        #b4{
+            background-color: chartreuse;
+            flex-grow: 1;
+        }
+        #c3{
+            background-color: chartreuse;
+            display: flex;
+            height: 50px;
+        }
+        #b5{
+            background-color: blue;
+            width: 960px;
+           
+            
+        }
+        #b6{
+            background-color: black;
+            flex-grow: 1;
+           
+           
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="c1">
+        <div id="b1"></div>
+    </div>
+
+    <br>
+
+    <div id="c2">
+        <div id="b2"></div>
+        <div id="b3"></div>
+        <div id="b4"></div>
+    </div>
+
+    <div id="c3">
+        <div id="b5"></div>
+        <div id="b6"></div>
+    </div>
+</body>
+</html>

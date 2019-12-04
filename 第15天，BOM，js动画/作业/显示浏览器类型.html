@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="h1"></h1>
+
+    <script>
+        var h1 = document.getElementById("h1");
+        // console.log(navigator.userAgent);
+        
+        var n = navigator.userAgent;
+
+        var huohu = n.indexOf("Firefox");
+        if(huohu !=-1){
+            h1.textContent ="火狐浏览器";  
+        }
+
+        var guge = n.indexOf("Chrome");
+        if(guge !=-1){
+            h1.textContent ="谷歌浏览器";  
+        }
+        
+        var qq = n.indexOf("QQBrowser");
+        if(qq !=-1){
+            h1.textContent ="QQ浏览器";  
+        }
+        
+    </script>
+</body>
+</html>

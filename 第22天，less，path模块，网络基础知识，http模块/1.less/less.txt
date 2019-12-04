@@ -1,0 +1,20 @@
+css: cascding style sheet ,层叠样式表
+
+less：是一种css的预处理语言，它完全兼容css(在less中可以直接写css代码)，在css及基础上扩展了其他的功能。
+
+
+使用npm 下载less之后，可以使用lessc命令，（c表示compile）
+
+
+lessc命令使用格式：
+
+lessc [待编译的less文件名] [生成的css文件名]
+
+
+将less文件转为css文件除了可以使用lessc命令，还可以使用less.js在前端浏览器进行转换。
+
+
+在开发时使用less.js在浏览器中进行转换比较方便。
+但是在生产环境中，使用less.js会降低页面的访问效率。
+
+所以在开发时使用less.js，开发完毕上线时使用lessc将less转为css，页面中直接使用css。

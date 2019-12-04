@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var mouth = prompt("请输入月")*1;
+        var day = prompt("请输入日")*1;
+        var days = null;
+        if(mouth==1){
+            days = day;
+        }else if(mouth ==2){
+            days = 30+day;
+        }else if(mouth ==3){
+            days = 59+day;
+        }else if(mouth ==4){
+            days = 90+day;
+        }else if(mouth ==5){
+            days = 120+day;
+        }else if(mouth ==6){
+            days = 151+day;
+        }else if(mouth ==7){
+            days = 181+day;
+        }else if(mouth ==8){
+            days = 212+day;
+        }else if(mouth ==9){
+            days = 243+day;
+        }else if(mouth ==10){
+            days = 273+day;
+        }else if(mouth ==11){
+            days = 304+day;
+        }else if(mouth ==12){
+            days = 334+day;
+        }
+        document.write("这是一年中第"+days+"天");
+    </script>
+</body>
+</html>

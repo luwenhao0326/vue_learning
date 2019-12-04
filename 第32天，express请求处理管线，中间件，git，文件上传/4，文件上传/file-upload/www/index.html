@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>文件上传</h1>
+
+    <!-- 上传文件必须用post请求 -->
+    <!-- form标签的enctype属性，表示表单提交的的数据类型，默认为application/x-www-form-urlencoded(urlencode类型)，这种类型只能写字符串，文件上传必须使用multipart/form-data类型的数据 -->
+    <form action="/file/upload" method="POST" enctype="multipart/form-data">
+        <input type="text" name="intro" placeholder="介绍">
+        <br>
+        <!-- input,type=file时，用于选择文件上传文件，accept用于设置能够选择什么类型的文件，值是mime类型，可以使用*通配 -->
+        <!-- 添加multiple属性可以选择多个文件 -->
+        <input type="file" name="myfile" accept="image/*" >
+        <br>
+        <button>上传</button>
+    </form>
+</body>
+</html>
